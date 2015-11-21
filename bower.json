@@ -1,0 +1,25 @@
+{
+  "name": "bibliotech",
+  "version": "0.0.0",
+  "homepage": "https://bitbucket.org/bibliotech/bibliotech",
+  "private": true,
+  "authors": [
+    "Ryan White <ryanwhite04@gmail.com>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-elements": "PolymerElements/iron-elements#~1.0.3",
+    "paper-elements": "PolymerElements/paper-elements#~1.0.3",
+    "polymer": "Polymer/polymer#~1.1.0",
+    "ace-builds": "~1.2.0",
+    "soundfonts": "gleitz/midi-js-soundfonts",
+    "MIDI.js": "mudcube/MIDI.js",
+    "midi-pictures": "andruo11/midi-pictures"
+  }
+}

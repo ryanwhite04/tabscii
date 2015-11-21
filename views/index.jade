@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(property='og:url' content='//bibliotech.education')
+    meta(property='og:image' content='//bibliotech.education/img/comp.png')
+    meta(property='og:title' content='Free Subscription eTextbook Trial')
+    meta(property='og:description' content='Subscription access to Chemistry, Biomedical, and Politics eTextbooks. Join our waitlist now for a free trial.')
+    meta(name='description' content='Subscription access to Chemistry, Biomedical, and Politics eTextbooks. Join our waitlist now for a free trial.')
+    meta(name='keywords' content='Free Trial Subscription eTextbook')
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(name='mobile-web-app-capable' content='yes')
+    meta(name='apple-mobile-web-app-capable' content='yes')
+    meta(name="apple-mobile-web-app-status-bar-style" content="black")
+    link(rel='icon' href='favicon.ico')
+    title Bibliotech
+    script(src='/webcomponents-lite.min.js')
+    script.
+      window.Polymer = window.Polymer || {};
+      window.Polymer.dom = 'shadow';
+    link(rel='import' href='poly-main.html')
+  body(unresolved style='margin:0;padding:0;')
+    poly-main#main(user='#{user}' trial='#{trial}' href='landing.html' on-register='register()')
+    script.
+      window.addEventListener('WebComponentsReady', ready);
+      function ready() {
+        social();
+      }
+      function social() {
+        //- Hotjar
+        (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments);};
+          h._hjSettings={hjid:60292,hjsv:5};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+        })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+          //- Facebook Pixel Code
+        !function(f,b,e,v,n,t,s){
+          if (f.fbq) return;
+          n = f.fbq = function() {
+            if (n.callMethod) n.callMethod.apply(n,arguments);
+            else n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+          t = b.createElement(e); t.async = !0; t.src = v;
+          s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+        }(window, document, 'script', '//connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '734008540044417');
+        fbq('track', 'PageView');
+      }
+      function register(e) {
+        fbq('track', 'CompleteRegistration', e.detail);
+      }
