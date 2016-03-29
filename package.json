@@ -1,60 +1,38 @@
 {
-  "name": "tabscii",
-  "version": "1.0.0",
-  "description": "Because Learning Should Be Easy",
-  "main": "server.js",
-  "lisence": "UNLICENSED",
   "private": true,
-  "author": {
-    "name": "Ryan White",
-    "email": "ryanwhite04@gmail.com",
-    "url": "https://bitbucket.org/ryanwhite04/"
+  "devDependencies": {
+    "browser-sync": "^2.7.7",
+    "connect-history-api-fallback": "^1.1.0",
+    "del": "^2.0.2",
+    "glob-all": "^3.0.1",
+    "gulp": "^3.8.5",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cache": "^0.4.0",
+    "gulp-changed": "^1.0.0",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-html-extract": "^0.1.0",
+    "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-size": "^2.0.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-useref": "^2.1.0",
+    "gulp-vulcanize": "^6.0.0",
+    "merge-stream": "^1.0.0",
+    "require-dir": "^0.3.0",
+    "run-sequence": "^1.0.2",
+    "vulcanize": ">= 1.4.2",
+    "web-component-tester": "^4.0.0"
   },
   "scripts": {
-    "js": "babel es67 -d dist -s",
-    "js:watch": "babel es67 -d dist -ws",
-    "css": "node-sass scss -o dist",
-    "css:watch": "npm run css && node-sass scss -wo dist",
-    "html": "npm run js && npm run css && jade jade -o dist",
-    "html:watch": "npm run html && jade jade -wo dist",
-    "build": "npm run html && node node/build",
-    "deploy": "npm run build && git commit -am \"bump\" && echo \"ready to deploy\"",
-    "start": "node server.js"
+    "test": "gulp test:local",
+    "start": "gulp serve"
   },
-  "devDependencies": {
-    "aws-sdk": "^2.2.10",
-    "babel": "^5.8.23",
-    "chokidar": "^1.2.0",
-    "crisper": "^1.0.7",
-    "jade": "^1.11.0",
-    "minimize": "^1.7.0",
-    "node-sass": "^3.3.3",
-    "uglify-js": "^2.4.24",
-    "vulcanize": "^1.10.4"
-  },
-  "dependencies": {
-    "bcrypt": "^0.8.5",
-    "body-parser": "^1.13.3",
-    "compression": "^1.5.2",
-    "connect-ensure-login": "^0.1.1",
-    "cookie-parser": "^1.3.5",
-    "express": "^4.13.3",
-    "express-mysql-session": "^0.4.1",
-    "express-session": "^1.11.3",
-    "http": "0.0.0",
-    "jade": "^1.11.0",
-    "morgan": "^1.6.1",
-    "mysql": "^2.8.0",
-    "nodemailer": "^1.4.0",
-    "passport": "^0.2.2",
-    "passport-local": "^1.0.0",
-    "request": "^2.61.0",
-    "serve-favicon": "^2.3.0",
-    "serve-static": "^1.10.0",
-    "webcomponents-lite": "^0.6.0"
-  },
-  "jscsConfig": {
-    "esnext": true,
-    "verbose": true
+  "engines": {
+    "node": ">=0.10.0"
   }
 }
