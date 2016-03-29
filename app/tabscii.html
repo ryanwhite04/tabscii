@@ -1,0 +1,2593 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Guitar Tab Player">
+  <title>Guitar Tab Player - Tabscii</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACeUlEQVRYR+WXu04bURCGZ46RoDIXUSDRpAgIRVirSOHyBsaUK4U3oKen5QXS8wIUbsMlfSQCKFLAIHCxRQpLSZcI4QT2TP6xvMra2fV6fYxcxM1K3j07//nmPzOzTCP+8Yjj0/8hQN5SoX6/dsHEy0JSWXx/+iEi/2wE6pU3r4nGPiLgBDOTiJBerbXBpG2W5k6+3KuIoQqob65vCdFBL19BUDD59DA8Abcba1U27Ec7zLy6EtB83v1cvWBjvMxgbezx58DcjYDumLBjJBUJRAbzXl0J3G6uVxHUHyh4S6wjgRsQMEw+XtVycO6rSDDlcgpuQIAdCUy5nAIlgNT3TYAs7Swdn76roS4UpKB1oTHtSkA9EC8uHS4nehyj3/MLh5+/x+uBFqYnCGBDDWcCSL7fUWyQ1/iukgqREjAQANc4EtBjCAHwwf7S0aftfrvp0ARctwVobl8ht3kEcJvAjIsHRi7gqrxSNcb4aGsgcJabgBVpzIpDN1QCoh4YIAWkpwAmfEQKvEHbsRJAI4KAZALR/bQeIVaCEAQGF9A2oekiUK+8HP9FM98w9RR7lWcIC0JXAgQCAgKlmAdq5dU9Mbyb1R2VgHUmQIIBhCHg7zGslVe2hPkgq0uCTmCzCOjQcfVDhw7uGDrw8hBl96thftFNQNfUMKgggJdaprGewrBSOjlPH0p1JxY7SXtJ9D91EYgKknqhKfACwwvxiYhofzmhcnYMpbr4QRcT9TSSLsJ53vFy1IG0ivmPgCacDOHFLAKcQqDf0pz6XXCpbmba7TlaCwUUc3LeoPHnE78LWqkACcxbxW5Xq/u9HE0oS9xQP0yygiXdH7mAP33sPj/MjBgnAAAAAElFTkSuQmCC"
+    id="favicon">
+  <!-- Fonts -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="styles/tabscii.css" rel="stylesheet" type="text/css" />
+  <!-- Jquery -->
+  <script src="res/jquery-2.1.1.min.js"></script>
+  <!-- Require.js -->
+  <script src="res/requirejs-master/require.js" type="text/javascript"></script>
+  <!-- Ace Editor -->
+  <script src="res/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <!-- MIDI.js -->
+  <script src="res/MIDI.js-master/js/MIDI/AudioDetect.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/js/MIDI/LoadPlugin.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/js/MIDI/Plugin.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/js/MIDI/Player.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/js/Window/DOMLoader.XMLHttp.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/js/Widgets/Loader.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/inc/Base64.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/inc/base64binary.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/inc/jasmid/midifile.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/inc/jasmid/replayer.js" type="text/javascript"></script>
+  <script src="res/MIDI.js-master/inc/jasmid/stream.js" type="text/javascript"></script>
+  <!-- Downloadify -->
+  <script src="res/Downloadify-master/js/swfobject.js" type="text/javascript"></script>
+  <script src="res/Downloadify-master/js/downloadify.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div id="header" class="top">
+    <div id="leftMenuButton">
+      <i class="red fa fa-bars"></i>
+    </div>
+    <div id="instrument">
+      <select class="text">
+        <optgroup label="Piano">
+          <option value="acoustic_grand_piano">Acoustic Grand Piano</option>
+          <option value="bright_acoustic_piano">Bright Acoustic Piano</option>
+          <option value="electric_grand_piano">Electric Grand Piano</option>
+          <option value="honkytonk_piano">Honky-tonk Piano</option>
+          <option value="electric_piano_1">Electric Piano 1</option>
+          <option value="electric_piano_2">Electric Piano 2</option>
+          <option value="harpsichord">Harpsichord</option>
+          <option value="clavinet">Clavinet</option>
+        </optgroup>
+        <optgroup label="Chromatic Percussion">
+          <option value="celesta">Celesta</option>
+          <option value="glockenspiel">Glockenspiel</option>
+          <option value="music_box">Music Box</option>
+          <option value="vibraphone">Vibraphone</option>
+          <option value="marimba">Marimba</option>
+          <option value="xylophone">Xylophone</option>
+          <option value="tubular_bells">Tubular Bells</option>
+          <option value="dulcimer">Dulcimer</option>
+        </optgroup>
+        <optgroup label="Organ">
+          <option value="drawbar_organ">Drawbar Organ</option>
+          <option value="percussive_organ">Percussive Organ</option>
+          <option value="rock_organ">Rock Organ</option>
+          <option value="church_organ">Church Organ</option>
+          <option value="reed_organ">Reed Organ</option>
+          <option value="accordion">Accordion</option>
+          <option value="harmonica">Harmonica</option>
+          <option value="tango_accordion">Tango Accordion</option>
+        </optgroup>
+        <optgroup label="Guitar">
+          <option value="acoustic_guitar_nylon">Acoustic Guitar (nylon)</option>
+          <option value="acoustic_guitar_steel">Acoustic Guitar (steel)</option>
+          <option value="electric_guitar_jazz">Electric Guitar (jazz)</option>
+          <option value="electric_guitar_clean">Electric Guitar (clean)</option>
+          <option value="electric_guitar_muted">Electric Guitar (muted)</option>
+          <option value="overdriven_guitar">Overdriven Guitar</option>
+          <option value="distortion_guitar">Distortion Guitar</option>
+          <option value="guitar_harmonics">Guitar Harmonics</option>
+        </optgroup>
+        <optgroup label="Bass">
+          <option value="acoustic_bass">Acoustic Bass</option>
+          <option value="electric_bass_finger">Electric Bass (finger)</option>
+          <option value="electric_bass_pick">Electric Bass (pick)</option>
+          <option value="fretless_bass">Fretless Bass</option>
+          <option value="slap_bass_1">Slap Bass 1</option>
+          <option value="slap_bass_2">Slap Bass 2</option>
+          <option value="synth_bass_1">Synth Bass 1</option>
+          <option value="synth_bass_2">Synth Bass 2</option>
+        </optgroup>
+        <optgroup label="Strings">
+          <option value="violin">Violin</option>
+          <option value="viola">Viola</option>
+          <option value="cello">Cello</option>
+          <option value="contrabass">Contrabass</option>
+          <option value="tremolo_strings">Tremolo Strings</option>
+          <option value="pizzicato_strings">Pizzicato Strings</option>
+          <option value="orchestral_harp">Orchestral Harp</option>
+          <option value="timpani">Timpani</option>
+        </optgroup>
+        <optgroup label="Ensemble">
+          <option value="string_ensemble_1">String Ensemble 1</option>
+          <option value="string_ensemble_2">String Ensemble 2</option>
+          <option value="synth_strings_1">Synth Strings 1</option>
+          <option value="synth_strings_2">Synth Strings 2</option>
+          <option value="choir_aahs">Choir Aahs</option>
+          <option value="voice_oohs">Voice Oohs</option>
+          <option value="synth_choir">Synth Choir</option>
+          <option value="orchestra_hit">Orchestra Hit</option>
+        </optgroup>
+        <optgroup label="Brass">
+          <option value="trumpet">Trumpet</option>
+          <option value="trombone">Trombone</option>
+          <option value="tuba">Tuba</option>
+          <option value="muted_trumpet">Muted Trumpet</option>
+          <option value="french_horn">French Horn</option>
+          <option value="brass_section">Brass Section</option>
+          <option value="synth_brass_1">Synth Brass 1</option>
+          <option value="synth_brass_2">Synth Brass 2</option>
+        </optgroup>
+        <optgroup label="Reed">
+          <option value="soprano_sax">Soprano Sax</option>
+          <option value="alto_sax">Alto Sax</option>
+          <option value="tenor_sax">Tenor Sax</option>
+          <option value="baritone_sax">Baritone Sax</option>
+          <option value="oboe">Oboe</option>
+          <option value="english_horn">English Horn</option>
+          <option value="bassoon">Bassoon</option>
+          <option value="clarinet">Clarinet</option>
+        </optgroup>
+        <optgroup label="Pipe">
+          <option value="piccolo">Piccolo</option>
+          <option value="flute">Flute</option>
+          <option value="recorder">Recorder</option>
+          <option value="pan_flute">Pan Flute</option>
+          <option value="blown_bottle">Blown Bottle</option>
+          <option value="shakuhachi">Shakuhachi</option>
+          <option value="whistle">Whistle</option>
+          <option value="ocarina">Ocarina</option>
+        </optgroup>
+        <optgroup label="Synth Lead">
+          <option value="lead_1_square">Lead 1 (square)</option>
+          <option value="lead_2_sawtooth">Lead 2 (sawtooth)</option>
+          <option value="lead_3_calliope">Lead 3 (calliope)</option>
+          <option value="lead_4_chiff">Lead 4 (chiff)</option>
+          <option value="lead_5_charang">Lead 5 (charang)</option>
+          <option value="lead_6_voice">Lead 6 (voice)</option>
+          <option value="lead_7_fifths">Lead 7 (fifths)</option>
+          <option value="lead_8_bass__lead">Lead 8 (bass + lead)</option>
+        </optgroup>
+        <optgroup label="Synth Pad">
+          <option value="pad_1_new_age">Pad 1 (new age)</option>
+          <option value="pad_2_warm">Pad 2 (warm)</option>
+          <option value="pad_3_polysynth">Pad 3 (polysynth)</option>
+          <option value="pad_4_choir">Pad 4 (choir)</option>
+          <option value="pad_5_bowed">Pad 5 (bowed)</option>
+          <option value="pad_6_metallic">Pad 6 (metallic)</option>
+          <option value="pad_7_halo">Pad 7 (halo)</option>
+          <option value="pad_8_sweep">Pad 8 (sweep)</option>
+        </optgroup>
+        <optgroup label="Synth Effects">
+          <option value="fx_1_rain">FX 1 (rain)</option>
+          <option value="fx_2_soundtrack">FX 2 (soundtrack)</option>
+          <option value="fx_3_crystal">FX 3 (crystal)</option>
+          <option value="fx_4_atmosphere">FX 4 (atmosphere)</option>
+          <option value="fx_5_brightness">FX 5 (brightness)</option>
+          <option value="fx_6_goblins">FX 6 (goblins)</option>
+          <option value="fx_7_echoes">FX 7 (echoes)</option>
+          <option value="fx_8_sci-fi">FX 8 (sci-fi)</option>
+        </optgroup>
+        <optgroup label="Ethnic">
+          <option value="sitar">Sitar</option>
+          <option value="banjo">Banjo</option>
+          <option value="shamisen">Shamisen</option>
+          <option value="koto">Koto</option>
+          <option value="kalimba">Kalimba</option>
+          <option value="bagpipe">Bagpipe</option>
+          <option value="fiddle">Fiddle</option>
+          <option value="shanai">Shanai</option>
+        </optgroup>
+        <optgroup label="Percussive">
+          <option value="tinkle_bell">Tinkle Bell</option>
+          <option value="agogo">Agogo</option>
+          <option value="steel_drums">Steel Drums</option>
+          <option value="woodblock">Woodblock</option>
+          <option value="taiko_drum">Taiko Drum</option>
+          <option value="melodic_tom">Melodic Tom</option>
+          <option value="synth_drum">Synth Drum</option>
+          <option value="reverse_cymbal">Reverse Cymbal</option>
+        </optgroup>
+        <optgroup label="Sound Effects">
+          <option value="guitar_fret_noise">Guitar Fret Noise</option>
+          <option value="breath_noise">Breath Noise</option>
+          <option value="seashore">Seashore</option>
+          <option value="bird_tweet">Bird Tweet</option>
+          <option value="telephone_ring">Telephone Ring</option>
+          <option value="helicopter">Helicopter</option>
+          <option value="applause">Applause</option>
+          <option value="gunshot">Gunshot</option>
+        </optgroup>
+      </select>
+    </div>
+    <div id="play">
+      <input class="left number" type="number" placeholder="120" min="0" max="999" step="10">
+      <i class="right fa fa-play"></i>
+    </div>
+    <div id="rightMenuButton">
+      <i class="red fa fa-folder"></i>
+    </div>
+    <div id="logo">
+      <div>Tabscii</div>
+    </div>
+  </div>
+  <div id="leftMenu" class="bottom left" style="top: 64px;">
+    <div id="editorMenuButton" class="menuButton">
+      <button class="left text red">Editor Menu</button>
+      <i class="right fa fa-arrow-down"></i>
+    </div>
+    <div id="editorMenu" class="menu">
+      <div id="theme">
+        <select class="text">
+          <optgroup label="Bright">
+            <option value="ace/theme/chrome">Chrome</option>
+            <option value="ace/theme/clouds">Clouds</option>
+            <option value="ace/theme/crimson_editor">Crimson Editor</option>
+            <option value="ace/theme/dawn">Dawn</option>
+            <option value="ace/theme/dreamweaver">Dreamweaver</option>
+            <option value="ace/theme/eclipse">Eclipse</option>
+            <option value="ace/theme/github">GitHub</option>
+            <option value="ace/theme/solarized_light">Solarized Light</option>
+            <option value="ace/theme/textmate">TextMate</option>
+            <option value="ace/theme/tomorrow">Tomorrow</option>
+            <option value="ace/theme/xcode">XCode</option>
+            <option value="ace/theme/kuroir">Kuroir</option>
+            <option value="ace/theme/katzenmilch">KatzenMilch</option>
+          </optgroup>
+          <optgroup label="Dark">
+            <option value="ace/theme/ambiance">Ambiance</option>
+            <option value="ace/theme/chaos">Chaos</option>
+            <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
+            <option value="ace/theme/cobalt">Cobalt</option>
+            <option value="ace/theme/idle_fingers">idle Fingers</option>
+            <option value="ace/theme/kr_theme">krTheme</option>
+            <option value="ace/theme/merbivore">Merbivore</option>
+            <option value="ace/theme/merbivore_soft">Merbivore Soft</option>
+            <option value="ace/theme/mono_industrial">Mono Industrial</option>
+            <option value="ace/theme/monokai">Monokai</option>
+            <option value="ace/theme/pastel_on_dark">Pastel on dark</option>
+            <option value="ace/theme/solarized_dark">Solarized Dark</option>
+            <option value="ace/theme/terminal">Terminal</option>
+            <option value="ace/theme/tomorrow_night">Tomorrow Night</option>
+            <option value="ace/theme/tomorrow_night_blue">Tomorrow Night Blue</option>
+            <option value="ace/theme/tomorrow_night_bright">Tomorrow Night Bright</option>
+            <option value="ace/theme/tomorrow_night_eighties">Tomorrow Night 80s</option>
+            <option value="ace/theme/twilight">Twilight</option>
+            <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
+          </optgroup>
+        </select>
+      </div>
+      <div id="mode">
+        <select class="text">
+          <option value="abap">ABAP</option>
+          <option value="actionscript">ActionScript</option>
+          <option value="ada">ADA</option>
+          <option value="apache_conf">Apache Conf</option>
+          <option value="asciidoc">AsciiDoc</option>
+          <option value="assembly_x86">Assembly x86</option>
+          <option value="autohotkey">AutoHotKey</option>
+          <option value="batchfile">BatchFile</option>
+          <option value="c9search">C9Search</option>
+          <option value="c_cpp">C/C++</option>
+          <option value="clojure">Clojure</option>
+          <option value="cobol">Cobol</option>
+          <option value="coffee">CoffeeScript</option>
+          <option value="coldfusion">ColdFusion</option>
+          <option value="csharp">C#</option>
+          <option value="css">CSS</option>
+          <option value="curly">Curly</option>
+          <option value="d">D</option>
+          <option value="dart">Dart</option>
+          <option value="diff">Diff</option>
+          <option value="dot">Dot</option>
+          <option value="erlang">Erlang</option>
+          <option value="ejs">EJS</option>
+          <option value="forth">Forth</option>
+          <option value="ftl">FreeMarker</option>
+          <option value="glsl">Glsl</option>
+          <option value="golang">Go</option>
+          <option value="groovy">Groovy</option>
+          <option value="haml">HAML</option>
+          <option value="handlebars">Handlebars</option>
+          <option value="haskell">Haskell</option>
+          <option value="haxe">haXe</option>
+          <option value="html">HTML</option>
+          <option value="html_ruby">HTML (Ruby)</option>
+          <option value="ini">INI</option>
+          <option value="jack">Jack</option>
+          <option value="jade">Jade</option>
+          <option value="java">Java</option>
+          <option value="javascript">JavaScript</option>
+          <option value="json">JSON</option>
+          <option value="jsoniq">JSONiq</option>
+          <option value="jsp">JSP</option>
+          <option value="jsx">JSX</option>
+          <option value="julia">Julia</option>
+          <option value="latex">LaTeX</option>
+          <option value="less">LESS</option>
+          <option value="liquid">Liquid</option>
+          <option value="lisp">Lisp</option>
+          <option value="livescript">LiveScript</option>
+          <option value="logiql">LogiQL</option>
+          <option value="lsl">LSL</option>
+          <option value="lua">Lua</option>
+          <option value="luapage">LuaPage</option>
+          <option value="lucene">Lucene</option>
+          <option value="makefile">Makefile</option>
+          <option value="matlab">MATLAB</option>
+          <option value="markdown">Markdown</option>
+          <option value="mel">MEL</option>
+          <option value="mysql">MySQL</option>
+          <option value="mushcode">MUSHCode</option>
+          <option value="nix">Nix</option>
+          <option value="objectivec">Objective-C</option>
+          <option value="ocaml">OCaml</option>
+          <option value="pascal">Pascal</option>
+          <option value="perl">Perl</option>
+          <option value="pgsql">pgSQL</option>
+          <option value="php">PHP</option>
+          <option value="powershell">Powershell</option>
+          <option value="prolog">Prolog</option>
+          <option value="properties">Properties</option>
+          <option value="protobuf">Protobuf</option>
+          <option value="python">Python</option>
+          <option value="r">R</option>
+          <option value="rdoc">RDoc</option>
+          <option value="rhtml">RHTML</option>
+          <option value="ruby">Ruby</option>
+          <option value="rust">Rust</option>
+          <option value="sass">SASS</option>
+          <option value="scad">SCAD</option>
+          <option value="scala">Scala</option>
+          <option value="scheme">Scheme</option>
+          <option value="scss">SCSS</option>
+          <option value="sh">SH</option>
+          <option value="sjs">SJS</option>
+          <option value="space">Space</option>
+          <option value="snippets">snippets</option>
+          <option value="soy_template">Soy Template</option>
+          <option value="sql">SQL</option>
+          <option value="stylus">Stylus</option>
+          <option value="svg">SVG</option>
+          <option value="tcl">Tcl</option>
+          <option value="tex">Tex</option>
+          <option value="text">Text</option>
+          <option value="textile">Textile</option>
+          <option value="toml">Toml</option>
+          <option value="twig">Twig</option>
+          <option value="typescript">Typescript</option>
+          <option value="vbscript">VBScript</option>
+          <option value="velocity">Velocity</option>
+          <option value="verilog">Verilog</option>
+          <option value="xml">XML</option>
+          <option value="xquery">XQuery</option>
+          <option value="yaml">YAML</option>
+        </select>
+      </div>
+      <div id="fontSize">
+        <input class="left number" type="number" placeholder="#">
+        <i class="right fa fa-pencil"></i>
+      </div>
+    </div>
+    <div id="fileMenuButton" class="menuButton">
+      <button class="left text red">File Menu</button>
+      <i class="right fa fa-arrow-down"></i>
+    </div>
+    <div id="fileMenu" class="menu">
+      <div id="tabscii">
+        <i class="left" title="Tabscii.com">
+          <img src="images/tabscii.com.ico" alt="Tabscii.com" height="16" width="16">
+        </i>
+        <select class="text right">
+          <optgroup label="Main">
+            <option value="home.txt">Home</option>
+            <option value="formatting.txt">Formatting</option>
+            <option value="instructions.txt">Instructions</option>
+          </optgroup>
+          <optgroup label="Songs">
+            <option value="songs.txt">Songs</option>
+            <option value="breeze-on-a-hill.txt">Breeze On A Hill</option>
+            <option value="heartbeats Jose Gonzalez.txt">Heartbeats</option>
+            <option value="heartbeats.txt">Heartbeats 2</option>
+            <option value="ryansong.txt">Other</option>
+            <option value="song1.txt">Number 1</option>
+            <option value="something.txt">Something</option>
+          </optgroup>
+        </select>
+      </div>
+      <div id="gametabs">
+        <i class="left" title="GameTabs.net">
+          <img src="images/gametabs.net.ico" alt="GameTabs.net" height="16" width="16">
+        </i>
+        <select class="text right">
+          <option value="1000-ad.txt">1000 A.D.</option>
+          <option value="fishermans-horizon.txt">Fisherman's Horizon</option>
+          <option value="deku-trees-last-words.txt">Deku Tree's Last Words</option>
+          <option value="battle-theme.txt">Battle Theme</option>
+          <option value="gathering-stars-in-the-night-sky.txt">Gathering Stars in the Night Sky</option>
+          <option value="waltz-for-zizi.txt">Waltz for Zizi</option>
+          <option value="traverse-town.txt">Traverse Town</option>
+          <option value="blue-fields.txt">Blue Fields</option>
+          <option value="you-were-there.txt">You Were There</option>
+          <option value="breeze-on-a-hill.txt">Breeze On a Hill</option>
+          <option value="dearly-beloved-reprise.txt">Dearly Beloved &amp; Reprise</option>
+          <option value="sons-of-skyrim.txt">Sons of Skyrim</option>
+          <option value="final-bowser-theme.txt">Final Bowser Theme</option>
+          <option value="great-warrior.txt">Great Warrior</option>
+          <option value="theme-of-love.txt">Theme of Love</option>
+          <option value="the-legendary-hero.txt">The Legendary Hero</option>
+          <option value="call-of-magic-main-theme.txt">Call of Magic (Main Theme)</option>
+          <option value="radical-dreamers.txt">Radical Dreamers</option>
+          <option value="lazy-afternoons.txt">Lazy Afternoons</option>
+          <option value="wind-scene2.txt">Wind Scene</option>
+          <option value="descendant-of-shinobi.txt">Descendant of Shinobi</option>
+          <option value="wind-scene.txt">Wind Scene</option>
+          <option value="zeldas-lullaby.txt">Zelda's Lullaby</option>
+          <option value="birth-of-a-god.txt">Birth of a God</option>
+          <option value="balamb-garden.txt">Balamb Garden</option>
+          <option value="gerudo-valley.txt">Gerudo Valley</option>
+          <option value="main-theme-of-metal-gear-solid.txt">Main Theme of Metal Gear Solid</option>
+          <option value="tifas-theme.txt">Tifa's Theme</option>
+          <option value="shion-past-memory.txt">Shion - Past Memory</option>
+          <option value="main-theme-nosebloods-version.txt">Main Theme (nosebloods version)</option>
+          <option value="main-theme-blitzwater-version.txt">Main Theme (blitzwater version)</option>
+          <option value="1000-words.txt">1,000 Words</option>
+          <option value="far-off-promise.txt">Far Off Promise</option>
+          <option value="kaepora-gaebora.txt">Kaepora Gaebora</option>
+          <option value="faron-woods.txt">Faron Woods</option>
+          <option value="battle-theme2.txt">Battle Theme</option>
+          <option value="overworld-main-theme.txt">Overworld (Main Theme)</option>
+          <option value="eternity-memory-of-light-waves.txt">Eternity: Memory of Lightwaves</option>
+          <option value="wind-crest-the-three-trails.txt">Wind Crest - The Three Trails</option>
+          <option value="besaid-island.txt">Besaid Island</option>
+          <option value="underworld.txt">Underworld</option>
+          <option value="to-zanarkand.txt">To Zanarkand</option>
+          <option value="file-select.txt">File Select</option>
+          <option value="overworld.txt">Overworld</option>
+          <option value="windmill-hut.txt">Windmill Hut</option>
+          <option value="barretts-theme.txt">Barrett's Theme</option>
+          <option value="emotions.txt">Emotions</option>
+          <option value="horse-race.txt">Horse Race</option>
+          <option value="kids-run-through-the-city-corner.txt">Kids Run Through The City Corner</option>
+          <option value="zeldas-lullaby2.txt">Zelda's Lullaby</option>
+        </select>
+      </div>
+      <div id="classtab">
+        <i class="left" title="ClassTab.org">
+          <img src="images/classtab.org.ico" alt="ClassTab.org" height="16" width="16">
+        </i>
+        <select class="text right">
+          <optgroup label="Zequinha de Abreu; (Zequinha Abreu); (1880-1935)">
+            <option value="abreu_ticotico.txt">Tico Tico</option>
+          </optgroup>
+          <optgroup label="Dionisio Aguado; (1784-1849)">
+            <option value="aguado_op02_no2_rondo_in_am.txt">Op 2 - Tres Rondos Brillantes (Trois Rondo Brillants) - No 2 Rondo in Am</option>
+            <option value="aguado_op6_p1_l08.txt">Op 6 - Nuevo Metodo de Guitarra - Part 1, Lesson 8 in Am</option>
+            <option value="aguado_method_8_lessons.txt">Eight Lessons (Segovia Etudes)</option>
+            <option value="aguado_escuela_de_guitarra_p2_s1_ch2_l35_38.txt">Escuela de Guitarra - Part 2, Section 1, Chapter 2, Lessons 35, 38 in C</option>
+            <option value="aguado_escuela_de_guitarra_p2_s3_es23.txt">Escuela de Guitarra - Part 2, Section 3, Study 23 in Am</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l10.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 10 in C</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l12.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 12 in C</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l13.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 13 in C</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l14.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 14 in G</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l15.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 15 in G</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l18.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 18 in G</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l19.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 19 in Am</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l20.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 20 in G</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l38.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 38 in E</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l39.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 39 in G</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c1_l40.txt">Nuevo Metodo para Guitarra - Pt2, S1, Ch1, Lesson 40 in A</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s1_c3_s8.txt">Nuevo Metodo para Guitarra - Part 2, Section 1, Chapter 3, Sheet 8 in D</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex02.txt">Nuevo Metodo para Guitarra - Pt2, S2, Ch1, Exercise 2 in Am</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex03.txt">Nuevo Metodo para Guitarra - Pt2, S2, Ch1, Exercise 3 in A</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex04.txt">Nuevo Metodo para Guitarra - Pt2, S2, Ch1, Exercise 4 in G</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex05.txt">Nuevo Metodo para Guitarra - Pt2, S2, Ch1, Exercise 5 in G</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex06.txt">Nuevo Metodo para Guitarra - Pt2, S2, Ch1, Exercise 6 in C</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex07.txt">Nuevo Metodo para Guitarra - Pt2, S2, Ch1, Exercise 7 in C</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex08.txt">Nuevo Metodo para Guitarra - Pt2, S2, Ch1, Exercise 8 in G</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex11.txt">Nuevo Metodo para Guitarra - Pt2, S2, Ch1, Exercise 11 in Am</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex15.txt">Nuevo Metodo para Guitarra - Part 2, Section 2, Chapter 1, Exercise 15 in C</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s2_c1_ex20.txt">Nuevo Metodo para Guitarra - Part 2, Section 2, Chapter 1, Exercise 20 in C</option>
+            <option value="aguado_nuevo_metodo_para_guitarra_p2_s3_es17.txt">Nuevo Metodo para Guitarra - Part 2, Section 3, Study 17 in Em</option>
+          </optgroup>
+          <optgroup label="Julian Aguirre ;(Julián Aguirre); (1868-1924)">
+            <option value="aguirre_op17_5_tristes_no4.txt">Op 17 - 5 Tristes for Piano, No 4</option>
+          </optgroup>
+          <optgroup label="Isaac Albeniz ;(Isaak Albéniz); (1860-1909)">
+            <option value="albeniz_isaac_plegaria.txt">Plegaria (Andante)</option>
+            <option value="albeniz_isaac_serenata_arabe.txt">Serenata Arabe</option>
+            <option value="albeniz_isaac_zambra_granadina.txt">Zambra Granadina</option>
+            <option value="albeniz_isaac_op012_pavane_caprichio.txt">Op 12 Pavane-Capricho</option>
+            <option value="albeniz_isaac_op047_no1_espanola_granada.txt">Op 47 Suite Española (Suite Espanola) - No 1 Granada</option>
+            <option value="albeniz_isaac_op047_no2_espanola_cataluna.txt">Op 47 Suite Española (Suite Espanola) - No 2 Cataluña (Cataluna)</option>
+            <option value="albeniz_isaac_op047_no3_espanola_sevilla.txt">Op 47 Suite Española (Suite Espanola) - No 3 Sevilla (Sevillanas)</option>
+            <option value="albeniz_isaac_op047_no4_espanola_celebre.txt">Op 47 Suite Española (Suite Espanola) - No 4 Celebre Serenata Espanola (Cadiz)</option>
+            <option value="albeniz_isaac_op047_no5_espanola_asturias.txt">Op 47 Suite Española (Suite Espanola) - No 5 Asturias (Leyenda)</option>
+            <option value="albeniz_isaac_op047_no8_espanola_cuba.txt">Op 47 Suite Española (Suite Espanola) - No 8 Cuba (Nocturno)</option>
+            <option value="albeniz_isaac_op071_no6_recuerdos_rumores.txt">Op 71 Recuerdos De Viaje - No 6 Rumores De La Caleta (Malagueña)</option>
+            <option value="albeniz_isaac_op092_no12_piezas_torre_bermeja.txt">Op 92 Piezas Caracteristicas - No 12 Torre Bermeja (Serenata)</option>
+            <option value="albeniz_isaac_op165_no2_tango_in_d.txt">Op 165 Suite España (Suite Espana) - No 2 Tango in D</option>
+            <option value="albeniz_isaac_op165_no5_capricho_catalan.txt">Op 165 Suite España - No 5 Capricho Catalan</option>
+            <option value="albeniz_isaac_op202_mallorca.txt">Op 202 Mallorca (Barcarolla)</option>
+            <option value="albeniz_isaac_op232_no4_cantos_cordoba.txt">Opus 232 Cantos de España - No 4 Córdoba</option>
+          </optgroup>
+          <optgroup label="Mateo Albeniz ;(Mateo Albéniz); (1755/60-1831)">
+            <option value="albeniz_mateo_sonata_in_d.txt">Sonata in D (Zapateado)</option>
+          </optgroup>
+          <optgroup label="Heinrich Albert ;(Heinrich Alberti); (1604-1651)">
+            <option value="albert_guitarre_etuden_01.txt">Gitarre Etuden - Heft 1 Elementarstufe - Etude No 1 in C</option>
+          </optgroup>
+          <optgroup label="Tomaso Albinoni; (1678-1751)">
+            <option value="albinoni_adagio_gm.txt">Adagio in Gm</option>
+          </optgroup>
+          <optgroup label="Richard Allison; (1560-1610)">
+            <option value="allison_almain.txt">Almain</option>
+          </optgroup>
+          <optgroup label="Sergio Assad; (1952-)">
+            <option value="assad_aquarelle_2_valseana.txt">Aquarelle Suite - 2 Valseana</option>
+          </optgroup>
+          <optgroup label="Thomas Attwood; (1765-1838)">
+            <option value="ta_s02a.txt">Sonatina No 2 in C - Allegro</option>
+          </optgroup>
+          <optgroup label="Hector Ayala ;(Héctor Ayala); (1911/14-1987/89/90)">
+            <option value="ayala_el_sureno_malambo.txt">El Sureño - Malambo</option>
+            <option value="ayala_serie_americana_0_preludio.txt">Serie Americana - Preludio</option>
+            <option value="ayala_serie_americana_1_choro_brazil.txt">Serie Americana - 1. Chôro (Brasil)</option>
+            <option value="ayala_serie_americana_3_guarania_paraguay.txt">Serie Americana - 3. Guarania (Paraguay)</option>
+          </optgroup>
+          <optgroup label="Salvador Bacarisse; (1898-1963)">
+            <option value="sb72_2.txt">Concertina in Am Op 72 - 2nd movement</option>
+          </optgroup>
+          <optgroup label="Carl Philipp Emanuel Bach; (1714-1788)">
+            <option value="jsba122.txt">Anna Magdalena Anh 122 - March in D</option>
+            <option value="jsba124z.txt">Anna Magdalena Anh 124 - March in G</option>
+            <option value="bach_cpe_solfeggio_in_cm.txt">Solfeggio (Solfeggietto) in Cm</option>
+          </optgroup>
+          <optgroup label="Johann Sebastian Bach; (1685-1750)">
+            <option value="jsbaoagz.txt">Air on the G String</option>
+            <option value="jsbaariz.txt">Anna Magdalena - Aria</option>
+            <option value="jsba114z.txt">Anna Magdalena Anh 114 - Minuet in G</option>
+            <option value="jsba115.txt">Anna Magdalena Anh 115 - Minuet in Gm</option>
+            <option value="bach_js_anh116_menuet_in_g.txt">Anna Magdalena Anh 116 - Minuet in G</option>
+            <option value="jsba122.txt">Anna Magdalena Anh 122 - March in D</option>
+            <option value="jsba124z.txt">Anna Magdalena Anh 124 - March in G</option>
+            <option value="jsba126z.txt">Anna Magdalena Anh 126 - Musette in D</option>
+            <option value="jsba132z.txt">Anna Magdalena Anh 132 - Minuet in Dm</option>
+            <option value="jsb0034z.txt">BWV 34 - My Heart Ever Faithful</option>
+            <option value="jsb0147z.txt">BWV 147 - Chorale - Jesu, Joy Of Man's Desiring</option>
+            <option value="jsb0232z.txt">BWV 232 - Agnus Dei</option>
+            <option value="bach_js_bwv0244_o_haupt_voll.txt">BWV 244 - O Haupt Voll Blut Und Wunden</option>
+            <option value="jsb0565x.txt">BWV 565 - Toccata &amp; Fugue in Dm</option>
+            <option value="jsb0578.txt">BWV 578 - Little Fugue in Gm</option>
+            <option value="bach_js_bwv0596_concerto_in_dm_3_largo.txt">BWV 596 - Organ Concerto in Dm (after Vivaldi), Largo</option>
+            <option value="bach_js_bwv0639_ich ruf zu dir.txt">BWV 639 - Ich ruf' zu dir, Herr Jesu Christ</option>
+            <option value="bach_js_bwv0645a_choral_prelude_in_eb.txt">BWV 645 - Schübler Chorale for Organ No 1</option>
+            <option value="bach_js_bwv0775_two-part_invention_04.txt">BWV 775 - Two-Part Invention No 4 in Dm</option>
+            <option value="bach_js_bwv0779_two-part_invention_08.txt">BWV 779 - Two-Part Invention No 8 in F</option>
+            <option value="bach_js_bwv0780_two-part_invention_09.txt">BWV 780 - Two-Part Invention No 9 in Fm</option>
+            <option value="bach_js_bwv0784_two-part_invention_13.txt">BWV 784 - Two-Part Invention No 13 in Am</option>
+            <option value="bach_js_bwv0785_two-part_invention_14.txt">BWV 785 - Two-Part Invention No 14 in Bb</option>
+            <option value="jsb0810.txt">BWV 810 - Gigue</option>
+            <option value="jsb0816d.txt">BWV 816 - Gavotte</option>
+            <option value="jsb0825g.txt">BWV 825 - Gigue</option>
+            <option value="jsb0846a.txt">BWV 846 - Prelude No 1 in C</option>
+            <option value="jsb0847b.txt">BWV 847 - Fugue No 2 in Cm</option>
+            <option value="jsb0849a.txt">BWV 849 - Prelude No 4 in C#m</option>
+            <option value="jsb0851a.txt">BWV 851 - Prelude No 6 in Dm</option>
+            <option value="jsb0867b.txt">BWV 867 - Fugue No 22 in Bbm</option>
+            <option value="bach_js_bwv0893_1_wtc2_no24_prelude_in_bm.txt">BWV 893 - Prelude No 24 in Bm</option>
+            <option value="jsb0903a.txt">BWV 903 - Chromatic Fantasia in Dm</option>
+            <option value="jsb0971a.txt">BWV 971 - Andante</option>
+            <option value="jsb0988a.txt">BWV 988 - Aria</option>
+            <option value="bach_js_bwv0988_goldberg_variation_01.txt">BWV 988 - Variation 1</option>
+            <option value="bach_js_bwv0988_goldberg_variation_02.txt">BWV 988 - Variation 2</option>
+            <option value="jsb09885.txt">BWV 988 - Variation 5</option>
+            <option value="jsb0995a.txt">BWV 995 - Sarabande</option>
+            <option value="jsb0995t.txt">BWV 995 - Gavotte I</option>
+            <option value="jsb0995b.txt">BWV 995 - Gavotte II (Gavotte En Rondeau)</option>
+            <option value="jsb0995c.txt">BWV 995 - Gigue</option>
+            <option value="jsb0996p.txt">BWV 996 - Prelude</option>
+            <option value="jsb0996a.txt">BWV 996 - Allemande</option>
+            <option value="jsb0996c.txt">BWV 996 - Courante</option>
+            <option value="jsb0996s.txt">BWV 996 - Sarabande</option>
+            <option value="jsb0996b.txt">BWV 996 - Bourree</option>
+            <option value="jsb0996g.txt">BWV 996 - Gigue</option>
+            <option value="bach_js_bwv0997_lute_suite_2_in_cm_1_prelude.txt">BWV 997 - Prelude</option>
+            <option value="bach_js_bwv0997_lute_suite_2_in_cm_2_fugue.txt">BWV 997 - Fugue</option>
+            <option value="bach_js_bwv0997_lute_suite_2_in_cm_3_sarabande.txt">BWV 997 - Sarabande</option>
+            <option value="bach_js_bwv0997_lute_suite_2_in_cm_4_gigue.txt">BWV 997 - Gigue</option>
+            <option value="bach_js_bwv0997_lute_suite_2_in_cm_5_double.txt">BWV 997 - Double</option>
+            <option value="jsb0998p.txt">BWV 998 - Prelude</option>
+            <option value="jsb0998f.txt">BWV 998 - Fugue</option>
+            <option value="jsb0998a.txt">BWV 998 - Allegro</option>
+            <option value="jsb0999p.txt">BWV 999 - Prelude in Dm</option>
+            <option value="jsb1001a.txt">BWV 1001 - Adagio</option>
+            <option value="jsb1001f.txt">BWV 1001 - Fugue (Allegro)</option>
+            <option value="jsb1001s.txt">BWV 1001 - Siciliano</option>
+            <option value="jsb1001p.txt">BWV 1001 - Presto</option>
+            <option value="bach_js_bwv1002_violin_partita_1_in_bm_5_sarabande.txt">BWV 1002 - Sarabande</option>
+            <option value="bach_js_bwv1002_violin_partita_1_in_bm_6_sarabande_double.txt">BWV 1002 - Sarabande (Double)</option>
+            <option value="bach_js_bwv1002_violin_partita_1_in_bm_7_bourree.txt">BWV 1002 - Bourreé</option>
+            <option value="bach_js_bwv1002_violin_partita_1_in_bm_8_bourree_double.txt">BWV 1002 - Bourree (Double)</option>
+            <option value="jsb1003a.txt">BWV 1003 - Grave</option>
+            <option value="jsb1003b.txt">BWV 1003 - Fugue</option>
+            <option value="jsb1003c.txt">BWV 1003 - Andante</option>
+            <option value="jsb1003d.txt">BWV 1003 - Allegro</option>
+            <option value="jsb1004g.txt">BWV 1004 - Gigue</option>
+            <option value="bach_js_bwv1004_violin_partita_no2_in_dm_chaconne.txt">BWV 1004 - Chaconne</option>
+            <option value="bach_js_bwv1005_violin_sonata_no3_in_c_3_adagio.txt">BWV 1005 - Adagio</option>
+            <option value="bach_js_bwv1005_violin_sonata_no3_in_c_3_largo.txt">BWV 1005 - Largo</option>
+            <option value="bach_js_bwv1005_violin_sonata_no3_in_c_4_allegro_assai.txt">BWV 1005 - Allegro assai</option>
+            <option value="jsb1006y.txt">BWV 1006 - Bourree</option>
+            <option value="bach_js_bwv1006a_lute_suite_no4_in_e_prelude.txt">BWV 1006a - Prelude</option>
+            <option value="bach_js_bwv1006a_lute_suite_no4_in_e_3_gavotte_en_rondeau.txt">BWV 1006a - Gavotte En Rondeau</option>
+            <option value="jsb1006m.txt">BWV 1006a - Minuet I</option>
+            <option value="jsb1006n.txt">BWV 1006a - Minuet II</option>
+            <option value="bach_js_bwv1007_cello_suite_no1_in_g_1_prelude.txt">BWV 1007 - Prelude</option>
+            <option value="jsb1007a.txt">BWV 1007 - Allemande</option>
+            <option value="jsb1007c.txt">BWV 1007 - Courante</option>
+            <option value="jsb1007s.txt">BWV 1007 - Sarabande</option>
+            <option value="jsb1007m.txt">BWV 1007 - Minuets I &amp; II</option>
+            <option value="jsb1007g.txt">BWV 1007 - Gigue</option>
+            <option value="bach_js_bwv1008_cello_suite_2_prelude.txt">BWV 1008 - Prelude</option>
+            <option value="bach_js_bwv1008_cello_suite_2_courante.txt">BWV 1008 - Courante</option>
+            <option value="jsb1009u.txt">BWV 1009 - Prelude</option>
+            <option value="jsb1009v.txt">BWV 1009 - Allemande</option>
+            <option value="jsb1009w.txt">BWV 1009 - Courante</option>
+            <option value="jsb1009x.txt">BWV 1009 - Sarabande</option>
+            <option value="jsb1009y.txt">BWV 1009 - Bourees I &amp; II</option>
+            <option value="jsb1009z.txt">BWV 1009 - Gigue</option>
+            <option value="jsb1010s.txt">BWV 1010 - Sarabande</option>
+            <option value="jsb1011p.txt">BWV 1011 - Prelude</option>
+            <option value="jsb1011s.txt">BWV 1011 - Sarabande</option>
+            <option value="jsb1012p.txt">BWV 1012 - Prelude</option>
+            <option value="jsb1012a.txt">BWV 1012 - Gavottes I &amp; II</option>
+            <option value="bach_js_bwv1013_flute_partita_in_am_allemande.txt">BWV 1013 - Allemande</option>
+            <option value="bach_js_bwv1013_flute_partita_in_am_sarabande.txt">BWV 1013 - Sarabande</option>
+            <option value="bach_js_bwv1033_sonata_1_in_c_andante.txt">BWV 1033 - Andante</option>
+            <option value="jsb1034a.txt">BWV 1034 - Adagio ma non tanto</option>
+            <option value="jsb1034b.txt">BWV 1034 - Allegro (1)</option>
+            <option value="jsb1034c.txt">BWV 1034 - Andante (G major)</option>
+            <option value="jsb1034d.txt">BWV 1034 - Allegro (2)</option>
+            <option value="jsb1042l.txt">BWV 1042 - Allegro</option>
+            <option value="jsb1047a.txt">BWV 1047 - Allegro</option>
+            <option value="jsb1056l.txt">BWV 1056 - Largo</option>
+            <option value="jsb1067i.txt">BWV 1067 - Menuet</option>
+            <option value="jsb1067b.txt">BWV 1067 - Badinerie</option>
+            <option value="jsb1068a.txt">BWV 1068 - Air</option>
+            <option value="bach_js_bwv1079_canon_a_2.txt">BWV 1079 - Canon a 2, "Quaerendo invenietis" (Crab Canon)</option>
+            <option value="bach_js_bwv1008_the_art_fugue_01.txt">BWV 1080 - I Simple Fugue No 1</option>
+          </optgroup>
+          <optgroup label="Aquiles Baez; (?)">
+            <option value="baez_lacasaazul.txt">La Casa Azul</option>
+          </optgroup>
+          <optgroup label="Robert Ballard; (1525-1588)">
+            <option value="rb_edl01.txt">Entree de Luth I</option>
+            <option value="rb_edl02.txt">Entree de Luth II</option>
+            <option value="rb_edl03.txt">Entree de Luth III</option>
+            <option value="rb_edl04.txt">Entree de Luth IV</option>
+            <option value="rb_edl05.txt">Entree de Luth V</option>
+          </optgroup>
+          <optgroup label="Samuel Barber; (1910-1981)">
+            <option value="sb011_ad.txt">Op 11 String Quartet - Adagio For Strings</option>
+          </optgroup>
+          <optgroup label="Giulio Cesare Barbetta; (1540-1603)">
+            <option value="gcb_ppd.txt">Pavana Prima ditta la molinara</option>
+          </optgroup>
+          <optgroup label="Agustin Pio Barrios Mangore ;(Agustín Pió Barrios Mangoré); (1885-1944)">
+            <option value="barrios_aconquija.txt">Aconquija</option>
+            <option value="barrios_caazapa.txt">Caazapa</option>
+            <option value="abmcdlh.txt">Cancion De La Hilandera</option>
+            <option value="abmsaudz.txt">Choro Da Saudade</option>
+            <option value="abmcontz.txt">Contemplacion (Vals et Tremelo)</option>
+            <option value="abmcueca.txt">Cueca</option>
+            <option value="abmdguar.txt">Danza Guaraní</option>
+            <option value="abmdp1z.txt">Danza Paraguaya No 1</option>
+            <option value="abmdpfz.txt">Don Pérez Freire</option>
+            <option value="barrios_el_sueno_de_la_munequita.txt">El Sueño De La Muñequita</option>
+            <option value="abmeutz.txt">El Ultimo Tremolo (Una Limosnita por el Amor de Dios)</option>
+            <option value="barrios_estudio_de_concierto_1.txt">Estudio De Concierto 1</option>
+            <option value="barrios_estudio_de_concierto_2.txt">Estudio De Concierto 2</option>
+            <option value="abmeu.txt">Estilo Uruguayo</option>
+            <option value="abmei.txt">Estudio Inconcluso</option>
+            <option value="abmjulf.txt">Julia Florida (Barcarola)</option>
+            <option value="barrios_junto_a_tu_corazon.txt">Junto A Tu Corazon</option>
+            <option value="barrios_la_catedral_1_prelude.txt">La Catedral - 1st movement</option>
+            <option value="barrios_la_catedral_2_andante.txt">La Catedral - 2nd movement</option>
+            <option value="barrios_la_catedral_3_allegro.txt">La Catedral - 3rd movement</option>
+            <option value="abmlaz.txt">Las Abejas</option>
+            <option value="abmmax.txt">Maxixe</option>
+            <option value="abmmazap.txt">Mazurka Apasionata</option>
+            <option value="abmmedal.txt">Medallón Antiguo</option>
+            <option value="abmmin_c.txt">Minuet in C</option>
+            <option value="abmopt.txt">Oración por Todos</option>
+            <option value="abmp0501.txt">Preludio Op 5 No 1</option>
+            <option value="abmprcm.txt">Preludio in Cm</option>
+            <option value="barrios_prelude_in_e.txt">Prelude in E</option>
+            <option value="abmprem.txt">Preludio in Em</option>
+            <option value="abscab.txt">Sargento Cabral</option>
+            <option value="barrios_serenata_morisca.txt">Serenata Morisca</option>
+            <option value="abmusel.txt">Un Sueño En La Floresta</option>
+            <option value="barrios_vals_op8_no3.txt">Vals Op 8 No 3</option>
+            <option value="barrios_vals_op8_no4.txt">Vals Op 8 No 4</option>
+            <option value="barrios_vals_estudio_1.txt">Vals Estudio No 1</option>
+            <option value="barrios_vals_tropical.txt">Vals Tropical</option>
+            <option value="abmvildn.txt">Villancio de Navidad</option>
+          </optgroup>
+          <optgroup label="Rene Bartoli; (René Bartoli); (1941-)">
+            <option value="bartoli_aubade.txt">Aubade</option>
+            <option value="bartoli_chanson.txt">Chanson</option>
+            <option value="bartoli_reverie.txt">Reverie</option>
+            <option value="bartoli_romance.txt">Romance</option>
+          </optgroup>
+          <optgroup label="Cheung Bat; (?)">
+            <option value="cborchid.txt">Orchid (Fragrant Thoroughwort)</option>
+          </optgroup>
+          <optgroup label="Francis Bebey; (1929-2001)">
+            <option value="fbmbtmb.txt">The Magic Box</option>
+          </optgroup>
+          <optgroup label="Ludwig Van Beethoven; (1770-1827)">
+            <option value="lvb_s5_1.txt">5th Symphony, 1st movement</option>
+            <option value="lvb_otj.txt">9th Symphony, 4th movement</option>
+            <option value="lvb_42ag.txt">Allegreto in G</option>
+            <option value="lvb_42aa.txt">Allegreto in A</option>
+            <option value="lvboo50a.txt">Sonatina in F WoO50 - Allegro</option>
+            <option value="lvb_070t.txt">6 Variations in G WoO70</option>
+            <option value="lvb_fel.txt">Für Elise</option>
+            <option value="lvb_13_2.txt">Grande Sonata Pathétique</option>
+            <option value="lvb_2721.txt">Sonata Quasi Una Fantasia</option>
+            <option value="lvb_2722.txt">Sonata Quasi Una Fantasia</option>
+            <option value="lvb_24_1.txt">Sonata for Violin and Piano in F ("Spring") - Op 24 - I Allegro</option>
+            <option value="lvb113tm.txt">Turkish March</option>
+          </optgroup>
+          <optgroup label="Pierre Bensusan; (1957-)">
+            <option value="bensusan_the_return_from_fingal.txt">The Return From Fingal</option>
+          </optgroup>
+          <optgroup label="Lennox Berkeley; (1903-1989)">
+            <option value="lb_5201a.txt">Op 52 No 1 - Sonatina For Guitar - 1 Allegretto</option>
+          </optgroup>
+          <optgroup label="J Binites; (?)">
+            <option value="jb_danza.txt">Danza De La Aves</option>
+          </optgroup>
+          <optgroup label="George Bizet; (1838-1875)">
+            <option value="bizet_carmen_aragonaise.txt">Carmen - Suite 1 - 2 Aragonaise</option>
+            <option value="bizet_carmen_seguidille.txt">Carmen - Suite 1 - 3 Seguidille</option>
+            <option value="bizet_carmen_march_of_the_toreadors.txt">Carmen - Suite 1 - 5 March Of The Toreadors (Toreador's Song) (theme)</option>
+            <option value="bizet_carmen_la_habanera.txt">Carmen - Suite 2 - 2 La Habanera (main theme)</option>
+          </optgroup>
+          <optgroup label="Dusan Bogdanovic; (Dušan Bogdanović); (1955-)">
+            <option value="bogdanovic_mysterious_habitats.txt">Mysterious Habitats</option>
+          </optgroup>
+          <optgroup label="Luiz Bonfa; (Luiz Floriano Bonfá); (1922-2001)">
+            <option value="lbman.txt">Manhã De Carnaval</option>
+            <option value="lb_pnrio.txt">Passeio No Rio</option>
+            <option value="bonfa_sambolero.txt">Sambolero</option>
+          </optgroup>
+          <optgroup label="Joseph Brackett; (1797-1882)">
+            <option value="jb_simp.txt">Simple Gifts</option>
+          </optgroup>
+          <optgroup label="Johannes Brahms; (1833-1897)">
+            <option value="jb039_15.txt">Op 39 No 15 - Waltz in Ab (Lullaby)</option>
+            <option value="jb049_04.txt">Op 49 No 4 - Lullaby</option>
+            <option value="jbhd5.txt">Hungarian Dance No 5 in F#m</option>
+          </optgroup>
+          <optgroup label="Giuseppe Antonio Brescianello; (1690-1758)">
+            <option value="brescianello_partita_in_em_1_entree.txt">Partita in Em - 1 Entrée</option>
+            <option value="brescianello_partita_in_em_2_menuet.txt">Partita in Em - 2 Menuet</option>
+            <option value="brescianello_partita_in_em_3_siciliana.txt">Partita in Em - 3 Siciliana</option>
+            <option value="brescianello_partita_in_em_4_gigue.txt">Partita in Em - 4 Gigue</option>
+          </optgroup>
+          <optgroup label="Leo Brouwer; (1939-)">
+            <option value="brouwer_an_idea_passacaglia_for_eli.txt">An Idea: Passacaglia for Eli</option>
+            <option value="lb_ddela.txt">Danza Del Altiplano</option>
+            <option value="lbberc.txt">Dos Temas Populares Cubanos - 1. Canciòn de Cuna (Berceuse)</option>
+            <option value="lbojosb.txt">Dos Temas Populares Cubanos - 2. Ojos Brujos</option>
+            <option value="lbdecam1.txt">El Decameron Negro - 1. La Harpe du Guerrier</option>
+            <option value="lbdecam2.txt">El Decameron Negro - 2. Huida De Los Amantes Por El Valle De Los Ecos</option>
+            <option value="lbdecam3.txt">El Decameron Negro - 3. In Balada De La Doncella Enamorada</option>
+            <option value="lbedld.txt">Elogio de la Danza</option>
+            <option value="lbest01.txt">Estudios Sencillos - Study No 1</option>
+            <option value="lbest02.txt">Estudios Sencillos - Study No 2</option>
+            <option value="lbest03.txt">Estudios Sencillos - Study No 3</option>
+            <option value="lbest04.txt">Estudios Sencillos - Study No 4</option>
+            <option value="lbest05.txt">Estudios Sencillos - Study No 5</option>
+            <option value="lbest06.txt">Estudios Sencillos - Study No 6</option>
+            <option value="lbest07.txt">Estudios Sencillos - Study No 7</option>
+            <option value="lbest08.txt">Estudios Sencillos - Study No 8</option>
+            <option value="lbest09.txt">Estudios Sencillos - Study No 9</option>
+            <option value="lbest10.txt">Estudios Sencillos - Study No 10</option>
+            <option value="lbest11.txt">Estudios Sencillos - Study No 11</option>
+            <option value="lbest12.txt">Estudios Sencillos - Study No 12</option>
+            <option value="brouwer_fuga_1.txt">Fuga No 1 (Fugue 1)</option>
+            <option value="lb_gc.txt">Guajira Criolla</option>
+            <option value="lbnest01.txt">Nuevos Estudios Sencillos - Study No 1 - Omaggio a Debussy</option>
+            <option value="lbnest03.txt">Nuevos Estudios Sencillos - Study No 3 - Omaggio a Caturla</option>
+            <option value="brouwer_preludio_in_am.txt">Preludio in Am (1956)</option>
+            <option value="lb_son1.txt">Sonata - 1. Fandangos y Boleros</option>
+            <option value="lb_son2.txt">Sonata - 2. Sarabanda de Scriabin</option>
+            <option value="lb_son3.txt">Sonata - 3. La Toccata de Pasquini</option>
+            <option value="brouwer_suite2_preludio.txt">Suite No 2 (Suite in D) - Preludio</option>
+            <option value="lb_undia.txt">Un Día de Noviembre</option>
+          </optgroup>
+          <optgroup label="Fernando Bustamante; (?)">
+            <option value="fbmision.txt">Misionera</option>
+          </optgroup>
+          <optgroup label="Dieterich Buxtehude; (Dietrich Buxtehude, Diderich Buxtehude); (c1637-1707)">
+            <option value="buxtehude_membra_jesu_nostri_4_ad_latus_1_sonata.txt">Membra Jesu Nostri - IV. Ad latus (To the side) - 1. Sonata</option>
+            <option value="buxtehude_membra_jesu_nostri_5_ad_pectus_1_sonata.txt">Membra Jesu Nostri - V. Ad pectus (To the breast) - 1. Sonata</option>
+          </optgroup>
+          <optgroup label="William Byrd; (1543-1623)">
+            <option value="wbpaves.txt">Pavane to the Earl of Salisbury</option>
+          </optgroup>
+          <optgroup label="Bartolomeo Campagnoli; (1751-1827)">
+            <option value="bcandc.txt">Andantino in C</option>
+          </optgroup>
+          <optgroup label="Francois Campion; (François Campion); (1680-1748)">
+            <option value="campion_prelude.txt">Nouvelles Decouvertes Sur La Guitarre - Prelude</option>
+          </optgroup>
+          <optgroup label="Antonio Cano ;(Antonio Cano-Curriella); (1811-1897)">
+            <option value="cano_antonio_estudio_cano_study_in_g.txt">Estudio Cano</option>
+            <option value="cano_antonio_study_01_andantino_in_am.txt">Study No 1 in Am - Andantino</option>
+          </optgroup>
+          <optgroup label="Benito Canonico; (1894-1971)">
+            <option value="bc_adjor.txt">El Totumo de Guarenas (Aire de Joropo)</option>
+          </optgroup>
+          <optgroup label="Vincenzo Capirola; (1811-1897)">
+            <option value="capirola_padoana.txt">Padoana</option>
+          </optgroup>
+          <optgroup label="Matteo Carcassi; (1792-1853)">
+            <option value="mc05_08.txt">Op 5 No 8 Andantino Grazioso</option>
+            <option value="mc21_12.txt">Op 21 No 12 Minuetto</option>
+            <option value="carcassi_op26no1_capricho_in_c.txt">Op 26 No 1 - Caprichio in C</option>
+            <option value="carcassi_op26no2_capricho_in_g.txt">Op 26 No 2 - Caprichio in G</option>
+            <option value="carcassi_op26no3_capricho_in_em.txt">Op 26 No 3 - Capricho in Em</option>
+            <option value="carcassi_op26no4_capricho_in_am.txt">Op 26 No 4 - Capricho in Am</option>
+            <option value="carcassi_op26no5_capricho_in_d.txt">Op 26 No 5 - Capricho in D</option>
+            <option value="carcassi_op26no6_capricho_in_a.txt">Op 26 No 6 - Capricho in A</option>
+            <option value="carcassi_op59_pt1_c_4_prelude.txt">Op 59 Guitar Method Part 1 - C major - Prelude</option>
+            <option value="carcassi_op59_pt1_c_5_andantino.txt">Op 59 Guitar Method Part 1 - C major - Andantino</option>
+            <option value="carcassi_op59_pt3_no11_moderato_in_am.txt">Op 59 Guitar Method Part 3 No 11 - Moderato in Am</option>
+            <option value="carcassi_op59_pt3_no16_capriccio_in_dm.txt">Op 59 Guitar Method Part 3 No 16 - Capriccio in Dm</option>
+            <option value="carcassi_op59_pt3_no18_andante_in_em.txt">Op 59 Guitar Method Part 3 No 18 - Andante in Em</option>
+            <option value="carcassi_op59_pt3_no21_rondo_allegretto_in_a.txt">Op 59 Guitar Method Part 3 No 21 - Rondo allegretto in A</option>
+            <option value="carcassi_op60_no01_study_in_c.txt">Op 60 Study No 1 in C</option>
+            <option value="carcassi_op60_no02_study_in_am.txt">Op 60 Study No 2 in Am</option>
+            <option value="carcassi_op60_no03_study_in_am.txt">Op 60 Study No 3 in Am</option>
+            <option value="carcassi_op60_no04_study_in_d.txt">Op 60 Study No 4 in D</option>
+            <option value="carcassi_op60_no05_study_in_g.txt">Op 60 Study No 5 in G</option>
+            <option value="carcassi_op60_no06_study_in_c.txt">Op 60 Study No 6 in C</option>
+            <option value="carcassi_op60_no07_study_in_am.txt">Op 60 Study No 7 in Am</option>
+            <option value="carcassi_op60_no08_study_in_e.txt">Op 60 Study No 8 in E</option>
+            <option value="carcassi_op60_no09_study_in_a.txt">Op 60 Study No 9 in A</option>
+            <option value="carcassi_op60_no10_study_in_d.txt">Op 60 Study No 10 in D</option>
+            <option value="carcassi_op60_no11_study_in_dm.txt">Op 60 Study No 11 in Dm</option>
+            <option value="carcassi_op60_no12_study_in_d.txt">Op 60 Study No 12 in D</option>
+            <option value="carcassi_op60_no13_study_in_a.txt">Op 60 Study No 13 in A</option>
+            <option value="carcassi_op60_no14_study_in_d.txt">Op 60 Study No 14 in D</option>
+            <option value="carcassi_op60_no15_study_in_c.txt">Op 60 Study No 15 in C</option>
+            <option value="carcassi_op60_no16_study_in_f.txt">Op 60 Study No 16 in F</option>
+            <option value="carcassi_op60_no17_study_in_am.txt">Op 60 Study No 17 in Am</option>
+            <option value="carcassi_op60_no18_study_in_a.txt">Op 60 Study No 18 in A</option>
+            <option value="carcassi_op60_no19_study_in_em.txt">Op 60 Study No 19 in Em</option>
+            <option value="carcassi_op60_no20_study_in_a.txt">Op 60 Study No 20 in A</option>
+            <option value="carcassi_op60_no21_study_in_a.txt">Op 60 Study No 21 in A</option>
+            <option value="carcassi_op60_no22_study_in_c.txt">Op 60 Study No 22 in C</option>
+            <option value="carcassi_op60_no23_study_in_a.txt">Op 60 Study No 23 in A</option>
+          </optgroup>
+          <optgroup label="Jorge Cardoso; (1945-)">
+            <option value="cardosa_24_piezas_sudamericanas_03_bambuco.txt">24 Piezas Sudamericanas - No 3 - Bambuco (Columbia)</option>
+            <option value="cardosa_24_piezas_sudamericanas_04_vals_venezolano.txt">24 Piezas Sudamericanas - No 4 - Vals Venezolano (Venezuela)</option>
+            <option value="cardosa_24_piezas_sudamericanas_05_wayno.txt">24 Piezas Sudamericanas - No 5 - Wayno (Peru)</option>
+            <option value="cardosa_24_piezas_sudamericanas_09_samba.txt">24 Piezas Sudamericanas - No 9 - Samba (Brazil)</option>
+            <option value="cardosa_24_piezas_sudamericanas_24_milonga.txt">24 Piezas Sudamericanas - No 24 - Milonga (Uruguay)</option>
+          </optgroup>
+          <optgroup label="Antonio Carillo; (1892-1962)">
+            <option value="carillo_como_llora_una_estrella.txt">Como Llora Una Estrella</option>
+          </optgroup>
+          <optgroup label="Hoagy Carmichael; (1899-1981)">
+            <option value="carmichael_georgia_on_my_mind.txt">Georgia On My Mind</option>
+          </optgroup>
+          <optgroup label="Ferdinando Carulli; (1770-1841)">
+            <option value="carulli_op076_no2.txt">Op 76, Three Solos - No 2 in D</option>
+            <option value="carulli_op114_no01_prelude_in_c.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 1 in C</option>
+            <option value="carulli_op114_no02_prelude_in_g.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 2 in G</option>
+            <option value="carulli_op114_no03_prelude_in_d.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 3 in D</option>
+            <option value="carulli_op114_no04_prelude_in_a.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 4 in A</option>
+            <option value="carulli_op114_no05_prelude_in_e.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 5 in E</option>
+            <option value="carulli_op114_no06_prelude_in_f.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 6 in F</option>
+            <option value="carulli_op114_no07_prelude_in_am.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 7 in Am</option>
+            <option value="carulli_op114_no08_prelude_in_c.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 8 in C</option>
+            <option value="carulli_op114_no09_prelude_in_g.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 9 in G</option>
+            <option value="carulli_op114_no10_prelude_in_em.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 10 in Em</option>
+            <option value="carulli_op114_no11_prelude_in_e.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 11 in E</option>
+            <option value="carulli_op114_no12_prelude_in_dm.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 12 in Dm</option>
+            <option value="carulli_op114_no13_prelude_in_c.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 13 in C</option>
+            <option value="carulli_op114_no14_prelude_in_am.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 14 in Am</option>
+            <option value="carulli_op114_no15_prelude_in_f.txt">Op 114, Ventiquattro Preludi (24 Preludes) - No 15 in F</option>
+            <option value="carulli_op241_no25_rondo_in_c.txt">Op 241 No 25 - Rondo in C</option>
+            <option value="fc_algc.txt">Allegretto in C</option>
+            <option value="fc_al_am.txt">Allegro in Am</option>
+            <option value="fc_and2.txt">Andante in Am</option>
+            <option value="fc_and3.txt">Andante in G</option>
+            <option value="fc_and.txt">Andantino in Am</option>
+            <option value="fc_capc.txt">Capriccio in C</option>
+            <option value="fc_stg.txt">Study in G</option>
+            <option value="fc_wc.txt">Waltz in C</option>
+            <option value="fc_wd.txt">Waltz in D</option>
+            <option value="fc_wtem.txt">Waltz + Trio in Em</option>
+          </optgroup>
+          <optgroup label="Mario Castelnuovo-Tedesco; (1895-1968)">
+            <option value="castelnuovo-tedesco_op071_variations_a_travers_les_siecles_0_chaconne.txt">Op 71, Variations à Travers les Siècles (Variations Through the Centuries) - Chaconne (Theme)</option>
+            <option value="castelnuovo-tedesco_op077_sonata_in_memoriam_boccherini_3_tempo_di_minuetto.txt">Op 77, Sonata in Memoriam Boccherini - 3. Tempo di minuetto</option>
+            <option value="castelnuovo-tedesco_op085_capriccio_diabolico.txt">Op 85, Capriccio Diabolico (Omaggio a Paganini)</option>
+            <option value="castelnuovo-tedesco_op129_rondo_in_em.txt">Op 129, Rondo in Em</option>
+            <option value="castelnuovo-tedesco_op177_escarraman_1_gallarda.txt">Op 177, Escarraman - 1. Gallarda</option>
+            <option value="castelnuovo-tedesco_op177_escarraman_2_el_canario.txt">Op 177, Escarraman - 2. El canario</option>
+            <option value="castelnuovo-tedesco_op177_escarraman_4_pesame_dello.txt">Op 177, Escarraman - 4. Pesame dello</option>
+            <option value="castelnuovo-tedesco_op190_platero_y_yo_1_07_melancolia.txt">Op 190, Platero y yo - Vol 1 No 7 - Melancolia (Melancholy)</option>
+          </optgroup>
+          <optgroup label="Dorival Caymmi; (1914-)">
+            <option value="dc_alda.txt">A Lenda do Abaeté</option>
+          </optgroup>
+          <optgroup label="Sergio Chiavazzoli &amp; Oswaldo Montenegro">
+            <option value="chiavazzioli_montenegro_menestrelurbano.txt">Menestrel Urbano</option>
+          </optgroup>
+          <optgroup label="Frederic Francois Chopin ;(Fryderyk Franciszek Chopin, Frédéric François Chopin); (1810-1849)">
+            <option value="chopin_op06_no01_mazurka_in_fqm_1.txt">Op 6 No 1 - Mazurka in F#m</option>
+            <option value="chopin_op09_no02_nocturne_in_eb_2.txt">Op 9 No 2 - Nocturne in Eb</option>
+            <option value="chopin_op10_no03_etude_in_e.txt">Op 10 No 3 - Etude in E</option>
+            <option value="chopin_op18_waltz_in_eb_1.txt">Op 18 - Grande Valse Brillante in Eb</option>
+            <option value="chopin_op25_no01_etude_in_ab.txt">Op 25 No 1 - Etude in Ab</option>
+            <option value="chopin_op28_no04_prelude_in_em.txt">Op 28 No 4 - Prelude in Em</option>
+            <option value="ff_28_06.txt">Op 28 No 6 - Prelude in Bm</option>
+            <option value="ff_28_07.txt">Op 28 No 7 - Prelude in A</option>
+            <option value="ff_28_15.txt">Op 28 No 15 - Prelude in Db</option>
+            <option value="ff_28_20.txt">Op 28 No 20 - Prelude in Cm</option>
+            <option value="chopin_op34_no2_waltz_in_am.txt">Op 34 No 2 - Waltz in Am</option>
+            <option value="ff_35_23.txt">Op 35 No 2 - Piano Sonata in Bbm, 3rd movement "Funeral March"</option>
+            <option value="ff_55_01.txt">Op 55 No 1 - Nocturne in Fm</option>
+            <option value="chopin_op64_no2_waltz_in_cqm_7.txt">Op 64 No 2 - Valse in C#m (No 7)</option>
+            <option value="ff_66_mc.txt">Op 66 - Fantasie Impromptu in C#m - Moderata cantabile in Db</option>
+            <option value="chopin_op68_no2_mazurka_in_am_47.txt">Op 68 No 2 - Mazurka in Am (No 47)</option>
+            <option value="ff_69_01.txt">Op 69 No 1 - Valse in Ab</option>
+            <option value="chopin_op69_no2_waltz_in_bm_10.txt">Op 69 No 2 - Valse in Bm (No 10)</option>
+            <option value="ff_n21cm.txt">Nocturne in Cm (No 21)</option>
+            <option value="ff_wpem.txt">Valse in Em (Op Posth)</option>
+            <option value="ff_wpe.txt">Valse in E (Op Posth)</option>
+          </optgroup>
+          <optgroup label="Domenico Cimarosa; (1749-1801)">
+            <option value="cimarosa_c49_sonata_in_cm.txt">C49 - Sonata in Cm (Larghetto)</option>
+            <option value="cimarosa_c58_sonata_in_am.txt">C58 - Sonata in Am (Andantino grazioso)</option>
+            <option value="cimarosa_r15_1_sonata_in_a.txt">R15 - Sonata in A - 1 Allegro</option>
+          </optgroup>
+          <optgroup label="Alan Clare; (1921-1993)">
+            <option value="ac_cast.txt">Castilla</option>
+          </optgroup>
+          <optgroup label="Richard Clayderman; (1953-)">
+            <option value="rcmarrda.txt">Marriage D'Amour</option>
+          </optgroup>
+          <optgroup label="Muzio Clementi; (1752-1832)">
+            <option value="mcl36_1c.txt">Op 36 No 1 - Spiritoso</option>
+            <option value="mcl_42_5.txt">Op 42 Lesson 5 - Arietta in C</option>
+          </optgroup>
+          <optgroup label="Samuel Cohen; (-1882-)">
+            <option value="sc_hatik.txt">Hatikvah (Hope)</option>
+          </optgroup>
+          <optgroup label="Aaron Copland; (1900-1990)">
+            <option value="copland_fanfareforthecommonman.txt">Fanfare For The Common Man</option>
+          </optgroup>
+          <optgroup label="Francisco Corbetta; (1615 - 1681)">
+            <option value="fcgrsam.txt">La Guitarre Royalle - Suite in Am</option>
+          </optgroup>
+          <optgroup label="Arcangelo Corelli; (1653-1713)">
+            <option value="corelli_largo_in_dm.txt">Largo in Dm</option>
+            <option value="corelli_sarabande.txt">Sarabande</option>
+          </optgroup>
+          <optgroup label="Vladimir Cosma; (1940-)">
+            <option value="vcreal.txt">Reality</option>
+          </optgroup>
+          <optgroup label="Napoleon Coste (Claude Antoine Jean Georges Napoléon Coste); (1805-1883)">
+            <option value="coste_op38_no01_allegretto_in_am.txt">Op 38 No 1</option>
+            <option value="coste_op38_no04_andantino_in_d.txt">Op 38 No 4</option>
+            <option value="coste_op38_no07_agitato_in_am.txt">Op 38 No 7</option>
+            <option value="coste_op38_no22_allegro_moderato_in_a.txt">Op 38 No 22</option>
+            <option value="coste_op41_feulilles_dautumn _12_valses_no4.txt">Op 41 No 4</option>
+            <option value="coste_op51_no01_barcarolle_in_a.txt">Op 51 No 1 - Barcarolle in A</option>
+            <option value="coste_op51_no06_rondeau_in_e.txt">Op 51 No 6 - Rondeau in E</option>
+            <option value="coste_op51_no10_melancolie_in_em.txt">Op 51 No 10 - Mélancolie in Em</option>
+            <option value="coste_method_complete_01-15.txt">Méthode Compléte Pour La Guitare Par Ferdinand Sor - Nos 1-15</option>
+            <option value="coste_method_complete_18.txt">Méthode Compléte Pour La Guitare Par Ferdinand Sor - No 18</option>
+            <option value="coste_method_complete_27.txt">Méthode Compléte Pour La Guitare Par Ferdinand Sor - No 27</option>
+          </optgroup>
+          <optgroup label="Francois Couperin (François Couperin); (1668-1733)">
+            <option value="couperin_les_barricades_mysterieuses.txt">Les Barricades Mysterieuses (The Mysterious Barricades)</option>
+            <option value="couperin_les_moissonneurs.txt">Les Moissonneurs</option>
+          </optgroup>
+          <optgroup label="Ernesto De Curtis; (1875-1937) ">
+            <option value="edc_tas.txt">Torna A Surriento (Come Back To Sorrento)</option>
+          </optgroup>
+          <optgroup label="Michel Dalle Ave; (1958-)">
+            <option value="mdaatico.txt">Atico</option>
+            <option value="mdacarla.txt">Berceuse pour Carla</option>
+            <option value="mdabouca.txt">Bouca Dance</option>
+            <option value="mdaevoc.txt">Evocation</option>
+            <option value="mdaquer.txt">Fantaisie Quercynoise</option>
+            <option value="mdagranj.txt">Les Allées de la Granja</option>
+            <option value="mdaestey.txt">Nocturne sur l'Estey</option>
+            <option value="mdasumm.txt">Summer's Waltz</option>
+          </optgroup>
+          <optgroup label="Joan Ambrosio Dalza (Joanambrosio Dalza); (1483-1533)">
+            <option value="dalza_prima_calata_ala_spagnola.txt">Prima Calata ala Spagnola</option>
+            <option value="dalza_calata_ala_spagnola.txt">Calata ala Spagnola</option>
+            <option value="dalza_piva.txt">Piva</option>
+            <option value="dalza_recercar_dietro.txt">Recercar Dietro</option>
+            <option value="dalza_tastar_de_corde.txt">Tastar de Corde</option>
+          </optgroup>
+          <optgroup label="Jean-Francois Dandrieu; (Jean-François d'Andrieu); (1682-1738)">
+            <option value="dandrieu_2nd_livre_de_pieces_de_clavecin_3rd_suite_5_les_tendres_reproches.txt">Second Livre de Pièces de Clavecin - Troisiême Suite - 5. Les Tendres Reproches</option>
+          </optgroup>
+          <optgroup label="Peter Maxwell Davies; (1934-)">
+            <option value="pmd_fts.txt">Farewell To Stromnesss</option>
+          </optgroup>
+          <optgroup label="Claude Debussy; (1862-1918)">
+            <option value="debussy_l075_suite_bergamasque_3_clair_de_lune.txt">L75, Suite Bergamasque - 3. Clair de Lune</option>
+            <option value="debussy_l113_childrens_corner_2_jimbos_lullaby.txt">L113, Children's Corner - 2. Jimbo's Lullaby</option>
+            <option value="debussy_l117_preludes_bk1_8_la_fille_aux_cheveux_de_lin.txt">L117, Preludes, Book 1 - 8. La Fille Aux Cheveux De Lin</option>
+          </optgroup>
+          <optgroup label="William Defesch; (Willem de Fesch); (1697-1758)">
+            <option value="wdmind.txt">Minuet in Dm</option>
+          </optgroup>
+          <optgroup label="Leo Delibes; (Léo Delibes); (1836-91)">
+            <option value="ld_fduet.txt">Lakme - Sous le Dome Epais (Flower Duet)</option>
+            <option value="ld_syl_p.txt">Sylvia - Pizzicato</option>
+          </optgroup>
+          <optgroup label="Paul Desmond; (1924-1977)">
+            <option value="pd_take5.txt">Take Five</option>
+          </optgroup>
+          <optgroup label="John Philip Dimick; (?)">
+            <option value="jpd_trem.txt">Tremolo Exercise</option>
+          </optgroup>
+          <optgroup label="Enrique Dizeo ;(1893-1980)">
+
+          </optgroup><optgroup label="Enrique Dizeo &amp; Angel Cabral">
+            <option value="ed_ac_lf.txt">La Foule</option>
+          </optgroup>
+          <optgroup label="Wojciech Adalbert Dlugoraj; (1557/58-1619)">
+            <option value="wadvilan.txt">Vilanella</option>
+          </optgroup>
+          <optgroup label="Carlo Domeniconi; (1947-)">
+            <option value="domeniconi_koyunbaba_1_moderato.txt">Op 19 - Koyunbaba - Part I - Moderato</option>
+            <option value="domeniconi_koyunbaba_2_mosso.txt">Op 19 - Koyunbaba - Part II - Mosso</option>
+            <option value="domeniconi_koyunbaba_3_cantabile.txt">Op 19 - Koyunbaba - Part III - Cantabile</option>
+            <option value="domeniconi_koyunbaba_4_presto.txt">Op 19 - Koyunbaba - Part IV - Presto</option>
+            <option value="domeniconi_op039_klangbilder_no24.txt">Op 39 - Klangbilder (Sound Pictures) - No 24</option>
+            <option value="domeniconi_sunayama_henge.txt">Op 71a - Sunayama Henge (Transformation)</option>
+            <option value="domeniconi_op088_toccata_in_blue.txt">Op 88 - Toccata in Blue</option>
+          </optgroup>
+          <optgroup label="John Dowland; (1561/62/63-1626)">
+            <option value="dowland_john_come_again.txt">Come Again</option>
+            <option value="dowland_john_dowlands_galliard_in_b.txt">Dowland's Galliard in B</option>
+            <option value="dowland_john_fantasia_in_e.txt">Fantasia in E</option>
+            <option value="dowland_john_fortune_my_foe.txt">Fortune My Foe</option>
+            <option value="dowland_john_galliard_in_e.txt">Galliard in E</option>
+            <option value="dowland_john_go_from_my_window.txt">Go From My Window</option>
+            <option value="dowland_john_lachrimae_pavan.txt">Lachrimae Pavan</option>
+            <option value="dowland_john_lady_laitons_almain.txt">Lady Laiton's Almain</option>
+            <option value="dowland_john_melancholy_galliard.txt">Melancholy Galliard</option>
+            <option value="dowland_john_mrs_vauxs_gigge.txt">Mrs Vaux's Gigge</option>
+            <option value="dowland_john_mrs_winters_jump.txt">Mrs Winter's Jump</option>
+            <option value="dowland_john_orlando_sleepeth.txt">Orlando Sleepeth</option>
+            <option value="dowland_john_phantasia_in_em.txt">Phantasia in Em</option>
+            <option value="dowland_john_preludium.txt">Preludium</option>
+            <option value="dowland_john_queen_elizabeths_galliard.txt">Queen Elizabeth's Galliard</option>
+            <option value="dowland_john_sir_john_smith_his_almain.txt">Sir John Smith His Almain</option>
+            <option value="dowland_john_tarletons_resurrection.txt">Tarleton's Resurrection (Tarletones Riserrectione)</option>
+            <option value="dowland_john_the_frog_galliard.txt">The Frog Galliard</option>
+            <option value="dowland_john_the_right_honorable_the_lady_cliftons_spirit.txt">The Right Honorable the Lady Clifton's Spirit</option>
+            <option value="dowland_john_what_if_i_never_speed.txt">What If I Never Speed?</option>
+          </optgroup>
+          <optgroup label="Robert Dowland; (1591-1641)">
+            <option value="dowland_robert_almande.txt">Almande</option>
+          </optgroup>
+          <optgroup label="John W Duarte; (1919-2004)">
+            <option value="duarte_op031_no1_english_suite_prelude.txt">Op 31 No 1 - English Suite - Prelude</option>
+            <option value="duarte_op031_no2_english_suite_folk_song.txt">Op 31 No 2 - English Suite - Folk Song</option>
+            <option value="duarte_op031_no3_english_suite_round_dance.txt">Op 31 No 3 - English Suite - Round Dance</option>
+          </optgroup>
+          <optgroup label="Maurice Durufle; (1902-1986)">
+            <option value="durufle_requiem_pie_jesu.txt">Op 9 - Requiem - Pie Jesu</option>
+          </optgroup>
+          <optgroup label="Antonin Dvorak; (1841-1904)">
+            <option value="dvorak_op095_new_world_2_largo.txt">Op 95 - Symphony No 9 in Em (B 178) - II. Largo (excerpt)</option>
+            <option value="dvorak_op101_humoresque7.txt">Op 101 - Humoresque No 7</option>
+          </optgroup>
+          <optgroup label="Roland Dyens; (1955-)">
+            <option value="dyens_20_lettres_01_lettre_a_sydney.txt">20 Lettres - 1. Lettre a Sydney</option>
+            <option value="dyens_20_lettres_02_lettre_a_la_seine.txt">20 Lettres - 2. Lettre a la Seine</option>
+            <option value="rdls01.txt">Libra Sonatine - 1st movement - India</option>
+            <option value="rdls02.txt">Libra Sonatine - 2nd movement - Largo</option>
+            <option value="rdls03.txt">Libra Sonatina - 3rd movement - Fuoco</option>
+            <option value="dyens_saudade_no1.txt">Saudade No 1, dedicated to Alberto Ponce (Theme for Helio)</option>
+            <option value="dyens_saudade_no2.txt">Saudade No 2, dedicated to Arminda de Villa-Lobos (Chorinho)</option>
+            <option value="rd_suad3.txt">Saudade No 3, dedicated to Francis Kleynjans</option>
+            <option value="dyens_songe_capricorne.txt">Songe Capricorne</option>
+            <option value="dyens_tango_en_skai.txt">Tango En Skaï</option>
+          </optgroup>
+          <optgroup label="Edward Elgar; (1857 - 1934)">
+            <option value="ee_salda.txt">Op 12 Salut D'Amour</option>
+            <option value="eenimrod.txt">Op 36 Enigma Variations - IX Nimrod</option>
+            <option value="ee_pomp1.txt">Op 39 Pomp And Circumstance - March No 1 in D</option>
+          </optgroup>
+          <optgroup label="Ferenc Erkel; (1810-1893)">
+            <option value="fe_hung.txt">Himnusz</option>
+          </optgroup>
+          <optgroup label="Steve Erquiaga; (?)">
+            <option value="sepanman.txt">Pan Man</option>
+          </optgroup>
+          <optgroup label="Esteban de Sanlucar ;(Esteban Sanlúcar, Esteban Delgado Bernal); (1910-1989)">
+            <option value="esteban_mantilla_de_feria.txt">Mantilla De Feria</option>
+            <option value="esteban_panaderos_flamencos.txt">Panaderos Flamencos</option>
+          </optgroup>
+          <optgroup label="Manuel de Falla; (1876-1946)">
+            <option value="falla_el_amor_brujo_06_el_circulo_magico.txt">El Amor Brujo (Love The Magician) - 6. El Círculo Mágico - Romance del Pescador (The Fisherman's Story)</option>
+            <option value="falla_el_amor_brujo_08_danza_ritual_del_fuego.txt">El Amor Brujo (Love The Magician) - 8. Danza Ritual del Fuego (Ritual Fire Dance)</option>
+            <option value="falla_el_amor_brujo_10_cancion_del_fuego_fatuo.txt">El Amor Brujo (Love The Magician) - 10. Cancion Del Fuego Fatuo (Song of the Will O' The Wisp)</option>
+            <option value="falla_el_sombrero_de_tres_picos_3_danza_de_la_molinero.txt">El Sombrero de Tres Picos (The Three-Cornered Hat) - 3. Danza de la Molinero (Fandango) (The Miller's Dance)</option>
+            <option value="falla_el_sombrero_de_tres_picos_7_danza_del_corregidor.txt">El Sombrero de Tres Picos (The Three-Cornered Hat) - 7. Danza del Corregidor (Dance of the Magistrate)</option>
+            <option value="falla_hommage_au_tombeau_de_debussy.txt">Hommage au Tombeau de Debussy (Homage to Debussy)</option>
+            <option value="falla_spanish_dance_01_la_vie_breve.txt">Spanish Dance No 1 - La Vie Bréve</option>
+          </optgroup>
+          <optgroup label="Dimitri Fampas; (1921-1996)">
+            <option value="fampas_sousta.txt">Sousta</option>
+          </optgroup>
+          <optgroup label="Gabriel Urbain Faure; (Gabriel Urbain Fauré); (1845-1924)">
+            <option value="guf_pav.txt">Pavane</option>
+            <option value="guf_piej.txt">Requiem Op 48 - Pie Jesu (Blessed Jesus)</option>
+          </optgroup>
+          <optgroup label="Fernando Ferandiere (Fernando Ferandière); (1750-1816)">
+            <option value="ffcontr.txt">Contradanza</option>
+            <option value="ffrondo.txt">Rondo</option>
+          </optgroup>
+          <optgroup label="Heraclio Fernandez; (1851-1886)">
+            <option value="hfeds.txt">El Diablo Suelto</option>
+          </optgroup>
+          <optgroup label="Jose Ferrer y Esteve; (1835-1916)">
+            <option value="jfejer.txt">Ejercicio in Em</option>
+          </optgroup>
+          <optgroup label="Manuel Y Ferrer; (1828-1904)">
+            <option value="ferrer_feste_lariane.txt">Feste Lariane</option>
+          </optgroup>
+          <optgroup label="Zdenko Fibich; (1850-1900)">
+            <option value="zfpoem.txt">Poem</option>
+          </optgroup>
+          <optgroup label="Ignacio 'Indio' Figueredo; (1899-1995)">
+            <option value="iif_losc.txt">Los Caujaritos</option>
+            <option value="figueredo_privaresuello.txt">Priva Resuello</option>
+          </optgroup>
+          <optgroup label="Daniel Fortea; (1878-1953)">
+            <option value="fortea_op25_estudios_poeticos_dialogando.txt">Op 25 Estudios Poeticos - Dialogando</option>
+            <option value="fortea_op25_estudios_poeticos_serenata.txt">Op 25 Estudios Poeticos - Serenata</option>
+            <option value="fortea_soleares.txt">Soleares</option>
+            <option value="fortea_waltz_in_g.txt">Vals en Sol (Waltz in G)</option>
+          </optgroup>
+          <optgroup label="Cesar Franck; (César Auguste Jean Guillaume Hubert Franck); (1822-1890)">
+            <option value="franck_panis_angelicus.txt">Panis Angelicus</option>
+          </optgroup>
+          <optgroup label="Girolamo Frescobaldi; (1583-1643)">
+            <option value="gf_aconv.txt">Aria con Variazioni detta La Frescobalda</option>
+            <option value="gf_adbal.txt">Aria Detto Balletto</option>
+          </optgroup>
+          <optgroup label="Johann Jakob Froberger; (1616-1667)">
+            <option value="jjf_gdm.txt">Gigue</option>
+          </optgroup>
+          <optgroup label="Julius Fucik; (Julius Ernst Wilhelm Fučík); (1872-1916)">
+            <option value="fucik_entry_of_the_gladiators.txt">Entry Of The Gladiators</option>
+          </optgroup>
+          <optgroup label="Jacob Gade; (Jacob Thune Hansen Gade); (1879-1963)">
+            <option value="gade_tango_jalousie.txt">Tango Jalousie (Jalousie 'Tango Tzigane')</option>
+          </optgroup>
+          <optgroup label="Galina Nikolaevna Garnishevskaya; (?)">
+            <option value="garnishevskaya_bards_waltz.txt">Bard's Waltz (in memory of Vladimir Vysotsky)</option>
+            <option value="garnishevskaya_sweet_evening.txt">Sweet Evening</option>
+          </optgroup>
+          <optgroup label="Santino Garsi da Parma; (1542-1604)">
+            <option value="garsi_santino_courante.txt">Courante</option>
+          </optgroup>
+          <optgroup label="George Gershwin; (1898-1937)">
+            <option value="gershwin_i_got_plenty_of_nothing.txt">I Got Plenty Of Nothing</option>
+            <option value="gershwin_prelude_no2.txt">Prelude No 2 in C#m</option>
+            <option value="gershwin_rhapsody_in_blue.txt">Rhapsody In Blue</option>
+          </optgroup>
+          <optgroup label="George &amp; Ira Gershwin; (1898-1937 / 1896-1983)">
+            <option value="gershwin_gershwin_someone_to_watch_over_me.txt">Someone To Watch Over Me</option>
+          </optgroup>
+          <optgroup label="Egberto Gismonti; (1947-)">
+            <option value="egagvin.txt">Agua &amp; Vinho</option>
+          </optgroup>
+          <optgroup label="Mauro Giuliani; (Mauro Giuseppe Sergio Pantaleo Giuliani); (1781-1829)">
+            <option value="mg_all_c.txt">Allegretto in C</option>
+            <option value="mgand_c.txt">Andante in C</option>
+            <option value="mg_c_am.txt">Capriccio in Am</option>
+            <option value="mg_atam1.txt">Etude - Allegretto in Am</option>
+            <option value="mg_al_d.txt">Etude - Allegretto in D</option>
+            <option value="mg_and1.txt">Etude - Andante in D</option>
+            <option value="mg_and2.txt">Etude - Andante in D</option>
+            <option value="mg_ang1.txt">Etude - Andante in G</option>
+            <option value="mg_aoam1.txt">Etude - Andantino in Am</option>
+            <option value="mgval_et.txt">Etude - Valse in C</option>
+            <option value="mg_mod1.txt">Etude - Moderato in D</option>
+            <option value="mg_moem1.txt">Etude - Moderato in Em</option>
+            <option value="mgmaest.txt">Maestoso in C</option>
+            <option value="giuliani_tarantella.txt">Tarantella in Am</option>
+            <option value="mg_w_c.txt">Waltz in C</option>
+            <option value="giuliani_op001a.txt">Op 1a - 120 Daily Studies For The Right Hand</option>
+            <option value="giuliani_op010_10.txt">Op 10 No 10 - Allegro Spiritoso in D</option>
+            <option value="giuliani_op011.txt">Op 11 - Caprice in C</option>
+            <option value="giuliani_op045.txt">Op 45 - Variazioni sulla Follia di Spagna in Dm/D (Theme, 6 Variations)</option>
+            <option value="giuliani_op047.txt">Op 47 - Variazioni Su Una Canzone Popolare Austriaca in A/Am (Theme, 5 Variations)</option>
+            <option value="giuliani_op048_01.txt">Op 48 No 1 - Studio in C, Vivace</option>
+            <option value="giuliani_op048_02.txt">Op 48 No 2 - Studio in Am, Moderato</option>
+            <option value="giuliani_op048_03.txt">Op 48 No 3 - Studio in D, Prestissimo</option>
+            <option value="giuliani_op048_04.txt">Op 48 No 4 - Studio in C, Moderato</option>
+            <option value="giuliani_op048_05.txt">Op 48 No 5 - Studio in Em, Allegro</option>
+            <option value="giuliani_op048_06.txt">Op 48 No 6 - Studio in C, Allegro</option>
+            <option value="giuliani_op048_07.txt">Op 48 No 7 - Studio in F, Maestoso</option>
+            <option value="giuliani_op048_08.txt">Op 48 No 8 - Studio in Am, Allegro</option>
+            <option value="giuliani_op048_09.txt">Op 48 No 9 - Studio in E, Presto</option>
+            <option value="giuliani_op048_10.txt">Op 48 No 10 - Studio in Bb, Vivace con brio</option>
+            <option value="giuliani_op048_11.txt">Op 48 No 11 - Studio in D, Allegro maestoso</option>
+            <option value="giuliani_op048_12.txt">Op 48 No 12 - Studio in A, Allegretto</option>
+            <option value="giuliani_op048_13.txt">Op 48 No 13 - Studio in C, Maestoso</option>
+            <option value="giuliani_op048_14.txt">Op 48 No 14 - Studio in E, Allegretto</option>
+            <option value="giuliani_op048_15.txt">Op 48 No 15 - Studio in Eb, Andantino</option>
+            <option value="giuliani_op048_21.txt">Op 48 No 21 - Studio in A, Polonaise</option>
+            <option value="giuliani_op048_23.txt">Op 48 No 23 - Studio in Bm, Allegro con moto</option>
+            <option value="giuliani_op048_24.txt">Op 48 No 24 - Studio in A, Allegro</option>
+            <option value="giuliani_op050_01.txt">Op 50 (Le Papillon) No 1 - Andantino in C</option>
+            <option value="giuliani_op050_02.txt">Op 50 (Le Papillon) No 2 - Grazioso in C</option>
+            <option value="giuliani_op050_03.txt">Op 50 (Le Papillon) No 3 - Allegretto in C</option>
+            <option value="giuliani_op050_04.txt">Op 50 (Le Papillon) No 4 - Grazioso in G</option>
+            <option value="giuliani_op050_05.txt">Op 50 (Le Papillon) No 5 - Allegretto in Am</option>
+            <option value="giuliani_op050_13.txt">Op 50 (The Butterfly) No 13 - Studio in Am - Allegro</option>
+            <option value="giuliani_op050_23.txt">Op 50 (The Butterfly) No 23 - Studio in Am</option>
+            <option value="giuliani_op051_03.txt">Op 51 No 3 - Studio in Am - Moderato</option>
+            <option value="giuliani_op051_15.txt">Op 51 No 15 - Studio in Am - Allegro</option>
+            <option value="giuliani_op061.txt">Op 61 - Grande Ouverture</option>
+            <option value="giuliani_op071.txt">Op 71 - Rondo in C</option>
+            <option value="giuliani_op107.txt">Op 107 - Variations on a Theme by Handel in A/Am (Andantino, 6 Variations, Finale)</option>
+            <option value="giuliani_op110_les_deux_journees_march.txt">Op 110 - Variations on the March from Les Deux Journées (Cherubini)</option>
+            <option value="giuliani_op112.txt">Op 112 - Tema e Variazioni in D (Tema Maestoso, 6 Variations)</option>
+            <option value="giuliani_op130_variationi_concertanti.txt">Op 130 - Variationi Concertanti</option>
+            <option value="giuliani_op150_sonata_heroica.txt">Op 150 - Sonata Heroica</option>
+          </optgroup>
+          <optgroup label="Guillermo Gomez; (1880-1955)">
+            <option value="gomez_suplica.txt">Supplica</option>
+          </optgroup>
+          <optgroup label="Vicente Gomez; (1911-2001)">
+            <option value="gomez_vicente_valse_lente.txt">Valse Lente</option>
+          </optgroup>
+          <optgroup label="Francois Joseph Gossec (François Joseph Gossec); (1734-1829)">
+            <option value="gossec_tambourin.txt">Tambourin</option>
+          </optgroup>
+          <optgroup label="Charles Francois Gounod ;(Charles François Gounod); (1818-1893)">
+            <option value="gounod_bach_js_ave_maria.txt">Ave Maria</option>
+            <option value="gounod_funeral_march_of_a_marionette.txt">Funeral March of a Marionette</option>
+          </optgroup>
+          <optgroup label="Enrique Granados; (1867-1916)">
+            <option value="granados_cuentos_de_la_juventud_h39_no01_dedicatoria.txt">Cuentos de la Juventud (Scenes of Childhood) - Op 1 H.39 No 1 - Dedicatoria</option>
+            <option value="granados_danzas_espanolas_h142_02_oriental.txt">Danzas Españolas Op 37 H.142 No 2 - Oriental</option>
+            <option value="granados_danzas_espanolas_h142_04_villanesca.txt">Danzas Españolas Op 37 H.142 No 4 - Villanesca</option>
+            <option value="granados_danzas_espanolas_h142_05_andaluza.txt">Danzas Españolas Op 37 H.142 No 5 - Andaluza</option>
+            <option value="granados_danzas_espanolas_h142_10_melancolica.txt">Danzas Españolas Op 37 H.142 No 10 - Melancólica</option>
+            <option value="granados_tonadillas_h136_no07_la_maja_de_goya.txt">Tonadillas Al Estilo Antiguo, 10 Songs H.136 No 7 - La Maja de Goya</option>
+            <option value="granados_valses_poeticos_h147_no0.txt">Valses Poéticos, 7 Pieces H.147 Intro - Vivace molto</option>
+            <option value="granados_valses_poeticos_h147_no1.txt">Valses Poéticos, 7 Pieces H.147 No 1 - Melodico</option>
+            <option value="granados_valses_poeticos_h147_no3.txt">Valses Poéticos, 7 Pieces H.147 No 3 - Tempo de Vals lento</option>
+            <option value="granados_valses_poeticos_h147_no4.txt">Valses Poéticos, 7 Pieces H.147 No 4 - Allegro humoristico</option>
+            <option value="granados_valses_poeticos_h147_no5.txt">Valses Poéticos, 7 Pieces H.147 No 5 - Allegretto elegante</option>
+            <option value="granados_valses_poeticos_h147_no6.txt">Valses Poéticos, 7 Pieces H.147 No 6 - Quasi ad libitum</option>
+            <option value="granados_valses_poeticos_h147_no8_presto.txt">Valses Poéticos, 7 Pieces H.147 Coda (Finale / No 8) - Presto</option>
+          </optgroup>
+          <optgroup label="Vicente Greco; (1888-1924)">
+            <option value="greco_ojos_negros.txt">Ojos Negros</option>
+          </optgroup>
+          <optgroup label="Edward Hagerup Grieg ;(Edvard Hagerup Grieg); (1843-1907)">
+            <option value="grieg_op012_no2_waltz.txt">Op 12 - Lyric Pieces, Book 1 - No 2 - Waltz</option>
+            <option value="grieg_op034_no2_the_last_spring.txt">Op 34 No 2 - The Last Spring (Andante)</option>
+            <option value="ehgmm.txt">Op 46 - Peer Gynt, Suite No 1 - 1. Morning Mood</option>
+            <option value="grieg_anitrasdance.txt">Op 46 - Peer Gynt, Suite No 1 - 3. Anitra's Dance</option>
+            <option value="ehghomk.txt">Op 46 - Peer Gynt, Suite No 1 - 4. In The Hall Of The Mountain King</option>
+            <option value="grieg_047_3_melodie.txt">Op 47 No 3 - Melodie in Am</option>
+            <option value="ehggmm.txt">Op 68 No 2 - Grandmother's Minuet- Lyric Pieces</option>
+          </optgroup>
+          <optgroup label="Kostas Grigoreas; (1957-)">
+            <option value="grigoreas_innocent_suite_1_verse.txt">Innocent Suite - 1 Verse</option>
+            <option value="grigoreas_innocent_suite_2_girls_game.txt">Innocent Suite - 2 Girl's Game</option>
+            <option value="grigoreas_innocent_suite_4_aura.txt">Innocent Suite - 4 Aura</option>
+          </optgroup>
+          <optgroup label="Franz Xaver Gruber; (1787-1863)">
+            <option value="gruber_silent_night.txt">Silent Night</option>
+          </optgroup>
+          <optgroup label="Vince Guaraldi; (1928-1976)">
+            <option value="guaraldi_christmas_time_is_here.txt">Christmas Time is Here (Charlie Brown)</option>
+          </optgroup>
+          <optgroup label="George Frederic Handel ;(George Frideric Händel, Georg Friedrich Haendel); (1685-1759)">
+            <option value="gfhwa1.txt">Air in Bb</option>
+            <option value="gfhar.txt">Arioso</option>
+            <option value="gfhab311.txt">Air of bass (No 311) - Aria, Allegro larghetto</option>
+            <option value="gfhbou_g.txt">Bourree in G</option>
+            <option value="gfh_ch.txt">Chorale</option>
+            <option value="gfh_fug.txt">Fugue in G</option>
+            <option value="gfhhallc.txt">Hallelujah Chorus</option>
+            <option value="handel_hwv432_passacaglia.txt">Keyboard Suite Vol 1 No 7 in Gm, HWV 432 - Passacaille (Passacaglia)</option>
+            <option value="handel_hwv437_vol2_no4_suite_in_dm_2_allemande.txt">Keyboard Suite Vol 2 No 4 in Dm, HWV 437 - 2. Allemande</option>
+            <option value="handel_hwv437_vol2_no4_suite_in_dm_3_courante.txt">Keyboard Suite Vol 2 No 4 in Dm, HWV 437 - 3. Courante</option>
+            <option value="handel_hwv441_vol2_no8_suite_in_g_3_courante.txt">Keyboard Suite Vol 2 No 8 in G, HWV 441 - 3. Courante</option>
+            <option value="handel_hwv441_vol2_no8_suite_in_g_6_gavotte.txt">Keyboard Suite Vol 2 No 8 in G, HWV 441 - 6. Gavotte</option>
+            <option value="gfhxlarg.txt">Largo</option>
+            <option value="gfhmin_d.txt">Minuet in D</option>
+            <option value="handel_minuet_no3_in_e.txt">Minuet No 3 in E</option>
+            <option value="gfhsadm.txt">Sarabande in Dm</option>
+            <option value="gfhsoaa.txt">Sonatine - Allegretto in A</option>
+          </optgroup>
+          <optgroup label="Manos Hatzidakis; (1925-1994)">
+            <option value="hatzidakis_dont_ask_the_sky.txt">Don't Ask The Sky</option>
+            <option value="hatzidakis_top_kapi.txt">Top Kapi</option>
+          </optgroup>
+          <optgroup label="Winslow L Hayden; (?)">
+            <option value="wlh_bw.txt">Birthday Waltz</option>
+            <option value="wlh_gw.txt">Gypsy Waltz</option>
+            <option value="wlh_hq.txt">Hunter's Quickstep</option>
+            <option value="wlh_ssw.txt">Spanish Student's Waltz</option>
+          </optgroup>
+          <optgroup label="Franz Joseph Haydn; (1732-1809)">
+            <option value="fh_76_01.txt">Minuet from Quartet, Op 76 No 1</option>
+            <option value="fhsy4and.txt">Andante (excerpts)</option>
+          </optgroup>
+          <optgroup label="Karl Henze (Charles Henze); (1872-1946)">
+            <option value="kh_noct.txt">Nocturne in C</option>
+          </optgroup>
+          <optgroup label="Phillip Houghton; (1954-)">
+            <option value="houghton_phillip_stele_1_stele.txt">Stélé - 1. Stélé</option>
+            <option value="houghton_phillip_stele_2_dervish.txt">Stélé - 2. Dervish</option>
+            <option value="houghton_phillip_stele_3_bronze_apollo.txt">Stélé - 3. Bronze Apollo</option>
+          </optgroup>
+          <optgroup label="Alexander Mikhaylovich Ivanov-Kramskoy; (1912-1973)">
+            <option value="amik_ace.txt">Prelude in Em - Andante con espressione</option>
+            <option value="amik_st.txt">Sad Tune - Andantino in Em</option>
+            <option value="amik_dnw.txt">Variations on Do Not Wake Her At Dawn</option>
+          </optgroup>
+          <optgroup label="Iosif Ivanovici; (Ion Ivanovici); (1848-1905)">
+            <option value="ii_danw.txt">Danube Waves</option>
+          </optgroup>
+          <optgroup label="Simon Ives; (Simon Yves); (1600-1662)">
+            <option value="ives_ayre_no2.txt">Ayre No 2 (A fantasia for two instruments)</option>
+          </optgroup>
+          <optgroup label="Karl Jenkins; (1944-)">
+            <option value="kjpallad.txt">Palladio - I Allegretto</option>
+          </optgroup>
+          <optgroup label="Jiri Jirmal; (Jiří Jirmal); (1925-)">
+            <option value="jirmal_baden_jazz_suite_simplicitas.txt">Baden Jazz Suite (Homage á Baden Powell) - I - Simplicitas</option>
+          </optgroup>
+
+          <optgroup label="Antônio Carlos Brasileiro de Almeida Jobim ;(Antonio Carlos Jobim, Tom Jobim); (1927-1994)">
+            <option value="jobim_a_felicidade.txt">A Felicidade</option>
+            <option value="jobim_bate-boca.txt">Bate-Boca</option>
+            <option value="jobim_luiza.txt">Luiza</option>
+          </optgroup>
+          <optgroup label="Scott Joplin; (1868-1917)">
+            <option value="sjelit.txt">Elite Syncopations</option>
+            <option value="sjeuge.txt">Eugenia</option>
+            <option value="sjpleasm.txt">Pleasant Moments (Ragtime Waltz)</option>
+            <option value="sjsilv.txt">Silver Swan Rag</option>
+            <option value="sjchrysa.txt">The Chrysanthemum: An Afro-American Intermezzo</option>
+            <option value="sjent.txt">The Entertainer</option>
+          </optgroup>
+          <optgroup label="Antonio Jose; (Antonio José Martínez Palacios); (1902-1936)">
+            <option value="jose_sonata_3_pavana_triste.txt">Sonata - 3rd movement, Pavana Triste</option>
+            <option value="jose_sonata_4_allegro_con_brio.txt">Sonata - 4th movement, Allegro con brio</option>
+          </optgroup>
+          <optgroup label="Michael Kamen; (1948-2003)">
+            <option value="mk_bobmt.txt">Band Of Brothers - main theme</option>
+          </optgroup>
+          <optgroup label="Johannes Hieronymus Kapsberger (Giovanni Girolamo Kapsberger, Giovanni Geronimo Kapsberger); (c1580-1651)">
+            <option value="kapsberger_aria_di_florenza.txt">Aria di Fiorenza - Variations 4, 6, 9</option>
+            <option value="kapsberger_canario.txt">Canario</option>
+            <option value="kapsberger_toccata_arpeggiata.txt">Libro Primo d'Intavolatura di Chitarrone - Toccata Seconda Arpeggiata</option>
+          </optgroup>
+          <optgroup label="Anton Karas; (1906-1985)">
+            <option value="akthirdm.txt">The Third Man</option>
+          </optgroup>
+          <optgroup label="Francis Kleynjans; (1951-)">
+            <option value="kleynjans_op033_a_l_aube_du_dernier_jour_1_attente.txt">Op 33 - A l'Aube du Dernier Jour - 1 Attente</option>
+          </optgroup>
+            <option value="kleynjans_op140_petite_suite_in_g_1_valse_triste.txt">Op 140 - Petite Suite in G - 1 Valse triste</option>
+            <option value="kleynjans_prelude_no1_in_c.txt">24 Preludes - No 1 in C</option>
+
+          <optgroup label="Nikita Koshkin; (1956-)">
+            <option value="nk_agzg.txt">Alles Gute zum Geburtstag! (Happy Birthday)</option>
+            <option value="koshkin_ballade.txt">Ballade</option>
+            <option value="koshkin_da_capo_01_intrada.txt">Da Capo - 24 Easy Pieces - 1. Intrada</option>
+            <option value="koshkin_da_capo_02_melody.txt">Da Capo - 24 Easy Pieces - 2. Melody</option>
+            <option value="koshkin_da_capo_03_dance.txt">Da Capo - 24 Easy Pieces - 3. Dance</option>
+            <option value="koshkin_da_capo_04_ballad.txt">Da Capo - 24 Easy Pieces - 4. Ballad</option>
+            <option value="koshkin_da_capo_05_snowflakes.txt">Da Capo - 24 Easy Pieces - 5. Snowflakes</option>
+            <option value="koshkin_da_capo_06_desert.txt">Da Capo - 24 Easy Pieces - 6. Desert</option>
+            <option value="koshkin_da_capo_07_five_crotchets.txt">Da Capo - 24 Easy Pieces - 7. Five Crotchets</option>
+            <option value="koshkin_da_capo_08_dialogue.txt">Da Capo - 24 Easy Pieces - 8. Dialogue</option>
+            <option value="koshkin_da_capo_09_elephant.txt">Da Capo - 24 Easy Pieces - 9. Elephant</option>
+            <option value="koshkin_da_capo_10_waltz.txt">Da Capo - 24 Easy Pieces - 10. Waltz</option>
+            <option value="koshkin_da_capo_11_without_landscape.txt">Da Capo - 24 Easy Pieces - 11. Without Landscape</option>
+            <option value="koshkin_da_capo_12_ceremony.txt">Da Capo - 24 Easy Pieces - 12. Ceremony</option>
+            <option value="koshkin_da_capo_13_ukranian_folk_song.txt">Da Capo - 24 Easy Pieces - 13. Ukranian Folk Song</option>
+            <option value="koshkin_da_capo_14_carcassi.txt">Da Capo - 24 Easy Pieces - 14. Carcassi</option>
+            <option value="koshkin_da_capo_15_etude.txt">Da Capo - 24 Easy Pieces - 15. Etude</option>
+            <option value="koshkin_da_capo_16_humoresque.txt">Da Capo - 24 Easy Pieces - 16. Humoresque</option>
+            <option value="koshkin_da_capo_17_the_sailors_fate.txt">Da Capo - 24 Easy Pieces - 17. The Sailor's Fate</option>
+            <option value="koshkin_da_capo_18_jota.txt">Da Capo - 24 Easy Pieces - 18. Jota</option>
+            <option value="koshkin_da_capo_19_polka.txt">Da Capo - 24 Easy Pieces - 19. Polka</option>
+            <option value="koshkin_da_capo_20_jig.txt">Da Capo - 24 Easy Pieces - 20. Jig</option>
+            <option value="koshkin_da_capo_21_dotted_line.txt">Da Capo - 24 Easy Pieces - 21. Dotted Line</option>
+            <option value="koshkin_da_capo_22_choros.txt">Da Capo - 24 Easy Pieces - 22. Chorôs</option>
+            <option value="koshkin_da_capo_23_aria.txt">Da Capo - 24 Easy Pieces - 23. Aria</option>
+            <option value="koshkin_da_capo_24_amphion.txt">Da Capo - 24 Easy Pieces - 24. Amphion</option>
+            <option value="koshkin_parade.txt">Parade</option>
+            <option value="nk_pandw.txt">Prelude And Waltz (Homage To Andres Segovia)</option>
+            <option value="nk_6co_1.txt">Six Cordes - 1. Le Pelerin (The Pilgrim)</option>
+            <option value="nk_6co_2.txt">Six Cordes - 2. Valse (Waltz)</option>
+            <option value="nk_6co_3.txt">Six Cordes - 3. Le Chavalier Errant (The Wandering Knight)</option>
+            <option value="nk_6co_4.txt">Six Cordes - 4. L'Ennui (Weariness)</option>
+            <option value="nk_6co_5.txt">Six Cordes - 5. Caravane (Caravan)</option>
+            <option value="nk_6co_6.txt">Six Cordes - 6. La Grande Parade Du Cirque (The Great Circus Parade)</option>
+            <option value="nk_elv1.txt">The Elves Suite - 1. Gavotta (Allegretto grazioso)</option>
+            <option value="nk_elv3.txt">The Elves Suite - 3. March (Molto energico)</option>
+            <option value="nk_elv5.txt">The Elves Suite - 5. Galop (Vivo)</option>
+            <option value="koshkin_the_fall_of_birds_1_andante_quasi_passacaglia.txt">The Fall Of Birds (to Vladimir Mikulka) - 1. Andante quasi Passacaglia</option>
+            <option value="koshkin_the_fall_of_birds_2_toccata.txt">The Fall Of Birds (to Vladimir Mikulka) - 2. Toccata</option>
+            <option value="koshkin_the_porcelain_tower_0_theme_by_stepan_rak.txt">The Porcelain Tower - Theme by Štepán Rak</option>
+            <option value="koshkin_the_porcelain_tower_1_march_the_yellow_paper_dragon.txt">The Porcelain Tower - Variation 1 - March - The Yellow Paper Dragon</option>
+            <option value="koshkin_the_porcelain_tower_2_valse_bamboo_umbrella.txt">The Porcelain Tower - Variation 2 - Valse - Bamboo Umbrella</option>
+            <option value="koshkin_the_porcelain_tower_3_sarabande_sphere_inside_sphere.txt">The Porcelain Tower - Variation 3 - Sarabande - Sphere Inside Sphere</option>
+            <option value="nk_pt4.txt">The Porcelain Tower - Variation 4 - Galop - Red Hiroglyph's Dance</option>
+            <option value="nk_pt5.txt">The Porcelain Tower - Variation 5 - Nocturne - Silk Screen</option>
+            <option value="koshkin_the_porcelain_tower_6_toccata_fox-werewolf.txt">The Porcelain Tower - Variation 6 - Toccata - Fox-Werewolf</option>
+            <option value="nk_pt_fn.txt">The Porcelain Tower - Finale - Nephrite Emperor</option>
+            <option value="koshkin_the_princes_toys_1_the_mischievous_prince.txt">The Prince's Toys - 1. The Mischievous Prince</option>
+            <option value="koshkin_the_princes_toys_2_the_mechanical_monkey.txt">The Prince's Toys - 2. The Mechanical Monkey</option>
+            <option value="koshkin_the_princes_toys_3_the_doll_with_blinking_eyes.txt">The Prince's Toys - 3. The Doll With Blinking Eyes</option>
+            <option value="koshkin_the_princes_toys_4_playing_soldiers.txt">The Prince's Toys - 4. Playing Soldiers (Tin Soldiers)</option>
+            <option value="koshkin_three_pieces_1_marionette.txt">Three Pieces - 1. Marionette</option>
+            <option value="nk_trist.txt">Tristan Playing The Lute</option>
+            <option value="nk_29.txt">Usher Waltz (Opus 29)</option>
+            <option value="nk_valse.txt">Valse (untitled)</option>
+          </optgroup>
+          <optgroup label="Johann Krieger; (1651-1735)">
+            <option value="jkminc.txt">Menuett</option>
+          </optgroup>
+          <optgroup label="Joseph Kuffner (Joseph Küffner); (1776-1856)">
+            <option value="jk_80_06.txt">Op 80 No 6 - Andantino</option>
+            <option value="jk_80_19.txt">Op 80 No 19 - Allegro</option>
+            <option value="jk_80_20.txt">Op 80 No 20 - Waltz</option>
+          </optgroup>
+          <optgroup label="Antonio Lauro; (1917-1986)">
+            <option value="bc_adjor.txt">Aire de Joropo (El Totumo de Guarenas)</option>
+            <option value="lauro_angostura.txt">Angostura - Vals Venezolano</option>
+            <option value="alvvca.txt">Carora - Vals Venezolano</option>
+            <option value="alelmara.txt">El Marabino - Vals Venezolano</option>
+            <option value="alelnino.txt">El Niño (El Nino) - Vals Venezolano</option>
+            <option value="almariac.txt">Maria Carolina</option>
+            <option value="lauro_maria_luisa.txt">Maria Luisa - Vals Venezolano</option>
+            <option value="alpasara.txt">Pasaje Aragueno</option>
+            <option value="alvirbt.txt">Virgilio (Bambuco Tachirense)</option>
+            <option value="lauro_estudio_enimitaciones_2.txt">Four Estudio En Imitaciones - No 2</option>
+            <option value="alnell.txt">Six Venezuelan Pieces - Nelly (A la Senora Nelly de Afanador)</option>
+            <option value="altriarm.txt">Triptico (Three Venezuelan Pieces) - I. Armida</option>
+            <option value="altrimad.txt">Triptico (Three Venezuelan Pieces) - II. Madrugada</option>
+            <option value="altriln.txt">Triptico (Three Venezuelan Pieces) - III. La Negra</option>
+            <option value="alelnegr.txt">Two Venezuelan Waltzes - No 1 - El Negrito</option>
+            <option value="alvvlaga.txt">Two Venezuelan Waltzes - No 2 - La Gatica</option>
+            <option value="lauro_vals_venezolano_1_tatiana.txt">Vals Venezolano - No 1 - Tatiana</option>
+            <option value="lauro_vals_venezolano_2_andreina.txt">Vals Venezolano - No 2 - Andreina</option>
+            <option value="lauro_vals_venezolano_3_natalia.txt">Vals Venezolano - No 3 - Natalia (Valse Criollo)</option>
+            <option value="lauro_vals_venezolano_4_yacambu.txt">Vals Venezolano - No 4 - Yacambú</option>
+            <option value="alvs1reg.txt">Venezuelan Suite - No 1 - Registro (Preludio)</option>
+            <option value="alvs2dn.txt">Venezuelan Suite - No 2 - Danza Negra</option>
+            <option value="alvs3ca.txt">Venezuelan Suite - No 3 - Cancion</option>
+            <option value="alvs4va.txt">Venezuelan Suite - No 4 - Vals</option>
+          </optgroup>
+          <optgroup label="Antonio Lauro &amp; Ivan Perez Rossi">
+            <option value="almnp.txt">Mi Niñito Precioso</option>
+          </optgroup>
+          <optgroup label="Calixa Lavallee (Calixa Lavallée); (1842-1891)">
+            <option value="lavallee_o_canada.txt">O Canada</option>
+          </optgroup>
+          <optgroup label="William Lawes; (1602-1645)">
+            <option value="lawes_suite_for_2_guitars_1_corant.txt">Suite for 2 Guitars - 1. Corant I</option>
+          </optgroup>
+          <optgroup label="Ernesto Lecuona y Casado; (1895-1963)">
+            <option value="lecuona_danza_lecumi.txt">Danza Lecumi</option>
+            <option value="lecuona_malaguena.txt">Malaguena (Malagueña)</option>
+          </optgroup>
+          <optgroup label="Luigi Rinaldo Legnani; (1790-1877)">
+            <option value="legnani_op20_caprice_01.txt">Op 20, Caprice No 1 in C, Andante</option>
+            <option value="legnani_op20_caprice_02.txt">Op 20, Caprice No 2 in Em, Allegro</option>
+            <option value="legnani_op20_caprice_04.txt">Op 20, Caprice No 4 in Am, Allegretto</option>
+            <option value="legnani_op20_caprice_07.txt">Op 20, Caprice No 7 in A, Prestissimo</option>
+            <option value="legnani_op20_caprice_15.txt">Op 20, Caprice No 15 in B, Allegro moderato</option>
+          </optgroup>
+          <optgroup label="Michel Legrand; (1932-)">
+            <option value="ml_pdc.txt">Les Parapluies de Cherbourg (The Umbrellas Of Cherbourg)</option>
+          </optgroup>
+          <optgroup label="Jean Lenoir; (1891-1976)">
+            <option value="jl_parle.txt">Parlez-Moi D'Amour (Speak To Me Of Love)</option>
+          </optgroup>
+          <optgroup label="Mykola Dmytrovych Leontovych; (1877-1921)">
+            <option value="leontovych_carol_of_the_bells.txt">Shchedryk (Carol of the Bells)</option>
+          </optgroup>
+          <optgroup label="Brian Lester; (1939-)">
+            <option value="blscrol.txt">Scrolling Zigzag</option>
+          </optgroup>
+          <optgroup label="Ottmar Liebert; (1957-)">
+            <option value="olroad.txt">Road To Her Home (Bulerias)</option>
+            <option value="olsanta.txt">Santa Fe</option>
+          </optgroup>
+          <optgroup label="George C Lindsay; (?)">
+            <option value="gclraind.txt">Raindrops</option>
+          </optgroup>
+          <optgroup label="Franz Liszt; (1811-1886)">
+            <option value="fllieb.txt">Liebestraum</option>
+          </optgroup>
+          <optgroup label="Miguel Llobet; (1878-1938) (arrangements)">
+            <option value="llobet_canciones_populares_catalanas_1_el_testament_d'amelia.txt">Canciones Populares Catalanas - 1. El Testament d'Amelia</option>
+            <option value="ml9cdl.txt">Canciones Populares Catalanas - 2. Canco del Lladre</option>
+            <option value="mlfilad.txt">Canciones Populares Catalanas - 3. La Filadora</option>
+            <option value="mllfdel.txt">Canciones Populares Catalanas - 9. La Filla del Marxant</option>
+            <option value="ml_lndn.txt">Canciones Populares Catalanas - 10. La Nit De Nadal</option>
+            <option value="zanelnoi.txt">El Noi de La Mare (The Son of the Virgin)</option>
+          </optgroup>
+          <optgroup label="Edson Lopes; (1957-)">
+            <option value="lopes_cancao_triste.txt">Canção Triste</option>
+          </optgroup>
+          <optgroup label="Oscar Lopez; (1954-)">
+            <option value="lopez_classical_soul.txt">Classical Soul</option>
+          </optgroup>
+          <optgroup label="Jan Antonin Losy ;(Johann Anton Losy von Losimthal, Comte Logy); (1650-1721)">
+            <option value="jalgigc.txt">Gigue in C</option>
+            <option value="jalrond.txt">Rondeau</option>
+            <option value="jal3_1.txt">Suite No 3 - 1st movement - Prelude</option>
+            <option value="jal3_2.txt">Suite No 3 - 2nd movement - Aria</option>
+          </optgroup>
+          <optgroup label="Kiko Loureiro; (1972-)">
+            <option value="loureiro_choro_de_crianca.txt">Choro de Criança (Choro de Crianca)</option>
+          </optgroup>
+          <optgroup label="Paco de Lucia ;(Francisco Sanches Pecino); (1947-)">
+            <option value="pdlalmor.txt">Almoraima (Bulerías)</option>
+            <option value="pdlcelos.txt">Celosa (Soleá por Bulerías)</option>
+            <option value="pdlcepaa.txt">Cepa Andaluza (Bulerías)</option>
+            <option value="pdlcueva.txt">Cueva del Gato (Rondeña)</option>
+            <option value="pdlelinc.txt">El Inclusero (Rumba)</option>
+            <option value="pdlet.txt">El Tempul (Bulerías)</option>
+            <option value="pdlrioa.txt">Rio Ancho (Rumba)</option>
+          </optgroup>
+          <optgroup label="Paco de Lucia &amp; Jose Torregrosa ;(José Torregrosa)">
+            <option value="pdljtpfl.txt">Percusion Flamenca (Zapateado)</option>
+          </optgroup>
+          <optgroup label="Jean-Baptiste Lully; (1632-1687)">
+            <option value="lully_marche_pour_la_ceremonie_des_turcs.txt">Marche pour la Cérémonie des Turcs</option>
+          </optgroup>
+          <optgroup label="Joaquin Malats; (1872-1912)">
+            <option value="malats_serenata_andaluza.txt">Serenata Andaluza</option>
+            <option value="malats_serenata_espanola.txt">Serenata Española</option>
+          </optgroup>
+          <optgroup label="Henry Mancini ;(Enrico Nicola Mancini); (1924-1994)">
+            <option value="hmmoonr.txt">Moon River</option>
+          </optgroup>
+          <optgroup label="Martin Marais; (1656-1728)">
+            <option value="marais_les_folies_d'espagne_theme.txt">Les Folies d'Espagne - Theme</option>
+          </optgroup>
+          <optgroup label="Jean Paul Martini; (1741 - 1816)">
+            <option value="jpm_pda.txt">Plaisir d' Amour</option>
+          </optgroup>
+          <optgroup label="Jules Massenet; (1842-1912)">
+            <option value="jm_th_m.txt">Meditacion from Thais</option>
+          </optgroup>
+          <optgroup label="Felix Mendelssohn Bartholdy; (1809-1847)">
+            <option value="fmbcanz.txt">Canzonetta del Quartet</option>
+            <option value="fmbwedm.txt">Wedding March</option>
+          </optgroup>
+          <optgroup label="Jose Luis Merlin; (1952-)">
+            <option value="jlmevoca.txt">Evocación</option>
+          </optgroup>
+          <optgroup label="Johann Kaspar Mertz; (1806-1856)">
+            <option value="mertz_op04_no2_nocturne_in_c.txt">Op 4 - Three Nocturnes - No 2 in C</option>
+            <option value="mertz_op05_no2_marcia_in_g.txt">Op 5 - Cyanen als Folge der Nachtviolen - No 2 Marcia &amp; Trio in G</option>
+            <option value="mertz_op09_no4_landler.txt">Op 9 - Six Ländler - No 4 in D (Più allegretto)</option>
+            <option value="mertz_op13_no10_bardenklange_romanze.txt">Op 13 No 10 - Bardenklange - Romanze moderato</option>
+            <option value="mertz_2_etuden_aus_boije_393_1_grave.txt">2 Etüden aus Boije 393 - 1. Grave in C</option>
+            <option value="mertz_2_etuden_aus_boije_393_2_lento.txt">2 Etüden aus Boije 393 - 2. Lento in C</option>
+            <option value="mertz_etude_in_g.txt">Etude in G - Allegretto</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_01.txt">Schule für die Guitare - Übungsstück 1</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_02.txt">Schule für die Guitare - Übungsstück 2</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_03.txt">Schule für die Guitare - Übungsstück 3</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_04.txt">Schule für die Guitare - Übungsstück 4</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_05.txt">Schule für die Guitare - Übungsstück 5</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_06.txt">Schule für die Guitare - Übungsstück 6</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_07.txt">Schule für die Guitare - Übungsstück 7</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_08.txt">Schule für die Guitare - Übungsstück 8</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_09.txt">Schule für die Guitare - Übungsstück 9</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_10.txt">Schule für die Guitare - Übungsstück 10</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_11.txt">Schule für die Guitare - Übungsstück 11</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_12.txt">Schule für die Guitare - Übungsstück 12</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_13.txt">Schule für die Guitare - Übungsstück 13</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_14.txt">Schule für die Guitare - Übungsstück 14</option>
+            <option value="mertz_schule_fur_die_guitare_ubungsstuck_15.txt">Schule für die Guitare - Übungsstück 15</option>
+          </optgroup>
+          <optgroup label="Luis de Milan ;(Luis Milan, Luys Milan, Lluís del Milà); (1500-1561)">
+            <option value="milan_fantasia_01.txt">Libro de Musica de Vihuela de Mano Intitulado El Maestro - Fantasia 1</option>
+            <option value="milan_fantasia_02.txt">Libro de Musica de Vihuela de Mano Intitulado El Maestro - Fantasia 2</option>
+            <option value="milan_fantasia_03.txt">Libro de Musica de Vihuela de Mano Intitulado El Maestro - Fantasia 3</option>
+            <option value="milan_fantasia_04.txt">Libro de Musica de Vihuela de Mano Intitulado El Maestro - Fantasia 4</option>
+            <option value="milan_6_pavanes_1.txt">Seis Pavanes da el Maestro - No 1</option>
+            <option value="milan_6_pavanes_2.txt">Seis Pavanes da el Maestro - No 2</option>
+            <option value="milan_6_pavanes_3.txt">Seis Pavanes da el Maestro - No 3</option>
+            <option value="milan_6_pavanes_4.txt">Seis Pavanes da el Maestro - No 4</option>
+            <option value="milan_6_pavanes_5.txt">Seis Pavanes da el Maestro - No 5</option>
+            <option value="milan_6_pavanes_6.txt">Seis Pavanes da el Maestro - No 6</option>
+            <option value="fdm_tdq.txt">Tu Discois Que Je Mourroye (Claudin de Sermisy)</option>
+          </optgroup>
+          <optgroup label="Yasunori Mitsuda; (1972-)">
+            <option value="mitsuda_dimension_beach.txt">Chrono Cross - Dimension Breach, Cleft of Dimension</option>
+          </optgroup>
+          <optgroup label="Simone Molinaro; (1565-1615)">
+            <option value="smfanta1.txt">Fantasia No 1</option>
+          </optgroup>
+          <optgroup label="Federico Mompou; (Frederic Mompou i Dencausse); (1893-1987)">
+            <option value="mompou_suite_compostelana_1_preludio.txt">Suite Compostelana - 1 Preludio</option>
+            <option value="mompou_suite_compostelana_2_coral.txt">Suite Compostelana - 2 Coral</option>
+            <option value="mompou_suite_compostelana_3_cuna.txt">Suite Compostelana - 3 Cuna</option>
+          </optgroup>
+          <optgroup label="Gentil Montana ;(Julio Gentil Albarracín Montaña); (1942-2011)">
+            <option value="montana_suite_colombiana_3_1_la_cancion_del_sonador_pasillo.txt">Suite Colombiana No 3 - 1. La Canción del Soñador (La Cancion del Sonador) (Pasillo)</option>
+            <option value="montana_suite_colombiana_3_2_nunca_te_olvido.txt">Suite Colombiana No 3 - 2. Nunca Te Olvido (Danza)</option>
+            <option value="montana_suite_colombiana_3_5_porro.txt">Suite Colombiana No 3 - 5. Porro</option>
+            <option value="montana_suite_colombiana_4_4_porro.txt">Suite Colombiana No 4 - 4. Porro</option>
+          </optgroup>
+          <optgroup label="Alfonso Montes; (1955)">
+            <option value="montes_preludio_de_adios.txt">Preludio de Adios</option>
+          </optgroup>
+          <optgroup label="Jorge Morel; (1931-)">
+            <option value="jm_bosre.txt">Bossa in Re</option>
+            <option value="jmdbra.txt">Danza Brasilera</option>
+            <option value="jmdem.txt">Danza in Em</option>
+            <option value="morel_prelude_for_olga.txt">Prelude For Olga</option>
+            <option value="jmromcri.txt">Romance Criollo</option>
+            <option value="jmsonat1.txt">Sonatina - I - Allegretto</option>
+            <option value="jmsonat2.txt">Sonatina - II - Andante espressivo</option>
+            <option value="jmsonat3.txt">Sonatina - III - Allegro</option>
+          </optgroup>
+          <optgroup label="Federico Moreno-Torroba; (Federico Moreno Torroba); (1891-1982)">
+            <option value="fmtcs1tu.txt">Castles of Spain Vol 1 - 1 Turégano (Serranilla)</option>
+            <option value="fmtcstor.txt">Castles of Spain Vol 1 - 2 Torija (Elegia)</option>
+            <option value="fmtcsme.txt">Castles of Spain Vol 1 - 3 Manzanares El Real (A la Moca Fermosa)</option>
+            <option value="fmtcsrlp.txt">Castles of Spain Vol 1 - 4 Montemayor (Romance De Los Pinos)</option>
+            <option value="fmtcs1al.txt">Castles of Spain Vol 1 - 5 Alcaniz (Festiva)</option>
+            <option value="fmtcssi.txt">Castles of Spain Vol 1 - 6 Sigüenza (La Infanta Duerme)</option>
+            <option value="fmtcs1at.txt">Castles of Spain Vol 1 - 7 Alba De Tormes (Trova)</option>
+            <option value="fmtcs1as.txt">Castles of Spain Vol 1 - 8 Alcazar de Segovia (Llamda)</option>
+            <option value="fmtmadro.txt">Madroños</option>
+            <option value="fmtnoct.txt">Nocturno</option>
+            <option value="fmtspda1.txt">Siete Piezas De Album - I. Segoviana</option>
+            <option value="fmtspda2.txt">Siete Piezas De Album - II. Minueto Del Majo</option>
+            <option value="fmtspda3.txt">Siete Piezas De Album - III. Rumor De Copla</option>
+            <option value="fmtspda4.txt">Siete Piezas De Album - IV. Aire Vasco</option>
+            <option value="fmtspda5.txt">Siete Piezas De Album - V. !Ay, Malaguena!</option>
+            <option value="fmtspda6.txt">Siete Piezas De Album - VI. Chisperada</option>
+            <option value="fmtspda7.txt">Siete Piezas De Album - VII. Bolero Menorquin</option>
+            <option value="moreno_torroba_sonatina_in_a_1_allegretto.txt">Sonatina in A - I. Allegretto</option>
+            <option value="moreno_torroba_sonatina_in_a_2_andante.txt">Sonatina in A - II. Andante</option>
+            <option value="moreno_torroba_sonatina_in_a_3_allegro.txt">Sonatina in A - III. Allegro</option>
+            <option value="fmtscfan.txt">Suite Castellana - Fandanguillo</option>
+            <option value="fmtscara.txt">Suite Castellana - Arada</option>
+            <option value="fmtscdp.txt">Suite Castellana - Danza Preambulo</option>
+          </optgroup>
+          <optgroup label="Guillaume Morlaye; (1510-1558)">
+            <option value="gm_gall.txt">Gaillarde</option>
+            <option value="gm_pav.txt">Pavane</option>
+          </optgroup>
+          <optgroup label="Ennio Morricone; (1928-)">
+            <option value="morricone_chi_mai.txt">Chi Mai</option>
+            <option value="morricone_ecstacy_of_gold.txt">Ecstacy Of Gold</option>
+            <option value="morricone_the_good_the_bad_and_the_ugly.txt">The Good, The Bad And The Ugly</option>
+          </optgroup>
+          <optgroup label="Jean Joseph Mouret; (1685-1732)">
+            <option value="jjmff.txt">Fanfare</option>
+          </optgroup>
+          <optgroup label="Wolfgang Amadeus Mozart; (1756-1791)">
+            <option value="mozart_k183_symphony_25_in_g_theme.txt">K183 Symphony No 25 in G</option>
+            <option value="mozart_k253_divertimento_13_allegro_in_g.txt">K253 Divertimento No 13 - Allegro in G</option>
+            <option value="mozart_k283_piano_sonata_05_in_g_3_presto.txt">K283 Piano Sonata in G - 3rd movement (Presto)</option>
+            <option value="mozart_k331_piano_sonata_11_in_a_1_tema.txt">K331 Piano Sonata No 11 in A - Tema</option>
+            <option value="mozart_k331_piano_sonata_11_in_a_3_alla_turca.txt">K331 Piano Sonata No 11 in A - Rondo alla Turca</option>
+            <option value="mozart_k467_piano_concerto_21_in_c_2_andante.txt">K467 Piano Concerto No 21 in C - Andante (2nd movement)</option>
+            <option value="mozart_k492_le_nozze_di_figaro_2_2_voi_che_sapete.txt">K492 Le Nozzi de Figaro - Act 2 - Aria: Voi che sapete</option>
+            <option value="mozart_k525_eine_kleine_nachtmusik_1_allegro.txt">K525 Eine Kleine Nachtmusik - I Allegro</option>
+            <option value="mozart_k525_eine_kleine_nachtmusik_4_rondo.txt">K525 Eine Kleine Nachtmusik - IV Rondo</option>
+            <option value="mozart_k545_piano_sonata_16_in_c_1_allegro.txt">K545 Piano Sonata No 16 in C - 1 Allegro</option>
+            <option value="mozart_k545_piano_sonata_16_in_c_2_andante.txt">K545 Piano Sonata No 16 in C - 2 Andante</option>
+            <option value="mozart_k545_piano_sonata_16_in_c_3_rondo.txt">K545 Piano Sonata No 16 in C - 3 Rondo (Allegretto)</option>
+            <option value="mozart_k620_the_magic_flute_queen_of_the_night.txt">K620 The Magic Flute - Queen Of The Night (Aria)</option>
+            <option value="mozart_k626_requiem_kyrie_eleison.txt">K626 Requiem Mass in Dm - Kyrie Eleison</option>
+            <option value="mozart_k626_requiem_lacrymosa.txt">K626 Requiem Mass in Dm - Lacrymosa</option>
+            <option value="mozart_petite_piece_in_c.txt">Petite Piece in C</option>
+          </optgroup>
+          <optgroup label="Luigi Mozzani; (1869-1943)">
+            <option value="mozzani_coup_de_vent.txt">Coup de Vent</option>
+          </optgroup>
+          <optgroup label="Alonso Mudarra ;(Alonso de Mudarra); (1510-1580)">
+            <option value="adm1f01.txt">Libro I, folio I - Fantasía de pasos largos para desenbouluer las manos</option>
+            <option value="adm1f02.txt">Libro I, folio II - Fantasía para desenboluer las manos</option>
+            <option value="adm1f03.txt">Libro I, folio III - Fantasía de pasos para desenbouluer las manos</option>
+            <option value="adm1f04.txt">Libro I, folio IV - Fantasías de pasos de contado</option>
+            <option value="adm1f05.txt">Libro I, folio V - Fantasía facil</option>
+            <option value="adm1f06.txt">Libro I, folio V verso + folio VI verso - Fantasía facil</option>
+            <option value="adm1f07.txt">Libro I, folio VII - Fantasía facil</option>
+            <option value="adm1f08.txt">Libro I, folio VIII - Fantasía</option>
+            <option value="adm1f09.txt">Libro I, folio IX - Fantasía</option>
+            <option value="adm1f10.txt">Libro I, folio X verso - La segunda parte de la gloria de la misa de faysan regres (Josquin Desprez)</option>
+            <option value="adm1f12.txt">Libro I, folio XII - Pleni de la misa de faysan regres (Josquin Desprez)</option>
+            <option value="adm1f13.txt">Libro I, folio XIII - Fantasía que contrahaze la harpa en la manera de Ludovico</option>
+            <option value="adm1f15.txt">Libro I, folio XV - Conde claros</option>
+            <option value="adm1f17.txt">Libro I, folio XVII - Romanesca: o guardame las vacas</option>
+            <option value="adm1f18.txt">Libro I, folio XVIII - Pavana</option>
+            <option value="adm1f19.txt">Libro I, folio XIX - Pavana de Alexandre</option>
+            <option value="adm1f20.txt">Libro I, folio XX - Gallarda</option>
+            <option value="adm1f21.txt">Libro I, folio XXI - Fantasia del primer tono</option>
+            <option value="adm1f21v.txt">Libro I, folio XXI verso - Fantasia del quarto tono</option>
+            <option value="adm1f22.txt">Libro I, folio XXII - Fantasia del quinto tono</option>
+            <option value="adm1f23.txt">Libro I, folio XXIII - Fantasia del primer tono</option>
+            <option value="adm1f23v.txt">Libro I, folio XXIII verso - Pavana</option>
+            <option value="adm1f24.txt">Libro I, folio XXIV - Romanesca: o guardame las vacas</option>
+          </optgroup>
+          <optgroup label="Santiago de Murcia; (1685-c1732)">
+            <option value="sdm_d_f.txt">Toccata en el estilo de Corelli - Despacio and Final</option>
+          </optgroup>
+          <optgroup label="Modest Petrovich Mussorgsky; (1839-1881)">
+            <option value="mussorgsky_pictures_3_tuileries.txt">Pictures At An Exhibition - 3. Tuileries (Dispute d'enfants après jeux) (Dispute between children at play)</option>
+            <option value="mussorgsky_pictures_04_bydlo.txt">Pictures At An Exhibition - 4. Bydło (Bydlo)</option>
+          </optgroup>
+          <optgroup label="Stanley Myers; (1930-1993)">
+            <option value="myers_cavatina.txt">Cavatina</option>
+            <option value="myers_portrait.txt">Portrait</option>
+          </optgroup>
+          <optgroup label="Luys De Narvaez; (Luis de Narváez); (c1500-c1560)">
+            <option value="narvaez_vol2_no2_fantasia_del_quarto_tono.txt">Los Seys Libros Del Delphín Vol 2 No 2 - Fantasia del Quarto Tono</option>
+            <option value="narvaez_vol3_no4_cancion_del_emperador.txt">Los Seys Libros Del Delphín Vol 3 No 4 - Canción del Emperador</option>
+            <option value="narvaez_vol6_no2_guardame_las_vacas.txt">Los Seys Libros Del Delphín Vol 6 No 2 - Guardame Las Vacas</option>
+            <option value="narvaez_vol6_no3_baxa_de_contrapunto.txt">Los Seys Libros Del Delphín Vol 6 No 3 - Baxa de Contrapunto</option>
+          </optgroup>
+          <optgroup label="Cesare Negri; (1536-1604)">
+            <option value="negri_le_gratie_damore_la_catena_damore.txt">Le Gratie D'Amore - La Catena D'Amore (The Chain Of Love)</option>
+          </optgroup>
+          <optgroup label="Ethelbert Nevin; (1862-1901)">
+            <option value="en_gond.txt">The Gondoliers (Gondolieri)</option>
+          </optgroup>
+          <optgroup label="Hans Neusidler; (Hans Newsidler); (1508/10-1563)">
+            <option value="hndhau.txt">Der Hupff Auff</option>
+            <option value="hnwtwme.txt">Welscher Tanz Wascha Mesa</option>
+          </optgroup>
+          <optgroup label="John Newton; (1725-1807)">
+            <option value="jn_amaz.txt">Amazing Grace</option>
+          </optgroup>
+          <optgroup label="Paulinho Nogueira; (1929-2003)">
+            <option value="pnbach_1.txt">Bachianinha No 1</option>
+          </optgroup>
+          <optgroup label="Kris Norris; (1978-)">
+            <option value="knnoctu.txt">Nocturne</option>
+          </optgroup>
+          <optgroup label="Michael Lawrence Nyman; (1944-)">
+            <option value="mnpromis.txt">The Promise (from "The Piano")</option>
+          </optgroup>
+          <optgroup label="Turlough O'Carolan; (1670-1738)">
+            <option value="tococc.txt">O'Carolan's Concerto (Mrs Power)</option>
+            <option value="toc_psi.txt">Petite Suite Irlandaise</option>
+          </optgroup>
+          <optgroup label="Jacques Offenbach; (1819-1880)">
+            <option value="offenbach_cancan.txt">Can Can</option>
+          </optgroup>
+          <optgroup label="Michal Kleofas Oginski; (Mikolaj Kleofas Ogiñski); (1765-1833)">
+            <option value="mkohejsl.txt">Hej Sloveni (Hey Slavs) - (Yugoslavian national anthem, 1945-2003)</option>
+            <option value="mkopolon.txt">Polonez</option>
+          </optgroup>
+          <optgroup label="Julio Cesar Oliva; (Julio César Oliva); (1947-)">
+            <option value="oliva_romance.txt">Sonata Del Amor - II - Romance</option>
+            <option value="oliva_tisu.txt">Suite Montebello - II - Tisú</option>
+            <option value="oliva_tres_instantes_de_amor_1_aparicion.txt">Tres Instantes - 1. Aparicion</option>
+            <option value="oliva_tres_instantes_de_amor_2_te_contemplo_desde_mi_ventana.txt">Tres Instantes - 2. Te Contemplo Desde Mi Ventana</option>
+            <option value="oliva_tres_instantes_de_amor_3_obsesion.txt">Tres Instantes - 3. Obsesion</option>
+          </optgroup>
+          <optgroup label="Sergei Orekhov; (1935-1998)">
+            <option value="sosww.txt">Sleepy Weeping Willows</option>
+          </optgroup>
+          <optgroup label="Karl Orff; (1895-1982)">
+            <option value="ko_ofort.txt">Carmina Burana - O Fortuna</option>
+          </optgroup>
+          <optgroup label="Johann Pachelbel; (1653-1706)">
+            <option value="jpcanon.txt">Canon in D major</option>
+            <option value="pachelbel_fuguetta.txt">Fuguetta</option>
+            <option value="jp_shem2.txt">Suite for Harpsichord in E Minor - II. Courante - L'Amant Soulage</option>
+          </optgroup>
+          <optgroup label="Niccolo Paganini ;(Niccolò Paganini); (1782-1840)">
+            <option value="npc01_01.txt">Op 1 No 1 - Caprice in E - Andante</option>
+            <option value="npc01_03.txt">Op 1 No 3 - Caprice in Em - Sostenuto; Presto</option>
+            <option value="npc01_05.txt">Op 1 No 5 - Caprice in Am - Agitato</option>
+            <option value="npc01_07.txt">Op 1 No 7 - Caprice in Am</option>
+            <option value="npc01_11.txt">Op 1 No 11 - Caprice in C - Andante &amp; Presto</option>
+            <option value="npc01_25.txt">Op 1 No 24 - Caprice in Am - Tema: Quasi Presto</option>
+            <option value="np07_ron.txt">Op 7 - Concerto No 2 in Bm - Rondo - La Campanella</option>
+            <option value="np10_t.txt">Op 10 - Carnival of Venice - theme</option>
+            <option value="np39gs1.txt">Op 39 - Grand Sonata in A - 1st movement - Allegro Risoluto</option>
+            <option value="np61_ron.txt">Op 61 - Sonata Concertata in A for guitar &amp; violin - 3rd movement - Rondeau</option>
+            <option value="np01can.txt">26 Compositions for Guitar - No 1 - Andantino in C</option>
+            <option value="np02dar.txt">26 Compositions for Guitar - No 2 - Arietta in D</option>
+            <option value="np03dan.txt">26 Compositions for Guitar - No 3 - Andantino in D</option>
+            <option value="np04dma.txt">26 Compositions for Guitar - No 4 - Marcia in D</option>
+            <option value="np05ami.txt">26 Compositions for Guitar - No 5 - Minuetto in A</option>
+            <option value="np06aall.txt">26 Compositions for Guitar - No 6 - Allegretto in A</option>
+            <option value="np07aviv.txt">26 Compositions for Guitar - No 7 - Vivace in A</option>
+            <option value="np_gh33.txt">Ghiribizzo No 33</option>
+            <option value="paganini_romanze_am.txt">Romanze in Am</option>
+            <option value="npsoninc.txt">Sonata in C</option>
+            <option value="np_scon1.txt">Sonata Concertante in A - 1. Allegro spiritoso</option>
+          </optgroup>
+          <optgroup label="Pietro Domenico Paradies; (1710-1792)">
+            <option value="paradies_toccata_in_a.txt">Toccata in A</option>
+          </optgroup>
+          <optgroup label="Carlos Paredes; (1925-2004)">
+            <option value="cp_verd.txt">Verdes Anos</option>
+          </optgroup>
+          <optgroup label="Carlos Payet; (?)">
+            <option value="payet_lejania.txt">Lejania</option>
+          </optgroup>
+          <optgroup label="Pernambuco ;(Joao Texeira Guimaraes, João Texeira Guimarâes); (1883-1947)">
+            <option value="pernambuco_interrogando.txt">Interrogando (Jongo)</option>
+            <option value="pernambuco_sounds_of_bells.txt">Sounds of Bells (Maxixe)</option>
+          </optgroup>
+          <optgroup label="Michele Pesenti; (1470-1524)">
+            <option value="pesenti_chefaralachedirala.txt">Che Farala, Che Dirala</option>
+          </optgroup>
+          <optgroup label="Christian Petzold; (1677-1733)">
+            <option value="jsba114z.txt">Anna Magdalena Anh 114 - Minuet in G</option>
+            <option value="jsba115.txt">Anna Magdalena Anh 115 - Minuet in Gm</option>
+          </optgroup>
+          <optgroup label="Astor Pantaleón Piazzolla; (1921-1992)">
+            <option value="piazzolla_adios_nonino.txt">Adios Nonino (tango)</option>
+            <option value="piazzolla_ausencias.txt">Ausencias</option>
+            <option value="piazzolla_la_muerte_del_angel.txt">La Muerte del Angel</option>
+            <option value="piazzolla_libertango.txt">Libertango</option>
+            <option value="piazzolla_milonga_del_angel.txt">Milonga del Angel (tango)</option>
+            <option value="piazzolla_primavera_portena.txt">Primavera Portena</option>
+            <option value="piazzolla_tango_suite_1_deciso.txt">Tango Suite - 1. Deciso</option>
+            <option value="piazzolla_tango_suite_2_andante.txt">Tango Suite - 2. Andante</option>
+            <option value="piazzolla_tango_suite_3_allegro.txt">Tango Suite - 3. Allegro</option>
+            <option value="piazzolla_tanti_anni_prima_duet.txt">Tanti Anni Prima</option>
+            <option value="piazzolla_verano_porteno.txt">Verano Porteño (tango)</option>
+          </optgroup>
+          <optgroup label="Alessandro Piccinini; (1566-1638)">
+            <option value="piccinini_chiaccona_in_partite_variate.txt">Chiaccona in Partite Variate</option>
+          </optgroup>
+          <optgroup label="Manuel Maria Ponce ;(1882-1948)">
+            <option value="ponce_ballet_and_allegro.txt">Ballet and Allegretto</option>
+            <option value="ponce_estrellita.txt">Estrellita</option>
+            <option value="ponce_molto_piu_lento.txt">Molto Più Lento (Thème Varié et Finale)</option>
+            <option value="ponce_prelude01.txt">12 Preludes (arr Segovia) - No 1 in F#m</option>
+            <option value="ponce_prelude02.txt">12 Preludes (arr Segovia) - No 2 in A</option>
+            <option value="ponce_prelude03.txt">12 Preludes (arr Segovia) - No 3 in F#</option>
+            <option value="ponce_prelude04.txt">12 Preludes (arr Segovia) - No 4 in B</option>
+            <option value="ponce_prelude05.txt">12 Preludes (arr Segovia) - No 5 in Bm</option>
+            <option value="ponce_prelude_01_in_c.txt">Prelude No 1 in C (Segovia Prelude No 7)</option>
+            <option value="ponce_prelude_17_in_ab.txt">Prelude No 17 in Ab (Segovia Prelude No 8)</option>
+            <option value="ponce_prelude_24_in_dm.txt">Prelude No 24 in Dm (Segovia Prelude No 6)</option>
+            <option value="ponce_prelude_in_e_after_weiss.txt">Preludio - Prelude in E ("After Weiss")</option>
+            <option value="ponce_scherzino_mexicano.txt">Scherzino Mexicano (Mexican Scercino)</option>
+            <option value="ponce_suite_in_am_3_sarabande.txt">Suite in Am - 3 Sarabande</option>
+            <option value="ponce_suite_in_d_4_5_gavottes.txt">Suite in D - 4 Gavotte I, 5 Gavotte II</option>
+            <option value="ponce_tres_canciones_populares_mexicanas_1.txt">Tres Canciones Populares Mexicanas - I</option>
+            <option value="ponce_tres_canciones_populares_mexicanas_2.txt">Tres Canciones Populares Mexicanas - II</option>
+            <option value="ponce_tres_canciones_populares_mexicanas_3.txt">Tres Canciones Populares Mexicanas - III</option>
+            <option value="ponce_variacions_sobre_un_tema_de_antonio_cabezon.txt">Variacions Sobre Un Tema De Antonio Cabezón</option>
+          </optgroup>
+          <optgroup label="Francis Jean Marcel Poulenc; (1899-1963)">
+            <option value="poulenc_sarabande.txt">Sarabande</option>
+          </optgroup>
+          <optgroup label="Baden Powell de Aquino; (1937-2000)">
+            <option value="powell_deve_ser_amor.txt">Deve Ser Amor</option>
+            <option value="powell_introducao_ao_poema_dos_olhos_da_amada.txt">Introdução ao Poema dos Olhos da Amada</option>
+            <option value="powell_retrato_brasileiro.txt">Retrato Brasileiro (Brazilian Portrait)</option>
+            <option value="powell_valse_sem_nome.txt">Valse Sem Nome</option>
+          </optgroup>
+          <optgroup label="Baden Powell &amp; Vinicius de Moraes">
+            <option value="powell_&amp;_moraes_o_astronauta.txt">O Astronauta</option>
+          </optgroup>
+          <optgroup label="Michael Praetorius; (1571-1621)">
+            <option value="praetorius_terpsichore_la_volta.txt">La Volta (from Terpsichore)</option>
+          </optgroup>
+          <optgroup label="Giacomo Antonio Domenico Michele Secondo Maria Puccini; (1858-1924)">
+            <option value="puccini_gianni_schicchi_2_o_mio_babino_caro.txt">Gianni Schicchi - 2. O Mio Babino Caro (Oh, My Dear Papa)</option>
+          </optgroup>
+          <optgroup label="Emilio Pujol; (Emili Pujol Vilarrubí); (1886-1980)">
+            <option value="pujol_emilio_el_abejorro.txt">El Abejorro (The Bumblebee) - Estudio</option>
+          </optgroup>
+          <optgroup label="Máximo Diego Pujol; (Maximo Diego Pujol); (1957-)">
+            <option value="pujol_maximo_diego_cinco_preludios_2_triston.txt">Cinco Preludios - No 2, Preludio Tristòn</option>
+            <option value="pujol_maximo_diego_cinco_preludios_3_tristango_en_vos.txt">Cinco Preludios - No 3, Tristango En Vos</option>
+            <option value="pujol_maximo_diego_cuatro_piezas_cristalinas_3_verde_alma.txt">Cuatro Piezas Cristalinas - No 3, Verde Alma</option>
+            <option value="pujol_maximo_diego_suite_del_plata_1_1_preludio.txt">Suite del Plata No 1, I - Preludio</option>
+            <option value="pujol_maximo_diego_suite_del_plata_1_2_tango.txt">Suite del Plata No 1, II - Tango</option>
+            <option value="pujol_maximo_diego_suite_del_plata_1_3_milonga.txt">Suite del Plata No 1, III - Milonga</option>
+            <option value="pujol_maximo_diego_suite_del_plata_1_4_murga.txt">Suite del Plata No 1, IV - Murga</option>
+            <option value="pujol_maximo_diego_suite_del_plata_1_5_candombe.txt">Suite del Plata No 1, V - Candombe</option>
+            <option value="pujol_maximo_diego_tres_piezas_rioplatenses_2_septiembre.txt">Tres Piezas Rioplatenses - No 2, Septiembre</option>
+          </optgroup>
+          <optgroup label="Henry Purcell; (1659-1695)">
+            <option value="hpangem.txt">A New Ground in Em</option>
+            <option value="purcell_dido_and _aeneas_35_when_i_am_laid_in_earth.txt">Dido and Aeneas - When I am laid in earth - (Dido's Lament)</option>
+            <option value="hp_jig.txt">Jig in Am</option>
+            <option value="hpmam.txt">Minuet in Am</option>
+            <option value="purcell_z860_funeral_of_queen_mary_2_canzona.txt">Z860 Music for the Funeral of Queen Mary - 2. Canzona</option>
+          </optgroup>
+          <optgroup label="Sergey Vassilievich Rachmaninov ;(Sergei Vassilievich Rachmaninoff); (1873-1943)">
+            <option value="rachmaninov_op03_no2_prelude_in_cqm.txt">Opus 3, Morceaux de Fantaisie - 2. Prelude in C#m</option>
+            <option value="rachmaninov_op34_no14_vocalise.txt">Opus 34, Fourteen Songs - 14. Vocalise</option>
+            <option value="rachmaninov_op43_rhapsody_paganini_var18.txt">Opus 43 - Rhapsody on a Theme by Paganini - Variation 18</option>
+          </optgroup>
+          <optgroup label="Jean-Philippe Rameau; (1683-1764)">
+            <option value="jpr_min1.txt">Minuetto I</option>
+          </optgroup>
+          <optgroup label="Ariel Ramirez; (1921-)">
+            <option value="ar_ayem.txt">Alfonsina y el mar</option>
+          </optgroup>
+          <optgroup label="Joseph Maurice Ravel; (1875-1937)">
+            <option value="jmr_boler.txt">Boléro</option>
+            <option value="jmr_psb.txt">Pavane De La Belle Au Bois Dormant</option>
+            <option value="jmrppuid.txt">Pavane Pour Une Infante Défunte</option>
+          </optgroup>
+          <optgroup label="Giulio Regondi; (1822/23-1872)">
+            <option value="gr_est01.txt">Estudio No 1</option>
+          </optgroup>
+          <optgroup label="Dilermando Reis; (1916-1977)">
+            <option value="reis_eterna_saudade.txt">Eterna Saudade</option>
+            <option value="drseelap.txt">Se Ela Perguntar</option>
+            <option value="drumav.txt">Uma Valsa E Dois Amores</option>
+            <option value="drxododb.txt">Xodo da Baiana</option>
+          </optgroup>
+          <optgroup label="Randy Rhoads; (1956-1982)">
+            <option value="rrdee.txt">Dee</option>
+          </optgroup>
+          <optgroup label="Rodrigo Riera; (1923-1999)">
+            <option value="riera_cancion.txt">Canción - from "Little Suite For Guitar"</option>
+            <option value="riera_cancion_carorena.txt">Canción Caroreña</option>
+            <option value="riera_nostalgia.txt">Nostalgia</option>
+          </optgroup>
+          <optgroup label="Nikolay Andreyevich Rimsky-Korsakov ;(Nikolai Andreyevich Rimskij-Korsakov); (1844-1908)">
+            <option value="narkfobb.txt">Flight of the Bumble Bee</option>
+          </optgroup>
+          <optgroup label="Albert de Rippe; (1480-1551)">
+            <option value="adr_lavol.txt">La Volunte Si Long Temps Endormie</option>
+          </optgroup>
+          <optgroup label="Pascual Roch; (1860-1921)">
+            <option value="roch_habanera.txt">Habanera</option>
+          </optgroup>
+          <optgroup label="Gerardo Matos Rodriguez ;(Gerardo H Matos Rodríguez); (1900-1948)">
+            <option value="ghmrlc.txt">La Cumparsita</option>
+          </optgroup>
+          <optgroup label="Evgeniĭ Pavlovič Rodygin;(Evgeny Pavlovich Rodygin, Eveniy Rodygin); (1925-)">
+            <option value="rodygin_uralskaya_ryabinushka.txt">Uralskaya Ryabinushka (Ural Rowan Tree, Mountain Ash from the Urals)</option>
+          </optgroup>
+          <optgroup label="Celedonio Romero; (1913-1996)">
+            <option value="cr_dan01.txt">Danza Andaluza No 1</option>
+            <option value="cr_lm_1.txt">Los Maestros - 1. Copla</option>
+            <option value="cr_lm_2.txt">Los Maestros - 2. La Rueda</option>
+            <option value="cr_lm_3.txt">Los Maestros - 3. Baile</option>
+            <option value="cr_sui_1.txt">Suite Andaluza - 1. Soleares</option>
+            <option value="cr_sui_2.txt">Suite Andaluza - 2. Alegrias</option>
+            <option value="cr_sui_3.txt">Suite Andaluza - 3. Tango</option>
+            <option value="cr_sui_4.txt">Suite Andaluza - 4. Zapateado</option>
+            <option value="cr_t_ang.txt">Tango Angelita</option>
+          </optgroup>
+          <optgroup label="Ludovico Roncalli; (1654-1713)">
+            <option value="lr_gg.txt">Gavotte in G</option>
+            <option value="lr_pdm.txt">Prelude in Dm</option>
+          </optgroup>
+          <optgroup label="Philip Rosheger; (1950-2013)">
+            <option value="rosheger_study_in_em.txt">Study in E Minor</option>
+          </optgroup>
+          <optgroup label="Nino Rota; (1911-1979)">
+            <option value="rota_speak_softly_love.txt">Speak Softly Love</option>
+          </optgroup>
+          <optgroup label="Albert Roussel; (1869-1937)">
+            <option value="arsegov.txt">Segovia</option>
+          </optgroup>
+          <optgroup label="Adrien Le Roy; (1520-1598)">
+            <option value="alr_pbp.txt">Passemeze et Branle de Poictou</option>
+            <option value="alr_sixb.txt">Sixiesme Branle</option>
+          </optgroup>
+          <optgroup label="Sergey Rudnev; (1955-)">
+            <option value="rudnev_the_old_lime_tree.txt">The Old Lime Tree (Lipa Vekovaia)</option>
+          </optgroup>
+          <optgroup label="Antonio Ruiz-Pipó (Antonio Ruiz Pipo); (1934-1997)">
+            <option value="ruiz-pipo_seis_canciones_y_danzas_1_cancion.txt">Seis Canciones y Danzas - No 1. Canción</option>
+          </optgroup>
+          <optgroup label="Julio S Sagreras; (1879-1942)">
+            <option value="jsselco.txt">El Colibri</option>
+          </optgroup>
+          <optgroup label="Camille Saint-Saens ;(Charles Camille Saint-Saëns); (1835-1921)">
+            <option value="css_wind.txt">Le Petit Moulin (The Little Windmill)</option>
+            <option value="cssmhtsv.txt">My Heart At Thy Sweet Voice</option>
+            <option value="cssswan.txt">The Swan</option>
+            <option value="saintsaens_dansemacabre.txt">Op 40 - Danse Macabre</option>
+          </optgroup>
+          <optgroup label="Eduardo Sainz de la Maza; (1903-1982)">
+            <option value="sainz_de_la_maza_e_campanas_del_alba.txt">Campanas del Alba</option>
+            <option value="sainz_de_la_maza_e_habanera.txt">Habanera</option>
+          </optgroup>
+          <optgroup label="Regino Sainz de la Maza; (1896-1981)">
+            <option value="sainz_de_la_maza_r_petenera.txt">Petenera</option>
+            <option value="sainz_de_la_maza_r_zapateado.txt">Zapateado</option>
+          </optgroup>
+          <optgroup label="Julio Cesar Sanders; (Julio César Sanders)">
+            <option value="sanders_adiosmuchachos.txt">Adiós Muchachos</option>
+          </optgroup>
+          <optgroup label="Guido Santorsola; (1904-1994)">
+            <option value="gsprel01.txt">Preludio No 1 de la Serie - Suite á Antiga</option>
+          </optgroup>
+          <optgroup label="Gaspar Sanz; (1640-1710)">
+            <option value="gsespan.txt">Españoleta</option>
+            <option value="gsfugaa.txt">Fuga al Aire Espanol</option>
+            <option value="gsgalla.txt">Gallardas</option>
+            <option value="gsjacar.txt">Jacara</option>
+            <option value="gslas_h.txt">Las Hachas</option>
+            <option value="gsmariz.txt">Marizapalos</option>
+            <option value="gssesqui.txt">Sesquialtera</option>
+            <option value="gspavan.txt">Suite De Antiguas Danzas Espanolas, III - Pavana</option>
+            <option value="gsrujero.txt">Suite De Antiguas Danzas Espanolas, IV - Rujero</option>
+            <option value="gsfolia.txt">Suite Española, VII - Folías</option>
+            <option value="gscanar.txt">Suite Española, IX - Canarios</option>
+          </optgroup>
+          <optgroup label="Erik Satie; (1866-1925)">
+            <option value="satie_gnossienne_1.txt">Gnossienne No 1</option>
+            <option value="satie_gnossienne_2.txt">Gnossienne No 2</option>
+            <option value="satie_gnossienne_3.txt">Gnossienne No 3</option>
+            <option value="satie_gnossienne_4.txt">Gnossienne No 4</option>
+            <option value="satie_gnossienne_5.txt">Gnossienne No 5</option>
+            <option value="satie_gymnopedie_1.txt">Gymnopédie No 1</option>
+            <option value="satie_gymnopedie_2.txt">Gymnopédie No 2</option>
+            <option value="satie_gymnopedie_3.txt">Gymnopédie No 3</option>
+            <option value="satie_je_te_veux.txt">Je Te Veux</option>
+            <option value="satie_menus_propos_enfantins_1_le_chant_guerrier_du_roi_des_haricots.txt">Menus Propos Enfantins - 1. Le Chant Guerrier du Roi des Haricots</option>
+            <option value="satie_menus_propos_enfantins_2_ce_que_dit_la_petite_princesse_des_tulipes.txt">Menus Propos Enfantins - 2. Ce Que Dit la Petite Princesse des Tulipes</option>
+            <option value="satie_menus_propos_enfantins_3_valse_du_chocolat_aux_amandes.txt">Menus Propos Enfantins - 3. Valse du Chocolat aux Amandes</option>
+          </optgroup>
+          <optgroup label="Alessandro Scarlatti; (1660-1725)">
+            <option value="as_gav.txt">Gavotte</option>
+          </optgroup>
+          <optgroup label="Domenico Scarlatti; (1685-1757)">
+            <option value="scarlatti_d_k011.txt">K011 (L352) - Sonata in Cm (transcribed to Em)</option>
+            <option value="scarlatti_d_k032.txt">K032 (L423) - Sonata in Dm (transcribed to Em)</option>
+            <option value="scarlatti_d_k034.txt">K034 (LS07) - Sonata in D - Larguetto</option>
+            <option value="scarlatti_d_k159.txt">K159 (L104) - Sonata in C (transcribed to D)</option>
+            <option value="scarlatti_d_k175.txt">K175 (L429) - Sonata in Am</option>
+            <option value="scarlatti_d_k177.txt">K177 (L364) - Sonata in D</option>
+            <option value="scarlatti_d_k208.txt">K208 (L238) - Sonata in A</option>
+            <option value="scarlatti_d_k209.txt">K209 (L428) - Sonata in A</option>
+            <option value="scarlatti_d_k213.txt">K213 (L108) - Sonata in Dm</option>
+            <option value="scarlatti_d_k322.txt">K322 (L483) - Sonata in A</option>
+            <option value="scarlatti_d_k333.txt">K333 (L269) - Sonata in D</option>
+            <option value="scarlatti_d_k380.txt">K380 (L023) - Sonata in E (arr Leo Brouwer)</option>
+          </optgroup>
+          <optgroup label="Franz Peter Schubert; (1797-1828)">
+            <option value="schubert_fp_d566_sonata_in_em_1_moderato.txt">D566 - Piano Sonata in Em - 1 Moderato</option>
+            <option value="schubert_fp_d667_trout_quintet.txt">D667 (Op 114) - Quintet for Piano and Strings in A (Trout Quintet) - 4. Andantino</option>
+            <option value="schubert_fp_d839_ellens_gesang_3_ave_maria.txt">D839 (Op 52 No 6) - Ellens Gesang III ("Ave Maria")</option>
+            <option value="schubert_fp_d957_schwanengesang_standchen_serenade.txt">D957 - Schwanengesang - Ständchen (Serenade)</option>
+          </optgroup>
+          <optgroup label="Robert Schumann; (1810-1856)">
+            <option value="schumann_robert_op015_07_kinderszenen_traumerei.txt">Op 15 Kinderszenen (Scenes from Childhood), No 7, Traumerei</option>
+            <option value="schumann_robert_op068_05_album_for_the_young.txt">Op 68 Album for the Young, No 5, Little Piece (Stückchen)</option>
+            <option value="schumann_robert_op068_26_album_for_the_young.txt">Op 68 Album for the Young, No 26, Andante Cantabile</option>
+            <option value="schumann_robert_op099_feuilles_variees.txt">Op 99 Feuilles Variees</option>
+            <option value="schumann_robert_op124_4_waltz_in_am.txt">Op 124 - No 4 Waltz in Am</option>
+          </optgroup>
+          <optgroup label="Andres Segovia ;(Andrés Segovia); (1893-1987)">
+            <option value="ascpesc.txt">Canciones populares de distintos paises - Escocesa</option>
+            <option value="ascpbre.txt">Canciones populares de distintos paises - Bretona</option>
+            <option value="ascpesl.txt">Canciones populares de distintos paises - Eslovania</option>
+            <option value="asestrem.txt">Estudio Remembranza</option>
+            <option value="assinlu.txt">Estudio Sin Luz - A Jose Rubio</option>
+            <option value="segovia_scales.txt">Segovia Scales</option>
+          </optgroup>
+          <optgroup label="Rezso Seress ;(Rezső Seress); (1899-1968)">
+            <option value="seress_szomoru_vasarnap_gloomy_sunday.txt">Szomorú Vasárnap (Szomoru Vasarnap)</option>
+          </optgroup>
+          <optgroup label="Jean Sibelius; (1865-1957)">
+            <option value="sibelius_valse_triste_duet.txt">Valse Triste</option>
+          </optgroup>
+          <optgroup label="Friedrich Silcher; (1789-1868)">
+            <option value="silcher_loreley.txt">Lorely</option>
+          </optgroup>
+          <optgroup label="Christian Sinding; (1856-1941)">
+            <option value="cs_rust.txt">Rustle Of Spring Op 32 No 3</option>
+          </optgroup>
+          <optgroup label="Yuri Smirnov; (1935-)">
+            <option value="smirnov_yuri_romance.txt">Romance</option>
+          </optgroup>
+          <optgroup label="John Stafford Smith; (1750-1836)">
+            <option value="smith_js_the_anacreontic_song.txt">The Anacreontic Song</option>
+          </optgroup>
+          <optgroup label="Vicente Emilio Sojo; (1887-1974)">
+            <option value="vesairev.txt">Aire Venezolano</option>
+            <option value="vescant.txt">Cantico</option>
+            <option value="ves_gal.txt">Galeron</option>
+            <option value="vesjor.txt">Joropo</option>
+            <option value="sor_op01_no1_andante.txt">Op 1 - Six Divertissements - No 1 Andante in G</option>
+            <option value="sor_op01_no2_waltz_allegretto.txt">Op 1 - Six Divertissements - No 2 Waltz, Allegretto in G</option>
+            <option value="fs02_01.txt">Op 2 No 1 in G</option>
+            <option value="fs03ming.txt">Op 3 - Minuet in G</option>
+            <option value="fs06_01.txt">Op 6 No 1 in D</option>
+            <option value="fs06_02.txt">Op 6 No 2 in A</option>
+            <option value="fs06_03.txt">Op 6 No 3 in E</option>
+            <option value="fs06_04.txt">Op 6 No 4 in G</option>
+            <option value="fs06_05.txt">Op 6 No 5 in C</option>
+            <option value="fs06_06.txt">Op 6 No 6 in A</option>
+            <option value="fs06_08.txt">Op 6 No 8 in C</option>
+            <option value="fs06_09.txt">Op 6 No 9 in Dm</option>
+            <option value="fs06_11.txt">Op 6 No 11 in Em</option>
+            <option value="fs06_12.txt">Op 6 No 12 in A</option>
+            <option value="fs09ocara.txt">Op 9 - Variations on O Cara Armonia</option>
+            <option value="fs11_01.txt">Op 11 No 1 - Minuet in G</option>
+            <option value="fs11_05.txt">Op 11 No 5 - Minuet in D</option>
+            <option value="fs11_06.txt">Op 11 No 6 - Minuet in A</option>
+            <option value="fs14.txt">Op 14 - Gran Solo in D Major</option>
+            <option value="fs15.txt">Op 15 - Sonata in C Major</option>
+            <option value="fs22_all.txt">Op 22 - Grande Sonate No 1 in C, Allegro</option>
+            <option value="fs22_min.txt">Op 22 - Grande Sonate No 1 in C, Minuetto: Allegro</option>
+            <option value="fs25mdls.txt">Op 25 - Grande Sonate, Minueto: Allegro</option>
+            <option value="fs28_mar.txt">Op 28 - Introduction and Variations on Malbrough</option>
+            <option value="fs29_13_.txt">Op 29 No 13 in Bb</option>
+            <option value="fs29_17_.txt">Op 29 No 17 in C</option>
+            <option value="fs29_22.txt">Op 29 No 22 in Eb</option>
+            <option value="fs29_23.txt">Op 29 No 23 in G</option>
+            <option value="fs31_01_.txt">Op 31 No 1 in C</option>
+            <option value="sor_op31_no02_andante_in_am.txt">Op 31 No 2 in Am</option>
+            <option value="fs31_05_.txt">Op 31 No 5 in G</option>
+            <option value="sor_op31_no06_in_em.txt">Op 31 No 6 in Em</option>
+            <option value="fs31_16_.txt">Op 31 No 16 in Dm</option>
+            <option value="fs31_17_.txt">Op 31 No 17 in C</option>
+            <option value="fs31_19_.txt">Op 31 No 19 in A</option>
+            <option value="fs31_20_.txt">Op 31 No 20 in Am</option>
+            <option value="fs31_21.txt">Op 31 No 21 in F</option>
+            <option value="fs31_23.txt">Op 31 No 23 in E</option>
+            <option value="fs35_01_.txt">Op 35 No 1 in C</option>
+            <option value="fs35_02_.txt">Op 35 No 2 in C</option>
+            <option value="fs35_03.txt">Op 35 No 3 in Am</option>
+            <option value="fs35_04.txt">Op 35 No 4 in G</option>
+            <option value="sor_op35_no08.txt">Op 35 No 8 in E</option>
+            <option value="fs35_09_.txt">Op 35 No 9 in A</option>
+            <option value="fs35_13_.txt">Op 35 No 13 in C</option>
+            <option value="sor_op35_no14.txt">Op 35 No 14 in Am</option>
+            <option value="fs35_16.txt">Op 35 No 16 in Dm</option>
+            <option value="sor_op35_no17.txt">Op 35 No 17 in D</option>
+            <option value="fs35_18.txt">Op 35 No 18 in Em</option>
+            <option value="sor_op35_no22_study_in_bm.txt">Op 35 No 22 in Bm</option>
+            <option value="fs35_23_.txt">Op 35 No 23 in E</option>
+            <option value="fs43_3ac.txt">Op 43 - Mes Ennuis Six Bagatelles No 3</option>
+            <option value="fs44_01.txt">Op 44 - 24 Piezas Progresivas - No 1 in C</option>
+            <option value="sor_op44_no03.txt">Op 44 - 24 Piezas Progresivas - No 3 in C</option>
+            <option value="fs44_09.txt">Op 44 - 24 Piezas Progresivas - No 9 in G</option>
+            <option value="sor_op51_no3_valse_in_em.txt">Op 51 No 3 in Em</option>
+            <option value="sor_op60_no01.txt">Op 60 - 25 Progressive Studies - No 1 in C</option>
+            <option value="sor_op60_no02.txt">Op 60 - 25 Progressive Studies - No 2 in C</option>
+            <option value="sor_op60_no03.txt">Op 60 - 25 Progressive Studies - No 3 in C</option>
+            <option value="sor_op60_no04.txt">Op 60 - 25 Progressive Studies - No 4 in Cm</option>
+            <option value="sor_op60_no05.txt">Op 60 - 25 Progressive Studies - No 5 in Am</option>
+            <option value="sor_op60_no06.txt">Op 60 - 25 Progressive Studies - No 6 in C</option>
+            <option value="sor_op60_no07.txt">Op 60 - 25 Progressive Studies - No 7 in C</option>
+            <option value="sor_op60_no08.txt">Op 60 - 25 Progressive Studies - No 8 in C</option>
+            <option value="sor_op60_no09.txt">Op 60 - 25 Progressive Studies - No 9 in C</option>
+            <option value="sor_op60_no10.txt">Op 60 - 25 Progressive Studies - No 10 in C</option>
+            <option value="sor_op60_no11.txt">Op 60 - 25 Progressive Studies - No 11 in G</option>
+            <option value="sor_op60_no12.txt">Op 60 - 25 Progressive Studies - No 12 in G</option>
+            <option value="sor_op60_no13.txt">Op 60 - 25 Progressive Studies - No 13 in C</option>
+            <option value="sor_op60_no14.txt">Op 60 - 25 Progressive Studies - No 14 in Em</option>
+            <option value="sor_op60_no15.txt">Op 60 - 25 Progressive Studies - No 15 in E</option>
+            <option value="sor_op60_no16.txt">Op 60 - 25 Progressive Studies - No 16 in G</option>
+            <option value="sor_op60_no17.txt">Op 60 - 25 Progressive Studies - No 17 in C</option>
+            <option value="sor_op60_no18.txt">Op 60 - 25 Progressive Studies - No 18 in Am</option>
+            <option value="sor_op60_no19.txt">Op 60 - 25 Progressive Studies - No 19 in G</option>
+            <option value="sor_op60_no20.txt">Op 60 - 25 Progressive Studies - No 20 in Bm</option>
+            <option value="sor_op60_no21.txt">Op 60 - 25 Progressive Studies - No 21 in C</option>
+            <option value="sor_op60_no22.txt">Op 60 - 25 Progressive Studies - No 22 in Em</option>
+            <option value="fs_medit.txt">Meditación in Em</option>
+          </optgroup>
+          <optgroup label="Jeremy Soule; (1975-)">
+            <option value="jssecret.txt">Secret of Evermore - Merchant's Theme</option>
+          </optgroup>
+          <optgroup label="John Philip Sousa; (1854-1932)">
+            <option value="jps_sasf.txt">Stars and Stripes Forever</option>
+          </optgroup>
+          <optgroup label="Johann Strauss (the younger); (1825-1899)">
+            <option value="jsy7_1_3.txt">Op 7 Nos 1 &amp; 3</option>
+            <option value="jsy314.txt">Opus 314 - An der Schönen blauen Donau (The Blue Danube)</option>
+          </optgroup>
+          <optgroup label="Igor Stravinsky; (1882-1971)">
+            <option value="stravinsky_firebird_lullaby.txt">Firebird - Lullaby</option>
+          </optgroup>
+          <optgroup label="Rentaro Taki; (1879-1903)">
+            <option value="rtknt.txt">Kojo No Tsuki</option>
+          </optgroup>
+          <optgroup label="Thomas Tallis; (1505-1585)">
+            <option value="tallis_if_ye_love_me.txt">If Ye Love Me</option>
+          </optgroup>
+          <optgroup label="Alexandre Tansman ;(Aleksander Tansman); (1897-1986)">
+            <option value="tansman_cavatina_suite_2_sarabande.txt">Cavatina Suite - 2. Sarabande</option>
+            <option value="tansman_cavatina_suite_4_barcarolle.txt">Cavatina Suite - 4. Barcarolle</option>
+            <option value="tansman_suite_in_modo_polonica_1_entree.txt">Suite in Modo Polonica - 1. Entree (Moderato cantabile)</option>
+          </optgroup>
+          <optgroup label="Francisco Tarrega ;(Francisco Tárrega); (1852-1909)">
+            <option value="tarrega_adelita.txt">Adelita</option>
+            <option value="tarrega_capricho_arabe.txt">Capricho Arabe</option>
+            <option value="tarrega_danza_mora.txt">Danza Mora</option>
+            <option value="tarrega_el_columpio.txt">El Columpio</option>
+            <option value="tarrega_etude_20_estudio_brilliante.txt">Etude for Guitar No 20 - Estudio Brillante de Alard</option>
+            <option value="tarrega_etude_in_c.txt">Etude in C</option>
+            <option value="ftaet_em.txt">Etude in Em</option>
+            <option value="ftaetfma.txt">Etude in the Form of a Minuet</option>
+            <option value="ftafanf.txt">Fanfare in A</option>
+            <option value="tarrega_fantasia_on_themes_from_la_traviata.txt">Fantasia on Themes from La Traviata</option>
+            <option value="tarrega_gran_jota_aragonesa.txt">Gran Jota Aragonesa (Gran Jota De Concierto)</option>
+            <option value="ftagw.txt">Grand Waltz</option>
+            <option value="fta_isab.txt">Isabel (Vals)</option>
+            <option value="ftalaalb.txt">La Alborada</option>
+            <option value="ftalagri.txt">Lagrima</option>
+            <option value="fta_herm.txt">Las Dos Hermanitas (Vals)</option>
+            <option value="ftamaria.txt">Maria (Gavotte)</option>
+            <option value="ftamarie.txt">Marieta (Mazurka)</option>
+            <option value="fta_mazg.txt">Mazurka In G</option>
+            <option value="ftapava.txt">Pavana</option>
+            <option value="tarrega_pepita.txt">Pepita</option>
+            <option value="tarrega_preludio_estudio_brillante.txt">Prelude in A (Prelude to Estudio Brillante)</option>
+            <option value="tarrega_prelude_02_in_am.txt">Prelude No 2 (of 35) in Am</option>
+            <option value="tarrega_prelude_03_in_g.txt">Prelude No 3 (of 35) in G</option>
+            <option value="tarrega_prelude_05_in_e.txt">Prelude No 5 (of 35) in E</option>
+            <option value="tarrega_prelude_09_in_a.txt">Prelude No 9 (of 35) in A</option>
+            <option value="tarrega_prelude_11_in_d.txt">Prelude No 11 (of 35) in D</option>
+            <option value="tarrega_prelude_18_in_d.txt">Prelude No 18 (of 35) in D</option>
+            <option value="tarrega_prelude_28_in_g.txt">Prelude No 28 (of 35) in G</option>
+            <option value="tarrega_prelude_34_in_dm_endecha.txt">Prelude No 34 (of 35) in Dm (Endecha)</option>
+            <option value="tarrega_prelude_35_in_dm_oremus.txt">Prelude No 35 (of 35) in Dm (Oremus)</option>
+            <option value="tarrega_preludio_pentatonica.txt">Preludio Pentatonica</option>
+            <option value="tarrega_recuerdos_de_la_alhambra.txt">Recuerdos De La Alhambra</option>
+            <option value="ftarosit.txt">Rosita (Polka)</option>
+            <option value="tarrega_sueno_mazurka.txt">Sueño (Mazurka)</option>
+            <option value="ftasueno.txt">Sueño Trémolo-estudio</option>
+            <option value="ftatango.txt">Tango</option>
+            <option value="ftawind.txt">Valse en Re (Waltz in D)</option>
+            <option value="tarrega_variations_on_the_carnival_of_venice.txt">Variations On The Carnival Of Venice</option>
+          </optgroup>
+          <optgroup label="Peter Ilyich Tchaikovsky ;(Pyotr Ilich Tchaikovsky, Piotr Ilyitch Tchaikovsky); (1840-1893)">
+            <option value="tchaikovsky_op19_no4_nocturne.txt">Op 19 - Six Pieces - No 4 Nocturne in C#m</option>
+            <option value="tchaikovsky_op20_swan_lake_theme.txt">Op 20 - Swan Lake</option>
+            <option value="tchaikovsky_op20_swan_lake_act1_9_finale_andante.txt">Op 20 - Swan Lake - Act 1, 9 Finale, Andante</option>
+            <option value="tchaikovsky_op31_slavonic_march.txt">Op 31 - Slavonic March in Bbm</option>
+            <option value="tchaikovsky_op37no6_junebarcarolle.txt">Op 37 - The Seasons, No 6 - June (Barcarolle)</option>
+            <option value="tchaikovsky_op39no01_morningprayer.txt">Op 39 - Album For The Young, No 1 - Priere du Matin (Morning Prayer)</option>
+            <option value="tchaikovsky_op39no06_thesickdoll.txt">Op 39 - Album For The Young, No 6 - La Poupée Malade (The Sick Doll)</option>
+            <option value="tchaikovsky_op39no07_thedollsfuneral.txt">Op 39 - Album For The Young, No 7 - Enterrement de La Poupée (The Doll's Funeral)</option>
+            <option value="tchaikovsky_op39no09_thenewdoll.txt">Op 39 - Album For The Young, No 9 - La Nouvelle Poupée (The New Doll)</option>
+            <option value="tchaikovsky_op39no16_oldfrenchsong.txt">Op 39 - Album For The Young, No 16 - Old French Song</option>
+            <option value="tchaikovsky_op39no24_inchurch.txt">Op 39 - Album For The Young, No 24 - A l'Eglise (In Church)</option>
+            <option value="pit64_t.txt">Op 64 - Symphony No 5 in Em - Theme No 1</option>
+            <option value="pit68qst.txt">Op 68 - Queen Of Spades - Theme</option>
+            <option value="pit71spx.txt">Op 71 - The Nutcracker - Dance Of The Sugar Plum Fairy</option>
+            <option value="pit71wf.txt">Op 71 - The Nutcracker - Waltz Of The Flowers</option>
+          </optgroup>
+          <optgroup label="Georg Philipp Telemann; (1681-1767)">
+            <option value="telemann_bouree_alla_polacca.txt">Bouree Alla Polacca</option>
+          </optgroup>
+          <optgroup label="Mikis Theodorakis; (1925-)">
+            <option value="theodorakis_a_solitary_swallow.txt">A Solitary Swallow</option>
+            <option value="theodorakis_eyes_with_tears.txt">Eyes With Tears</option>
+            <option value="theodorakis_epitafios_3.txt">Epitafios No 3</option>
+            <option value="theodorakis_epitafios_4.txt">Epitafios No 4</option>
+            <option value="theodorakis_epitafios_5.txt">Epitafios No 5</option>
+          </optgroup>
+          <optgroup label="Eythor Thorlaksson; (1930-)">
+            <option value="thorlaksson_campanillas.txt">Campanillas</option>
+            <option value="thorlaksson_habanera.txt">Habanera</option>
+            <option value="thorlaksson_romeria.txt">Romeria</option>
+            <option value="thorlaksson_tonadilla.txt">Tonadilla</option>
+            <option value="thorlaksson_vals_moderato.txt">Vals Moderato</option>
+            <option value="thorlaksson_vals_solano.txt">Vals Solano</option>
+          </optgroup>
+          <optgroup label="Henry Tudor ;(King Henry VIII); (1491-1547)">
+            <option value="tudor_pastimewithgoodcompany.txt">Pastime With Good Company</option>
+            <option value="ht8fant3.txt">Fantasia No 3</option>
+            <option value="ht8iflov.txt">If Love Now Reigned</option>
+            <option value="ht8helas.txt">Helas Madame</option>
+            <option value="ht8past.txt">Pastime</option>
+          </optgroup>
+          <optgroup label="Joaquin Turina ;(Joaquín Turina); (1882-1949)">
+            <option value="jtfand.txt">Fandanguillo</option>
+            <option value="jtrafaga.txt">Rafaga</option>
+            <option value="jtgarrot.txt">Homenaje à Tarrega - I Garrotin</option>
+            <option value="jtsolea.txt">Homenaje à Tarrega - II Soleares</option>
+          </optgroup>
+          <optgroup label="Nobuo Uematsu; (1959-)">
+            <option value="uematsu_ff03_the_opera_song.txt">Final Fantasy III - The Opera Song</option>
+            <option value="uematsu_ff05_dear_friends.txt">Final Fantasy V - Dear Friends</option>
+            <option value="uematsu_ff06_dark_world.txt">Final Fantasy VI - Dark World</option>
+            <option value="uematsu_ff07_highwind_takes_to_the_skies.txt">Final Fantasy VII - Highwind Takes to the Skies (Airship Theme)</option>
+            <option value="uematsu_ff07_holding_my_thoughts_in_my_heart.txt">Final Fantasy VII - Holding My Thoughts In My Heart</option>
+            <option value="uematsu_ff07_vincents_theme.txt">Final Fantasy VII - The Nightmare's Beginning (Vincent's Theme)</option>
+            <option value="uematsu_ff09_jesters_of_the_moon.txt">Final Fantasy IX - Jesters Of The Moon</option>
+            <option value="uematsu_ff09_terra.txt">Final Fantasy IX - Terra</option>
+          </optgroup>
+          <optgroup label="Piero Umiliani; (1926-2001)">
+            <option value="umiliani_crepuscolo_sul_mare.txt">Crepuscolo Sul Mare</option>
+          </optgroup>
+          <optgroup label="Jay Ungar; (1946-)">
+            <option value="ungar_ashokan_farewell.txt">Ashokan Farewell</option>
+          </optgroup>
+          <optgroup label="Enriquez de Valderrabano; (1500-1551)">
+            <option value="edvsonn.txt">Sonnet</option>
+          </optgroup>
+          <optgroup label="Nicolas Vallet; (1583-1642)">
+            <option value="vallet_boerinneken.txt">Boerinnekin</option>
+            <option value="vallet_fortune_helas_pourquoi.txt">Fortune Hélas Pourquoy</option>
+            <option value="vallet_prelude10.txt">Prelude X</option>
+            <option value="vallet_prelude13.txt">Prelude XIII</option>
+            <option value="vallet_prelude14.txt">Prelude XIV</option>
+            <option value="vallet_malsimmes_bal_anglois.txt">Mal Simmes Bal Anglois</option>
+          </optgroup>
+          <optgroup label="Vladimir Fyodorovich Vavilov; (1925-1973)">
+            <option value="fdm_can1.txt">Canzone</option>
+            <option value="mn_chac.txt">Chaconne</option>
+          </optgroup>
+          <optgroup label="Venancio Garcia Velasco; (?)">
+            <option value="velasco_venancio_garcia_alegrias.txt">Alegrias</option>
+          </optgroup>
+          <optgroup label="Consuelo Velasquez; (1920-)">
+            <option value="cv_besam.txt">Bésame Mucho</option>
+          </optgroup>
+          <optgroup label="Sergi Vicente; (?)">
+            <option value="sv_sint1.txt">Suite Intima - 1</option>
+            <option value="sv_sint2.txt">Suite Intima - 2</option>
+            <option value="sv_sint3.txt">Suite Intima - 3</option>
+            <option value="sv_sint4.txt">Suite Intima - 4</option>
+          </optgroup>
+          <optgroup label="Heitor Villa-Lobos; (1887-1959)">
+            <option value="villalobos_bachiana_brasileiras_5_aria.txt">Bachiana Brasileiras No 5 - Aria (Cantilena)</option>
+            <option value="hvlchoro.txt">Chôro No 1</option>
+            <option value="villalobos_etude_01.txt">Etude No 1 in Em</option>
+            <option value="villalobos_etude_02.txt">Etude No 2 in A</option>
+            <option value="villalobos_etude_03.txt">Etude No 3 in D</option>
+            <option value="villalobos_etude_04.txt">Etude No 4 in G</option>
+            <option value="villalobos_etude_05.txt">Etude No 5 in C</option>
+            <option value="villalobos_etude_06.txt">Etude No 6 in Em</option>
+            <option value="villalobos_etude_07.txt">Etude No 7 in E</option>
+            <option value="villalobos_etude_08.txt">Etude No 8 in C#</option>
+            <option value="villalobos_etude_09.txt">Etude No 9 in F#m</option>
+            <option value="villalobos_etude_10.txt">Etude No 10 in Bm</option>
+            <option value="villalobos_etude_11.txt">Etude No 11 in Em</option>
+            <option value="villalobos_etude_12.txt">Etude No 12 in Am</option>
+            <option value="hvlpr1.txt">Prelude No 1 - A419/1</option>
+            <option value="hvlpr2.txt">Prelude No 2 - A419/2</option>
+            <option value="hvlpr3.txt">Prelude No 3 - A419/3</option>
+            <option value="hvlpr4.txt">Prelude No 4 - A419/4</option>
+            <option value="hvlpr5.txt">Prelude No 5 - A419/5</option>
+            <option value="hvl_sl.txt">Samba Lele</option>
+            <option value="villalobos_suite_populaire_bresilienne_1_mazurka-choro.txt">Suite Populaire Bresilienne 1 - Mazurka-Chôro</option>
+            <option value="hvlspb2.txt">Suite Populaire Bresilienne 2 - Scottish-Chôro</option>
+            <option value="hvlspb3.txt">Suite Populaire Bresilienne 3 - Valse-Chôro</option>
+            <option value="hvlspb4.txt">Suite Populaire Bresilienne 4 - Gavotta-Chôro</option>
+            <option value="hvlspb5.txt">Suite Populaire Bresilienne 5 - Chôrinho</option>
+          </optgroup>
+          <optgroup label="Angel Gregorio Villoldo Arroyo; (1861-1919)">
+            <option value="villoldo_el_choclo.txt">El Choclo - (The Ear of Corn)</option>
+          </optgroup>
+          <optgroup label="Alexander Vinitsky; (1950-)">
+            <option value="vinitsky_jazz_etude_slow_swing_01.txt">Jazz Etude (Slow Swing) No 1</option>
+            <option value="vinitsky_jazz_etude_slow_swing_02.txt">Jazz Etude (Slow Swing) No 2</option>
+          </optgroup>
+          <optgroup label="Salvador Violla; (1980-)">
+            <option value="violla_nostalgia.txt">Nostalgia</option>
+            <option value="violla_romantica.txt">Romantica</option>
+          </optgroup>
+          <optgroup label="Robert de Visee ;(Robert de Visée); (1650-1725)">
+            <option value="visee_six_little_pieces_6_minuet_3 in_em.txt">Six Little Pieces - 6. Minuet III</option>
+            <option value="rdvs2al.txt">Suite No 2 for Guitar in A - 1. Allemand</option>
+            <option value="rdvs2a2.txt">Suite No 2 for Guitar in A - 2. Courante</option>
+            <option value="rdvs2a3.txt">Suite No 2 for Guitar in A - 3. Sarabande</option>
+            <option value="rdvsep.txt">Suite No 8 for Guitar in G - 1. Prelude</option>
+            <option value="rdvsea.txt">Suite No 8 for Guitar in G - 2. Allemande</option>
+            <option value="rdvseco.txt">Suite No 8 for Guitar in G - 3. Courante</option>
+            <option value="rdvses1.txt">Suite No 8 for Guitar in G - 4. Sarabande I</option>
+            <option value="rdvsegi.txt">Suite No 8 for Guitar in G - 5. Gigue</option>
+            <option value="rdvsdmp.txt">Suite No 9 for Guitar in Dm - 1. Prelude</option>
+            <option value="rdvsdma.txt">Suite No 9 for Guitar in Dm - 2. Allemande</option>
+            <option value="visee_suite_09_in_dm_5_gavotte.txt">Suite No 9 for Guitar in Dm - 5. Gavotte</option>
+            <option value="rdvsdmm1.txt">Suite No 9 for Guitar in Dm - 6a. Minuet I</option>
+            <option value="rdvsdmm2.txt">Suite No 9 for Guitar in Dm - 6b. Minuet II</option>
+            <option value="rdvsdmb.txt">Suite No 9 for Guitar in Dm - 7. Bourree</option>
+            <option value="rdvsdmgi.txt">Suite No 9 for Guitar in Dm - 8. Gigue</option>
+            <option value="rdvs11p.txt">Suite No 11 for Guitar in Bm - 1. Prelude</option>
+            <option value="rdvs11a.txt">Suite No 11 for Guitar in Bm - 2. Allemande</option>
+            <option value="rdvs11s.txt">Suite No 11 for Guitar in Bm - 3. Sarabande</option>
+            <option value="rdvpredm.txt">Prelude in Dm</option>
+          </optgroup>
+          <optgroup label="Antonio Vivaldi; (1685-1741)">
+            <option value="vivaldi_rv044_sonata_no7_in_am_4_allegro.txt">RV 44 - Sonata No 7 for Cello and Basso Continuo in Am - 4. Allegro</option>
+            <option value="vivaldi_rv093_1_allegro.txt">RV 93 - Concerto in D for Lute - 1. Allegro giusto</option>
+            <option value="vivaldi_rv093_2_allegro.txt">RV 93 - Concerto in D for Lute - 2. movement - Largo</option>
+            <option value="vivaldi_rv093_3_allegro.txt">RV 93 - Concerto in D for Lute - 3. movement - Allegro</option>
+            <option value="avrv230.txt">RV 230 - Concerto No 9 In D for Violin, Strings and Continuo - Andante, Largo, Allegro</option>
+            <option value="avfssx.txt">RV 269 (Op 8) - Four Seasons - Spring</option>
+            <option value="vivaldi_008_four_seasons_largo.txt">RV 297 (Op 8) - Four Seasons - Winter - Largo</option>
+            <option value="avfssu.txt">RV 315 (Op 8) - Four Seasons - Summer - Presto</option>
+            <option value="avrv356p.txt">RV 356 (Op 3 No 6) - Violin Concerto in Am - Presto</option>
+            <option value="vivaldi_rv425_mandolin_concerto_1_allegro.txt">RV 425 - Mandolin Concerto in C - 1. Allegro</option>
+            <option value="vivaldi_rv425_mandolin_concerto_2_largo.txt">RV 425 - Mandolin Concerto in C - 2. Largo</option>
+            <option value="vivaldi_rv425_mandolin_concerto_3_allegro.txt">RV 425 - Mandolin Concerto in C - 3. Allegro</option>
+            <option value="vivaldi_rv522_1_allegro.txt">RV 522 (Op 3 No 8) - L'Estro Armonica - Concerto for Two Violins in Am - 1. Allegro</option>
+            <option value="vivaldi_rv522_3_allegro.txt">RV 522 (Op 3 No 8) - L'Estro Armonica - Concerto for Two Violins in Am - 3. Allegro</option>
+            <option value="avrv532b.txt">RV 532 - Concerto in G major - Andante</option>
+            <option value="vivaldi_t373_violin_sonata_in_gm_adagio2.txt">T373 - Violin Sonata in Gm - 1. Adagio - 2nd Movement (?)</option>
+            <option value="avbarcon.txt">Concerto Baroque</option>
+          </optgroup>
+          <optgroup label="Wilhelm Richard Wagner; (1813-1883)">
+            <option value="rw_ft_to.txt">Tannhauser Overture</option>
+          </optgroup>
+          <optgroup label="Matthaus Waissel ;(Matthäus Waissel); (1540-1602)">
+            <option value="waissel_fantasia.txt">Fantasia</option>
+          </optgroup>
+          <optgroup label="William Walton; (1902-1983)">
+            <option value="ww5bag1.txt">Five Bagatelles for Guitar - No 1</option>
+            <option value="ww5bag2.txt">Five Bagatelles for Guitar - No 2</option>
+            <option value="ww5bag3.txt">Five Bagatelles for Guitar - No 3</option>
+            <option value="ww5bag4.txt">Five Bagatelles for Guitar - No 4</option>
+            <option value="ww5bag5.txt">Five Bagatelles for Guitar - No 5</option>
+          </optgroup>
+          <optgroup label="Graham Wardrop; (?)">
+            <option value="gwbara.txt">Baroque Again</option>
+            <option value="gwtmr.txt">Tricky's Magic Rag</option>
+          </optgroup>
+          <optgroup label="Silvius Leopold Weiss ;(Sylvius Leopold Weiss); (1687-1750)">
+            <option value="weiss_sl_sw009_fantasie_in_cm.txt">SW9 - Fantasie in Cm</option>
+            <option value="weiss_sl_sw025_1_sonata_in_gm_1_andante.txt">SW25.1 - Sonata in Gm - 1 Andante (Allemand)</option>
+            <option value="weiss_sl_sw025_2_sonata_in_gm_2_passepied.txt">SW25.2 - Sonata in Gm - 2 Passepied</option>
+            <option value="weiss_sl_sw025_3_sonata_in_gm_3_bourree.txt">SW25.3 - Sonata in Gm - 3 Bourree</option>
+            <option value="weiss_sl_sw025_4_sonata_in_gm_4_sarabande.txt">SW25.4 - Sonata in Gm - 4 Sarabande</option>
+            <option value="weiss_sl_sw025_5_sonata_in_gm_5_menuet.txt">SW25.5 - Sonata in Gm - 5 Menuet</option>
+            <option value="weiss_sl_sw025_6_sonata_in_gm_6_gigue.txt">SW25.6 - Sonata in Gm - 6 Gigue</option>
+            <option value="weiss_sl_sw082_2_fantasia_in_dm.txt">SW82.2 - Fantasie in Dm</option>
+            <option value="weiss_gavotte_suite_in_am.txt">Gavotte</option>
+            <option value="weiss_lute_sonata_27_6_rigaudon.txt">Lute Sonata No 27 in Cm - VI Rigaudon - Angloise: La Belle Tiroloise</option>
+            <option value="weiss_passacaille.txt">Passacaille</option>
+            <option value="weiss_ciacone.txt">Ciacona (Chaconne)</option>
+            <option value="weiss_tombeau_sur_la_morte_de_m_comte_logy.txt">Tombeau sur la Mort de M Comte d'Logy, Arrivée 1721</option>
+          </optgroup>
+          <optgroup label="John Towner Williams; (1932-)">
+            <option value="jtwslist.txt">Theme from Schindler's List</option>
+          </optgroup>
+          <optgroup label="George Yeatman; (1914-)">
+            <option value="gyprelg.txt">Prelude in G Major</option>
+          </optgroup>
+          <optgroup label="Yuquijiro Yocoh; (1925-)">
+            <option value="yysakura.txt">Sakura - Theme and Variations</option>
+          </optgroup>
+          <optgroup label="Andrew York; (1958-)">
+            <option value="ay_3dab.txt">3 Dances - Bagatelle</option>
+            <option value="ay_3del.txt">3 Delineations - Lullaby</option>
+            <option value="ay_3def.txt">3 Delineations - Faire</option>
+            <option value="ay_3dew.txt">3 Delineations - Waiting For Dawn</option>
+            <option value="ay_8diwi.txt">8 Discernments - Willow</option>
+            <option value="ay_8diwa.txt">8 Discernments - Walking</option>
+            <option value="ay_8disn.txt">8 Discernments - Snowflight</option>
+            <option value="ay_andec.txt">Andecy</option>
+            <option value="ay_eved.txt">Evening Dance</option>
+            <option value="ay_freel.txt">Freelin'</option>
+            <option value="ay_den_g.txt">Gigue</option>
+            <option value="ay_muirw.txt">Muir Woods</option>
+            <option value="york_quadrivial_quandary.txt">Quadrivial Quandary</option>
+            <option value="ay_quick.txt">Quicksilver</option>
+            <option value="ay_refl.txt">Reflections</option>
+            <option value="ayrocksc.txt">Rock Skippin' Creekside</option>
+            <option value="ay_sun_i.txt">Introduction To Sunburst</option>
+            <option value="aysunbur.txt">Sunburst</option>
+            <option value="ay_srag.txt">Sunshine Rag</option>
+          </optgroup>
+          <optgroup label="Atahualpa Yupanqui; (1908-1992)">
+            <option value="yupanqui_camino_del_indio.txt">Camino Del Indio</option>
+            <option value="yupanqui_la_pobrecita.txt">La Pobrecita</option>
+          </optgroup>
+          <optgroup label="Sebastian Yradier ;(Sebastián Iradier); (1809-1865)">
+            <option value="yradier_la_paloma_arr_tarrega.txt">La Paloma</option>
+          </optgroup>
+          <optgroup label="anonymous / traditional">
+            <option value="zanacl.txt">Afro-Cuban Lullaby</option>
+            <option value="anon_balladofokinawa.txt">Ballad Of Okinawa</option>
+            <option value="zan_btu.txt">Benibana-Tsumi Uta</option>
+            <option value="zanbf.txt">Bianco Fiore</option>
+            <option value="zan_bbm.txt">Brian Boru's March (Máirseáil Bhriain Borumha)</option>
+            <option value="zancand.txt">Canzone in D</option>
+            <option value="zancarm.txt">Carmencita</option>
+            <option value="zanclem.txt">Clements Squirill</option>
+            <option value="zancomp.txt">Compaignon</option>
+            <option value="zanmiu.txt">Dance of Miu</option>
+            <option value="zanelnoi.txt">El Noi de La Mare (The Son of the Virgin)</option>
+            <option value="zanerdv.txt">El Rio De Vida (River of Life)</option>
+            <option value="zanelvit.txt">El Vito</option>
+            <option value="zanengd1.txt">English Dance</option>
+            <option value="zangreen.txt">Greensleeves</option>
+            <option value="zangypsy.txt">Gypsy Air</option>
+            <option value="anon_home_again.txt">Home Again, Market Is Done</option>
+            <option value="zanincom.txt">Incomparable</option>
+            <option value="zaniovor.txt">Io Vorrei Pur Fuggir</option>
+            <option value="anon_john_come_kiss_me_now.txt">John Come Kiss Me Now</option>
+            <option value="zankemp.txt">Kemp's Jig</option>
+            <option value="anon_kurodabushi.txt">Kuroda Bushi</option>
+            <option value="zanlacuc.txt">La Cucaracha</option>
+            <option value="anon_la_lola.txt">La Lola</option>
+            <option value="zanladnc.txt">Les Anges Dans Nos Campagnes</option>
+            <option value="zanoc01.txt">Lute Piece - Largo</option>
+            <option value="zanoc02.txt">Lute Piece - Moderato</option>
+            <option value="zanmasch.txt">Mascherada</option>
+            <option value="anon_o_cancioneiro_de_elvas_00_glossa.txt">O Cancioneiro de Elvas - ?. Glossa</option>
+            <option value="anon_my_lady_carey's_dompe.txt">My Lady Carey's Dompe</option>
+            <option value="anon_o_cancioneiro_de_elvas_19_azme_amor_el_mal_que_puedees.txt">O Cancioneiro de Elvas - 19. Azme Amor el mal que puedees</option>
+            <option value="anon_o_cancioneiro_de_elvas_28_el_que_ama_no_descansa.txt">O Cancioneiro de Elvas - 28. El que ama no descansa</option>
+            <option value="anon_o_cancioneiro_de_elvas_33_de_vos_e_de_mim_naceo.txt">O Cancioneiro de Elvas - 33. De vós e de mim naceo</option>
+            <option value="anon_o_cancioneiro_de_elvas_35_con_mi_dolor_y_tormento.txt">O Cancioneiro de Elvas - 35. Con mi dolor y tormento</option>
+            <option value="zanpack.txt">Packington's Pound</option>
+            <option value="anon_romance_de_amor.txt">Romance de Amor</option>
+            <option value="zanruam.txt">Rumba in Am</option>
+            <option value="zansak.txt">Sakura</option>
+            <option value="anon_scarborough_fair.txt">Scarborough Fair</option>
+            <option value="anon_se_io_m'accorgo.txt">Se Io M'Accorgo</option>
+            <option value="zanspat.txt">Spatter the Dew</option>
+            <option value="anon_thegirlofshonai.txt">The Girl of Shonai</option>
+            <option value="zan15c_1.txt">Three Fifteenth Century Songs - No 1</option>
+            <option value="zan15c_2.txt">Three Fifteent Century Songs - No 2</option>
+            <option value="zan15c_3.txt">Three Fifteenth Century Songs - No 3</option>
+            <option value="zanvolte.txt">Volte</option>
+            <option value="zanzamdv.txt">Zamba de Vargas</option>
+          </optgroup>
+          <optgroup label="Gregorian Chant">
+            <option value="zgcave_r.txt">Ave Regina Coelorum</option>
+            <option value="zgccred3.txt">Credo III (De Angelis)</option>
+            <option value="zgcda_pa.txt">Da Pacem</option>
+            <option value="zgckyr11.txt">Kyrie XI</option>
+            <option value="zgcreg_c.txt">Regina Caeli</option>
+            <option value="zgcsal_r.txt">Salve Regina</option>
+            <option value="zgcsan17.txt">Sanctus XVII</option>
+          </optgroup>
+        </select>
+      </div>
+      <div id="download">
+        <i class="left fa fa-download"></i>
+        <input class="right" placeholder="File Name Here">
+      </div>
+      <div id="upload">
+        <i class="left fa fa-upload"></i>
+        <select class="text right"></select>
+        <input type="file" name="files[]" multiple="">
+      </div>
+    </div>
+  </div>
+  <div id="editor" class="bottom right left" style="top: 64px;"></div>
+  <script src="scripts/tabscii.js"></script>
+</body>
+
+</html>
