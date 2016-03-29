@@ -34,5 +34,20 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  }
+  },
+  "name": "@ryanwhite04/tabscii",
+  "description": "![](https://cloud.githubusercontent.com/assets/110953/7877439/6a69d03e-0590-11e5-9fac-c614246606de.png) ## Polymer Starter Kit",
+  "version": "1.0.0",
+  "main": "tabscii.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://ryanwhite04@bitbucket.org/ryanwhite04/tabscii.git"
+  },
+  "author": "Ryan White",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/ryanwhite04/tabscii#readme"
 }
