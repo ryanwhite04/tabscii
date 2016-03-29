@@ -37,7 +37,7 @@
   },
   "name": "@ryanwhite04/tabscii",
   "description": "![](https://cloud.githubusercontent.com/assets/110953/7877439/6a69d03e-0590-11e5-9fac-c614246606de.png) ## Polymer Starter Kit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "tabscii.js",
   "directories": {
     "doc": "docs"
