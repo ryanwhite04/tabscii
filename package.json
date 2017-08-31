@@ -42,7 +42,10 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {},
+  "dependencies": {
+    "debug": "^2.2.0",
+    "midi": "github:mudcube/MIDI.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://ryanwhite04@bitbucket.org/ryanwhite04/tabscii.git"

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>svg-converter Demo</title>
+    <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../svg-converter.html">
+  </head>
+  <body>
+    <style is="custom-style">
+      svg-converter {
+        /*--svg-converter-button-background: green;*/
+      }
+      svg {
+        max-width: 320px;
+      }
+    </style>
+    <template id="bind" is="dom-bind">
+      <svg-converter>
+        <svg viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <style>
+            @font-face {
+              font-family: 'Kameron';
+              font-style: normal;
+              font-weight: 400;
+              src: local('Kameron'), url(https://fonts.gstatic.com/s/kameron/v7/Teu2HdJ0U7BWBhN9GzN8SALUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
+              unicode-range: U+74;
+            }
+            @font-face {
+              font-family: 'Kameron';
+              font-style: normal;
+              font-weight: 700;
+              src: local('Kameron Bold'), local('Kameron-Bold'), url(https://fonts.gstatic.com/s/kameron/v7/0Mk_Cjlc84dzSw97PDic4AzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2');
+              unicode-range: U+42;
+            }
+            text {
+              font-family: 'Kameron';
+              fill: gold;
+              font-size: 256px;
+            }
+            #b {
+              font-weight: bold;
+            }
+          </style>
+          <g id="logo">
+            <text id="b" y="213">B</text>
+            <text id="t" x="170" y="213">t</text>
+          </g>
+        </svg>
+      </svg-converter>
+    </template>
+  </body>
+</html>

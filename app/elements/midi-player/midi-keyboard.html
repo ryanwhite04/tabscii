@@ -1,0 +1,103 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+
+<dom-module id="midi-keyboard">
+  <template>
+    <iron-a11y-keys id="a11y" target="[[target]]" keys="{{keys}}"
+      on-keys-pressed="onKeysPressed"></iron-a11y-keys>
+    <paper-input id="input"
+      placeholder="Type something. Press enter. Check console."
+      value="{{input}}"></paper-input>
+  </template>
+  <script>
+    Polymer({ is: 'midi-keyboard',
+      properties: {
+        keys: {
+          type: String,
+          value: '1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l ; z x c v b n m , . /',
+        },
+        note: {
+          type: Number,
+          observer: 'observeNote',
+          notify: true,
+        },
+        target: {
+          type: Object,
+          value: function() {
+            return this.$.input;
+          },
+        },
+        mappings: {
+          type: Object,
+          value: {
+            // Bass Row
+            49: 33,    // A1 : 1
+            50: 35,    // B1 : 2
+            51: 36,    // C2 : 3
+            52: 38,    // D2 : 4
+            53: 40,    // E2 : 5 Lowest Human
+            54: 41,    // F2 : 6
+            55: 43,    // G2 : 7
+            56: 45,    // A2 : 8
+            57: 47,    // B2 : 9
+            48: 48,    // C3 : 0
+
+            // Second Row
+            81: 45,    // A2 : q
+            87: 47,    // B2 : w
+            69: 48,    // C3 : e
+            82: 50,    // D3 : r
+            84: 52,    // E3 : t
+            89: 53,    // F3 : y
+            85: 55,    // G3 : u
+            73: 57,    // A3 : i
+            79: 59,    // B3 : o
+            80: 60,    // C4 : p Middle C
+
+            // Main Row
+            65: 57,    // A3 : a
+            83: 59,    // B3 : s
+            68: 60,    // C4 : d Middle C
+            70: 62,    // D4 : f
+            71: 64,    // E4 : g
+            72: 65,    // F4 : h
+            74: 67,    // G4 : j
+            75: 69,    // A4 : k 440hz
+            76: 71,    // B4 : l
+            186: 72,   // C5 : ;
+
+            90: 69,    // A4 : z 440hz
+            88: 71,    // B4 : x
+            67: 72,    // C5 : c
+            86: 74,    // D5 : v
+            66: 76,    // E5 : b
+            78: 77,    // F5 : n
+            77: 79,    // G5 : m
+            188: 81,   // A5 : ,
+            190: 83,   // B5 : .
+            191: 84,   // C6 : / Highest Human
+          },
+        },
+        verbose: {
+          type: Boolean,
+          notify: true,
+        },
+      },
+      log: function(...args) {
+        this.verbose && console.log(this.is, args);
+      },
+      ready: function() {
+        this.log('ready');
+      },
+      observeNote: function(note) {
+        this.log('observeNote', note);
+      },
+      onKeysPressed: function({ detail: { keyboardEvent: { shiftKey, which } } }) {
+        this.log('onKeysPressed', { shiftKey, which });
+        this.fire('note', this.mappings[which] + (shiftKey ? 1 : 0));
+      },
+    })
+  </script>
+</dom-module>

@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./midi-channel.html">
+
+<dom-module id="midi-player">
+  <template></template>
+  <script>
+    Polymer({ is: 'midi-player',
+      properties: {
+        note: {
+          type: Number,
+          notify: true,
+        },
+        key: {
+          type: String,
+          notify: true,
+        },
+        soundfontUrl: {
+          type: String,
+          value: '../../../bower_components/soundfonts/FluidR3_GM/',
+          notify: true,
+        },
+        verbose: {
+          type: Boolean,
+          notify: true,
+        },
+      },
+      log: function(...args) {
+        this.verbose && console.log(this.is, args);
+      },
+      ready: function() {
+        this.log('ready', MIDI);
+        // MIDI.Player.addListener(this.listener.bind(this));
+      },
+      listener: function(data) {
+        this.log('listener', data);
+      },
+    });
+  </script>
+</dom-module>
+
+

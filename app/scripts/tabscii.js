@@ -1,138 +1,76 @@
-var oldCode, stop, loader, cursorLeftOld, cursorTopOld;
+var oldCode;
+var top;
+var loader;
+var cursorLeftOld;
+var cursorTopOld;
 var strings = {};
 var formats = {};
 var files = {};
+var keys = {
 
-/*
-var keys = {};
-keys["49"] = 33;    //1
-keys["50"] = 34;    //2
-keys["51"] = 35;    //3
-keys["52"] = 36;    //4
-keys["53"] = 37;    //5
-keys["54"] = 38;    //6
-keys["55"] = 39;    //7
-keys["56"] = 40;    //8
-keys["57"] = 41;    //9
-keys["48"] = 42;    //0
-keys["189"] = 43;   //-
-keys["187"] = 44;   //=
-keys["81"] = 45;    //q
-keys["87"] = 46;    //w
-keys["69"] = 47;    //e
-keys["82"] = 48;    //r
-keys["84"] = 49;    //t
-keys["89"] = 50;    //y
-keys["85"] = 51;    //u
-keys["73"] = 52;    //i
-keys["79"] = 53;    //o
-keys["80"] = 54;    //p
-keys["219"] = 55;   //[
-keys["221"] = 56;   //]
-keys["65"] = 57;    //a
-keys["83"] = 58;    //s
-keys["68"] = 59;    //d
-keys["70"] = 60;    //f
-keys["71"] = 61;    //g
-keys["72"] = 62;    //h
-keys["74"] = 63;    //j
-keys["75"] = 64;    //k
-keys["76"] = 65;    //l
-keys["186"] = 66;   //;
-keys["222"] = 67;   //'
-keys["13"] = 68;    //ENTER
-keys["16"] = 69;    //SHIFT
-keys["90"] = 70;    //z
-keys["88"] = 71;    //x
-keys["67"] = 72;    //c
-keys["86"] = 73;    //v
-keys["66"] = 74;    //b
-keys["78"] = 75;    //n
-keys["77"] = 76;    //m
-keys["188"] = 77;   //,
-keys["190"] = 78;   //.
-keys["191"] = 79;   ///
+  // Bass Row
+  49: 33,    // A1 : 1
+  50: 35,    // B1 : 2
+  51: 36,    // C2 : 3
+  52: 38,    // D2 : 4
+  53: 40,    // E2 : 5 Lowest Human
+  54: 41,    // F2 : 6
+  55: 43,    // G2 : 7
+  56: 45,    // A2 : 8
+  57: 47,    // B2 : 9
+  48: 48,    // C3 : 0
 
+  // Second Row
+  81: 45,    // A2 : q
+  87: 47,    // B2 : w
+  69: 48,    // C3 : e
+  82: 50,    // D3 : r
+  84: 52,    // E3 : t
+  89: 53,    // F3 : y
+  85: 55,    // G3 : u
+  73: 57,    // A3 : i
+  79: 59,    // B3 : o
+  80: 60,    // C4 : p Middle C
 
-keys["49"] = 33;    //A0    //1
-keys["50"] = 35;    //B0    //2
-keys["51"] = 36;    //C0    //3
-keys["52"] = 38;    //D0    //4
-keys["53"] = 40;    //E0    //5
-keys["54"] = 41;    //F0    //6
-keys["55"] = 43;    //G0    //7
-keys["56"] = 45;    //A1    //8
-keys["57"] = 47;    //B1    //9
-keys["48"] = 48;    //C1    //0
-keys["189"] = 50;   //D1    //-
-keys["187"] = 52;   //E1    //=
+  // Main Row
+  65: 57,    // A3 : a
+  83: 59,    // B3 : s
+  68: 60,    // C4 : d Middle C
+  70: 62,    // D4 : f
+  71: 64,    // E4 : g
+  72: 65,    // F4 : h
+  74: 67,    // G4 : j
+  75: 69,    // A4 : k 440hz
+  76: 71,    // B4 : l
+  186: 72,   // C5 : ;
 
+  90: 69,    // A4 : z 440hz
+  88: 71,    // B4 : x
+  67: 72,    // C5 : c
+  86: 74,    // D5 : v
+  66: 76,    // E5 : b
+  78: 77,    // F5 : n
+  77: 79,    // G5 : m
+  188: 81,   // A5 : ,
+  190: 83,   // B5 : .
+  191: 84,   // C6 : / Highest Human
+};
 
-keys["81"] = 45;    //A1    //q
-keys["87"] = 47;    //B1    //w
-keys["69"] = 48;    //C1    //e
-keys["82"] = 50;    //D1    //r
-keys["84"] = 52;    //E1    //t
-keys["89"] = 53;    //F1    //y
-keys["85"] = 55;    //G1    //u
-keys["73"] = 57;    //A2    //i
-keys["79"] = 59;    //B2    //o
-keys["80"] = 60;    //C2    //p
-keys["219"] = 62;   //D2    //[
-keys["221"] = 64;   //E2    //]
-
-
-keys["65"] = 57;    //A2    //a
-keys["83"] = 59;    //B2    //s
-keys["68"] = 60;    //C2    //d
-keys["70"] = 62;    //D2    //f
-keys["71"] = 64;    //E2    //g
-keys["72"] = 65;    //F2    //h
-keys["74"] = 67;    //G2    //j
-keys["75"] = 69;    //A3    //k
-keys["76"] = 71;    //B3    //l
-keys["186"] = 72;   //C3    //;
-keys["222"] = 74;   //D3    //'
-
-
-keys["90"] = 69;    //z
-keys["88"] = 71;    //x
-keys["67"] = 72;    //c
-keys["86"] = 74;    //v
-keys["66"] = 76;    //b
-keys["78"] = 77;    //n
-keys["77"] = 79;    //m
-keys["188"] = 81;   //,
-keys["190"] = 83;   //.
-keys["191"] = 84;   ///
-*/
-
-window.onload = function() {
+window.onload = () => {
   setInstrument(0, 0);
   setEditor();
   setFile();
   setPlaces();
 };
 
-/*
-$(window).keydown(function(event){
-    //var key = keys[event.keyCode];
-    if(event.shiftKey){key++}
-    getStrings();
-	MIDI.noteOn(parseInt(strings[0].instrument, 10),key,127);
+$(window).keydown(event => {
+  getStrings();
+	MIDI.noteOn(parseInt(strings[0].instrument, 10), keys[event.shiftKey ? event.keyCode + 1 : event.keyCode], 127);
 });
-*/
 
 $(window).blur(function() {
   clearInterval(stop);
 });
-
-$(window).resize(function() {
-  $("#leftMenu, #rightMenu, #editor").css("top", $("#header").outerHeight());
-  loader.center();
-});
-
-loader = new widgets.Loader();
 
 function setInstrument(channel, number) {
 
@@ -153,15 +91,6 @@ function setInstrument(channel, number) {
   } else {
     MIDI.programChange(channel, number);
   }
-}
-
-function setEditor() {
-  editor = ace.edit("editor");
-  editor.setTheme("ace/theme/chrome");
-  editor.getSession().setMode("ace/mode/javascript");
-  editor.setShowPrintMargin(false);
-  editor.getSession().setUseWorker(false);
-  EditSession = ace.require("ace/edit_session").EditSession;
 }
 
 function setFile() {
@@ -270,75 +199,6 @@ function load(extension, fileName) {
 //	}
 //});
 
-/////////////////////////////////
-//  Ui Events
-/////////////////////////////////
-
-$('#tabscii i').click(function() {
-  window.open('http://tabscii.com', '_blank');
-  window.focus();
-});
-
-$('#gametabs i').click(function() {
-  window.open('http://gametabs.net', '_blank');
-  window.focus();
-});
-
-$('#classtab i').click(function() {
-  window.open('http://classtab.org', '_blank');
-  window.focus();
-});
-
-$('#instrumentMenuButton i').click(function() {
-  $('#settingsMenu, #instrumentMenu').toggle();
-});
-
-$('#playMenuButton i').click(function() {
-  $('#settingsMenu, #playMenu').toggle();
-});
-
-$('#editorMenuButton i').click(function() {
-  $('#settingsMenu, #editorMenu').toggle();
-});
-
-$('#leftMenuButton').click(function() {
-  var distance = 256;
-  if ($('#leftMenuButton').hasClass('active')) {
-    distance = 0;
-  }
-  $("#editor").animate({
-    left: distance + "px"
-  }, {
-    duration: 400,
-    specialEasing: {
-      width: "linear"
-    },
-    complete: function() {}
-  });
-  $("#leftMenuButton").toggleClass("active");
-  $("#leftMenu").show();
-});
-
-$('#rightMenuButton').click(function() {
-  var distance = 256;
-  if ($('#rightMenuButton').hasClass('active')) {
-    distance = 0;
-  }
-  $("#editor").animate({
-    right: distance + "px"
-  }, {
-    duration: 400,
-    specialEasing: {
-      width: "linear"
-    }
-  });
-  $('#rightMenuButton').toggleClass("active");
-  $('#rightMenu').show();
-});
-
-$('#play i').click(function() {
-  play();
-});
 
 $('#play input').change(function() {
   if ($('#play i').hasClass('fa-pause')) {
@@ -360,16 +220,6 @@ $('#instrument select').change(function() {
   var instrumentName = $(this).val();
   var number = parseInt(MIDI.GeneralMIDI.byName[instrumentName].number, 10);
   setInstrument(channel, number);
-});
-
-$('#theme select').change(function() {
-  var theme = $(this).val();
-  editor.setTheme(theme);
-});
-
-$('#mode select').change(function() {
-  var mode = $(this).val();
-  editor.getSession().setMode('ace/mode/' + mode);
 });
 
 $('#tabscii select').change(function() {
@@ -732,6 +582,7 @@ Format.prototype.timering = function() {
     this.timering();
   }
 };
+
 /////////////////////////////////
 //File Object
 /////////////////////////////////

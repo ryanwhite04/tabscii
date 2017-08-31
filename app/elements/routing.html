@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <script src="../bower_components/page/page.js"></script>
 <script>
-  window.addEventListener('WebComponentsReady', function() {
+  window.addEventListener('WebComponentsReady', function () {
 
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
@@ -33,42 +33,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     // Routes
-    page('*', scrollToTop, closeDrawer, function(ctx, next) {
+    page('*', scrollToTop, closeDrawer, function (ctx, next) {
       next();
     });
 
-    page('/', function() {
+    page('/', function () {
       app.route = 'home';
     });
 
-    page(app.baseUrl, function() {
+    page(app.baseUrl, function () {
       app.route = 'home';
     });
 
-    page('/users', function() {
-      app.route = 'users';
+    page('/editor', function () {
+      app.route = 'editor';
     });
 
-    page('/users/:name', function(data) {
+    page('/instruments', function () {
+      app.route = 'instruments';
+    });
+
+    page('/users/:name', function (data) {
       app.route = 'user-info';
       app.params = data.params;
     });
 
-    page('/contact', function() {
+    page('/contact', function () {
       app.route = 'contact';
     });
 
     // 404
-    page('*', function() {
+    page('*', function () {
       app.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
       app.$.toast.show();
       page.redirect(app.baseUrl);
     });
 
     // add #! before urls
-    page({
-      hashbang: true
-    });
+    page({ hashbang: true });
 
   });
 </script>

@@ -12,39 +12,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <title>my-greeting-basic</title>
+  <title>ace-editor</title>
 
-  <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../bower_components/web-component-tester/browser.js"></script>
 
-  <!-- Import the element to test -->
-  <link rel="import" href="../elements/my-greeting/my-greeting.html">
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../elements/ace-editor/ace-editor.html">
 
 </head>
 <body>
 
-  <test-fixture id="basic">
-    <template>
-      <my-greeting></my-greeting>
-    </template>
-  </test-fixture>
+<test-fixture id="basic">
+  <template>
+    <ace-editor></ace-editor>
+  </template>
+</test-fixture>
 
-  <script>
+<script>
+  suite('ace-editor tests', function() {
+    var element;
 
-    suite('my-greeting tests', function() {
-      var greeting, header;
+    setup(function() {
+      element = fixture('basic');
+    });
 
-      setup(function() {
-        greeting = fixture('basic');
-      });
-
-      test('Welcome!', function() {
-        header = greeting.$$('h2');
-        assert.equal(header.textContent, 'Welcome!');
-      });
+    test('', function() {
 
     });
-  </script>
+
+  });
+</script>
 
 </body>
 </html>
