@@ -1,0 +1,9 @@
+/// BareSpecifier=ace-builds/src-min-noconflict/mode-text
+;
+(function () {
+    ace.require(["ace/mode/text"], function (m) {
+        if (typeof module == "object" && typeof exports == "object" && module) {
+            module.exports = m;
+        }
+    });
+})();

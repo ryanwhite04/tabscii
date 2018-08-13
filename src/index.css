@@ -1,0 +1,106 @@
+:root {
+  --margin: 6px;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: arial;
+}
+
+* {
+  margin: 0;
+}
+
+header {
+  display: flex;
+}
+header h1 {
+  float: right;
+  margin: 6px;
+  flex: 1;
+}
+header i, header a {
+  background: #D64937;
+  color: #fff;
+}
+
+main {
+  display: flex;
+  flex: 1;
+}
+
+#menu {
+  width: 180px;
+  margin-left: -182px;
+  transition: margin-left 1s;
+  overflow: auto;
+  border: solid 1px #ccc;
+  border-radius: 1px;
+}
+
+#menu.open {
+  margin-left: 0;
+}
+
+#menu i, #menu a {
+  margin-right: 0;
+  margin-top: 0;
+}
+
+#menu input {
+  width: 112px;
+  margin-top: 0;
+  margin-left: 0;
+}
+      
+load-select, button, select, input, a, i {
+  padding: 7px;
+  height: 32px;
+  margin: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: solid 1px #ccc;
+  border-radius: 1px;
+}
+
+load-select {
+  padding:0 ;
+  width: 160px;
+  border: none;
+}
+
+load-select i {
+  margin: 0;
+}
+
+input {
+  cursor: text;
+  height: 16px;
+}
+
+i, a {
+  width: 16px;
+  height: 16px;
+  text-align: center;
+}
+
+#upload {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: fixed;
+}
+
+#editor {
+  flex: 1;
+  border: solid 1px #ccc;
+  border-radius: 1px;
+}

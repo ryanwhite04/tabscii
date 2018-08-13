@@ -1,0 +1,14 @@
+/// BareSpecifier=ace-builds/src-noconflict/snippets/glsl
+ace.define("ace/snippets/glsl", ["require", "exports", "module"], function (require, exports, module) {
+    "use strict";
+
+    exports.snippetText = "";
+    exports.scope = "glsl";
+});
+(function () {
+    ace.require(["ace/snippets/glsl"], function (m) {
+        if (typeof module == "object" && typeof exports == "object" && module) {
+            module.exports = m;
+        }
+    });
+})();

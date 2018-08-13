@@ -1,0 +1,213 @@
+{
+  "label": "Instruments",
+  "optgroups": [
+    {
+      "label": "Piano",
+      "options": [
+        { "value": "Acoustic Grand Piano", "label": "Acoustic Grand Piano" },
+        { "value": "Bright Acoustic Piano", "label": "Bright Acoustic Piano" },
+        { "value": "Electric Grand Piano", "label": "Electric Grand Piano" },
+        { "value": "Honky-tonk Piano", "label": "Honky-tonk Piano" },
+        { "value": "Electric Piano 1", "label": "Electric Piano 1" },
+        { "value": "Electric Piano 2", "label": "Electric Piano 2" },
+        { "value": "Harpsichord", "label": "Harpsichord" },
+        { "value": "Clavinet", "label": "Clavinet" }
+      ]
+    },
+    {
+      "label": "Chromatic Percussion",
+      "options": [
+        { "value": "Celesta", "label": "Celesta" },
+        { "value": "Glockenspiel", "label": "Glockenspiel" },
+        { "value": "Music Box", "label": "Music Box" },
+        { "value": "Vibraphone", "label": "Vibraphone" },
+        { "value": "Marimba", "label": "Marimba" },
+        { "value": "Xylophone", "label": "Xylophone" },
+        { "value": "Tubular Bells", "label": "Tubular Bells" },
+        { "value": "Dulcimer", "label": "Dulcimer" }
+      ]
+    },
+    {
+      "label": "Organ",
+      "options": [
+        { "value": "Drawbar Organ", "label": "Drawbar Organ" },
+        { "value": "Percussive Organ", "label": "Percussive Organ" },
+        { "value": "Rock Organ", "label": "Rock Organ" },
+        { "value": "Church Organ", "label": "Church Organ" },
+        { "value": "Reed Organ", "label": "Reed Organ" },
+        { "value": "Accordion", "label": "Accordion" },
+        { "value": "Harmonica", "label": "Harmonica" },
+        { "value": "Tango Accordion", "label": "Tango Accordion" }
+      ]
+    },
+    {
+      "label": "Guitar",
+      "options": [
+        { "value": "Acoustic Guitar (nylon)", "label": "Acoustic Guitar (nylon)" },
+        { "value": "Acoustic Guitar (steel)", "label": "Acoustic Guitar (steel)" },
+        { "value": "Electric Guitar (jazz)", "label": "Electric Guitar (jazz)" },
+        { "value": "Electric Guitar (clean)", "label": "Electric Guitar (clean)" },
+        { "value": "Electric Guitar (muted)", "label": "Electric Guitar (muted)" },
+        { "value": "Overdriven Guitar", "label": "Overdriven Guitar" },
+        { "value": "Distortion Guitar", "label": "Distortion Guitar" },
+        { "value": "Guitar Harmonics", "label": "Guitar Harmonics" }
+      ]
+    },
+    {
+      "label": "Bass",
+      "options": [
+        { "value": "Acoustic Bass", "label": "Acoustic Bass" },
+        { "value": "Electric Bass (finger)", "label": "Electric Bass (finger)" },
+        { "value": "Electric Bass (pick)", "label": "Electric Bass (pick)" },
+        { "value": "Fretless Bass", "label": "Fretless Bass" },
+        { "value": "Slap Bass 1", "label": "Slap Bass 1" },
+        { "value": "Slap Bass 2", "label": "Slap Bass 2" },
+        { "value": "Synth Bass 1", "label": "Synth Bass 1" },
+        { "value": "Synth Bass 2", "label": "Synth Bass 2" }
+      ]
+    },
+    {
+      "label": "Strings",
+      "options": [
+        { "value": "Violin", "label": "Violin" },
+        { "value": "Viola", "label": "Viola" },
+        { "value": "Cello", "label": "Cello" },
+        { "value": "Contrabass", "label": "Contrabass" },
+        { "value": "Tremolo Strings", "label": "Tremolo Strings" },
+        { "value": "Pizzicato Strings", "label": "Pizzicato Strings" },
+        { "value": "Orchestral Harp", "label": "Orchestral Harp" },
+        { "value": "Timpani", "label": "Timpani" }
+      ]
+    },
+    {
+      "label": "Ensemble",
+      "options": [
+        { "value": "String Ensemble 1", "label": "String Ensemble 1" },
+        { "value": "String Ensemble 2", "label": "String Ensemble 2" },
+        { "value": "Synth Strings 1", "label": "Synth Strings 1" },
+        { "value": "Synth Strings 2", "label": "Synth Strings 2" },
+        { "value": "Choir Aahs", "label": "Choir Aahs" },
+        { "value": "Voice Oohs", "label": "Voice Oohs" },
+        { "value": "Synth Choir", "label": "Synth Choir" },
+        { "value": "Orchestra Hit", "label": "Orchestra Hit" }
+      ]
+    },
+    {
+      "label":"Brass",
+      "options": [
+        { "value": "Trumpet", "label": "Trumpet" },
+        { "value": "Trombone", "label": "Trombone" },
+        { "value": "Tuba", "label": "Tuba" },
+        { "value": "Muted Trumpet", "label": "Muted Trumpet" },
+        { "value": "French Horn", "label": "French Horn" },
+        { "value": "Brass Section", "label": "Brass Section" },
+        { "value": "Synth Brass 1", "label": "Synth Brass 1" },
+        { "value": "Synth Brass 2", "label": "Synth Brass 2" }
+      ]
+    },
+    {
+      "label": "Reed",
+      "options": [
+        { "value": "Soprano Sax", "label": "Soprano Sax" },
+        { "value": "Alto Sax", "label": "Alto Sax" },
+        { "value": "Tenor Sax", "label": "Tenor Sax" },
+        { "value": "Baritone Sax", "label": "Baritone Sax" },
+        { "value": "Oboe", "label": "Oboe" },
+        { "value": "English Horn", "label": "English Horn" },
+        { "value": "Bassoon", "label": "Bassoon" },
+        { "value": "Clarinet", "label": "Clarinet" }
+      ]
+    },
+    {
+      "label": "Pipe",
+      "options": [
+        { "value": "Piccolo", "label": "Piccolo" },
+        { "value": "Flute", "label": "Flute" },
+        { "value": "Recorder", "label": "Recorder" },
+        { "value": "Pan Flute", "label": "Pan Flute" },
+        { "value": "Blown Bottle", "label": "Blown Bottle" },
+        { "value": "Shakuhachi", "label": "Shakuhachi" },
+        { "value": "Whistle", "label": "Whistle" },
+        { "value": "Ocarina", "label": "Ocarina" }
+      ]
+    },
+    {
+      "label": "Synth Lead",
+      "options": [
+        { "value": "Lead 1 (square)", "label": "Lead 1 (square)" },
+        { "value": "Lead 2 (sawtooth)", "label": "Lead 2 (sawtooth)" },
+        { "value": "Lead 3 (calliope)", "label": "Lead 3 (calliope)" },
+        { "value": "Lead 4 (chiff)", "label": "Lead 4 (chiff)" },
+        { "value": "Lead 5 (charang)", "label": "Lead 5 (charang)" },
+        { "value": "Lead 6 (voice)", "label": "Lead 6 (voice)" },
+        { "value": "Lead 7 (fifths)", "label": "Lead 7 (fifths)" },
+        { "value": "Lead 8 (bass + lead)", "label": "Lead 8 (bass + lead)" }
+      ]
+    },
+    {
+      "label": "Synth Pad",
+      "options": [
+        { "value": "Pad 1 (new age)", "label": "Pad 1 (new age)" },
+        { "value": "Pad 2 (warm)", "label": "Pad 2 (warm)" },
+        { "value": "Pad 3 (polysynth)", "label": "Pad 3 (polysynth)" },
+        { "value": "Pad 4 (choir)", "label": "Pad 4 (choir)" },
+        { "value": "Pad 5 (bowed)", "label": "Pad 5 (bowed)" },
+        { "value": "Pad 6 (metallic)", "label": "Pad 6 (metallic)" },
+        { "value": "Pad 7 (halo)", "label": "Pad 7 (halo)" },
+        { "value": "Pad 8 (sweep)", "label": "Pad 8 (sweep)" }
+      ]
+    },
+    {
+      "label": "Synth Effects",
+      "options": [
+        { "value": "FX 1 (rain)", "label": "FX 1 (rain)" },
+        { "value": "FX 2 (soundtrack)", "label": "FX 2 (soundtrack)" },
+        { "value": "FX 3 (crystal)", "label": "FX 3 (crystal)" },
+        { "value": "FX 4 (atmosphere)", "label": "FX 4 (atmosphere)" },
+        { "value": "FX 5 (brightness)", "label": "FX 5 (brightness)" },
+        { "value": "FX 6 (goblins)", "label": "FX 6 (goblins)" },
+        { "value": "FX 7 (echoes)", "label": "FX 7 (echoes)" },
+        { "value": "FX 8 (sci-fi)", "label": "FX 8 (sci-fi)" }
+      ]
+    },
+    {
+      "label": "Ethnic",
+      "options": [
+        { "value": "Sitar", "label": "Sitar" },
+        { "value": "Banjo", "label": "Banjo" },
+        { "value": "Shamisen", "label": "Shamisen" },
+        { "value": "Koto", "label": "Koto" },
+        { "value": "Kalimba", "label": "Kalimba" },
+        { "value": "Bagpipe", "label": "Bagpipe" },
+        { "value": "Fiddle", "label": "Fiddle" },
+        { "value": "Shanai", "label": "Shanai" }
+      ]
+    },
+    {
+      "label": "Percussive",
+      "options": [
+        { "value": "Tinkle Bell", "label": "Tinkle Bell" },
+        { "value": "Agogo", "label": "Agogo" },
+        { "value": "Steel Drums", "label": "Steel Drums" },
+        { "value": "Woodblock", "label": "Woodblock" },
+        { "value": "Taiko Drum", "label": "Taiko Drum" },
+        { "value": "Melodic Tom", "label": "Melodic Tom" },
+        { "value": "Synth Drum", "label": "Synth Drum" },
+        { "value": "Reverse Cymbal", "label": "Reverse Cymbal" }
+      ]
+    },
+    {
+      "label": "Sound Effects",
+      "options": [
+        { "value": "Guitar Fret Noise", "label": "Guitar Fret Noise" },
+        { "value": "Breath Noise", "label": "Breath Noise" },
+        { "value": "Seashore", "label": "Seashore" },
+        { "value": "Bird Tweet", "label": "Bird Tweet" },
+        { "value": "Telephone Ring", "label": "Telephone Ring" },
+        { "value": "Helicopter", "label": "Helicopter" },
+        { "value": "Applause", "label": "Applause" },
+        { "value": "Gunshot", "label": "Gunshot" }
+      ]
+    }
+  ]
+}
