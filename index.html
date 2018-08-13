@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Guitar Tab Player">
+    <title>Guitar Tab Player - Tabscii</title>
+    <link rel="icon" type="image/png" href="./icons/tabscii.png">
+    <link href="./assets/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <script src="./assets/midi/inc/shim/Base64binary.js"></script>
+    <script src="./assets/midi/inc/shim/WebAudioAPI.js"></script>
+    <script src="./assets/midi/js/midi/audioDetect.js"></script>
+    <script src="./assets/midi/js/midi/gm.js"></script>
+    <script src="./assets/midi/js/midi/loader.js"></script>
+    <script src="./assets/midi/js/midi/player.js"></script>
+    <script src="./assets/midi/js/midi/plugin.audiotag.js"></script>
+    <script src="./assets/midi/js/midi/plugin.webaudio.js"></script>
+    <script src="./assets/midi/js/midi/plugin.webmidi.js"></script>
+	<script src="./assets/midi/js/util/dom_request_xhr.js"></script>
+	<script src="./assets/midi/js/util/dom_request_script.js"></script>
+    <script src="./assets/ace-builds/src-noconflict/ace.js"></script>
+    <script src="./assets/midi/examples/inc/timer.js"></script>
+    <link href="./index.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <script src="./load-select.js" type="module"></script>
+    <header>
+      <i id="open" class="fa fa-bars"></i>
+      <h1>Tabscii</h1>
+      <i id="toggle" class="fa fa-play"></i>
+    </header>
+    <main>
+      <div id="menu">
+        <load-select id="instrument" src="./json/instruments.json"></load-select>
+        <load-select id="theme" src="./json/themes.json"></load-select>
+        <load-select id="mode" src="./json/modes.json"></load-select>
+        <load-select id="tabscii" src="./json/tabscii.json">
+          <i title="Tabscii.com">
+            <img src="./icons/tabscii.com.ico" alt="Tabscii.com" height="16" width="16">
+          </i>
+        </load-select>
+        <load-select id="gametabs" src="./json/gametabs.json">
+          <i title="GameTabs.net">
+            <img src="./icons/gametabs.net.ico" alt="GameTabs.net" height="16" width="16">
+          </i>
+        </load-select>
+        <load-select id="classtab" src="./json/classtab.json">
+          <i title="ClassTab.org">
+            <img src="./icons/classtab.org.ico" alt="ClassTab.org" height="16" width="16">
+          </i>
+        </load-select>
+        <i id="rateIcon" class="fa fa-heartbeat"></i><input id="rate" type="number" placeholder="120" min="0" max="999" step="10" value="120">
+        <i id="fontSizeIcon" class="fa fa-pencil"></i><input id="fontSize" type="number" placeholder="#">
+        <a id="download" class="fa fa-download"></a><input id="filename" placeholder="File Name Here">
+<!--         <i id="upload" class="fa fa-upload"></i><input id="uploaded" type="file" name="files[]" multiple=""> -->
+      </div>
+      <div id="editor"></div>
+    </main>
+    <footer hidden>Footer</footer>
+    <script src="./index.js" type="module"></script>
+  </body>
+</html>

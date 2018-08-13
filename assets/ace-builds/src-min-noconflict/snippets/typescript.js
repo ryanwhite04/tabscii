@@ -1,0 +1,12 @@
+/// BareSpecifier=ace-builds/src-min-noconflict/snippets/typescript
+ace.define("ace/snippets/typescript", ["require", "exports", "module"], function (e, t, n) {
+    "use strict";
+    t.snippetText = "", t.scope = "typescript";
+});
+(function () {
+    ace.require(["ace/snippets/typescript"], function (m) {
+        if (typeof module == "object" && typeof exports == "object" && module) {
+            module.exports = m;
+        }
+    });
+})();

@@ -1,0 +1,76 @@
+{
+  "_from": "@polymer/iron-a11y-announcer@^3.0.0-pre.21",
+  "_id": "@polymer/iron-a11y-announcer@3.0.0-pre.21",
+  "_inBundle": false,
+  "_integrity": "sha512-n35ck7y5aQweRxK2JvEe7sFE/LbUd/b5EW8tYPa/96iZw1qcTHWtIKdMJjDH18YroKVFH4Ncz4/0Xg7GChLhvA==",
+  "_location": "/@polymer/iron-a11y-announcer",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@polymer/iron-a11y-announcer@^3.0.0-pre.21",
+    "name": "@polymer/iron-a11y-announcer",
+    "escapedName": "@polymer%2firon-a11y-announcer",
+    "scope": "@polymer",
+    "rawSpec": "^3.0.0-pre.21",
+    "saveSpec": null,
+    "fetchSpec": "^3.0.0-pre.21"
+  },
+  "_requiredBy": [
+    "/@polymer/paper-toast"
+  ],
+  "_resolved": "https://registry.npmjs.org/@polymer/iron-a11y-announcer/-/iron-a11y-announcer-3.0.0-pre.21.tgz",
+  "_shasum": "717cfd1b34f281c2085ad6b45ecd724bd2ae6d84",
+  "_spec": "@polymer/iron-a11y-announcer@^3.0.0-pre.21",
+  "_where": "/tmp/asset_stagehn2oGt/node_modules/@polymer/paper-toast",
+  "author": {
+    "name": "The Polymer Authors"
+  },
+  "bugs": {
+    "url": "https://github.com/PolymerElements/iron-a11y-announcer/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0"
+  },
+  "deprecated": false,
+  "description": "A singleton element that simplifies announcing text to screen readers.",
+  "devDependencies": {
+    "@polymer/gen-typescript-declarations": "^1.2.2",
+    "@polymer/iron-component-page": "^3.0.0-pre.21",
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.21",
+    "@polymer/iron-test-helpers": "^3.0.0-pre.21",
+    "@polymer/paper-button": "^3.0.0-pre.21",
+    "@polymer/test-fixture": "^3.0.0-pre.21",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "bower": "^1.8.0",
+    "wct-browser-legacy": "^1.0.1",
+    "webmat": "^0.2.0"
+  },
+  "homepage": "https://github.com/PolymerElements/iron-a11y-announcer#readme",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "a11y",
+    "live"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "iron-a11y-announcer.js",
+  "name": "@polymer/iron-a11y-announcer",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/iron-a11y-announcer.git"
+  },
+  "resolutions": {
+    "inherits": "2.0.3",
+    "samsam": "1.1.3",
+    "supports-color": "3.1.2",
+    "type-detect": "1.0.0",
+    "@webcomponents/webcomponentsjs": "2.0.0-beta.2"
+  },
+  "scripts": {
+    "format": "webmat && npm run update-types",
+    "update-types": "bower install && gen-typescript-declarations --deleteExisting --outDir ."
+  },
+  "version": "3.0.0-pre.21"
+}

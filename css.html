@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        flex-flow: column;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      
+      #header {
+        background: lightblue;
+      }
+      
+      #content {
+        background: pink;
+        display: flex;
+        flex: 1;
+      }
+      
+      #footer {
+        background: green;
+      }
+      
+      #menu {
+        background: yellow;
+        width: 80px;
+        padding: 20px;
+        margin-left: -120px;
+        transition: margin-left 1s;
+        overflow: auto;
+      }
+      
+      #menu.open {
+        margin-left: 0;
+      }
+      
+      #editor {
+        background: purple;
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header" onclick="document.getElementById('menu').classList.toggle('open')">
+      <h2>Header</h2>
+      <p>Bla bla bla bla bla bla bla bla</p>
+    </div>
+    <div id="content">
+      <div id="menu">
+        <h2>Menu</h2>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+        <p>Bla bla bla bla bla bla bla bla</p>
+      </div>
+      <div id="editor"><h2>Editor</h2></div>
+    </div>
+    <div id="footer" hidden><h2>Footer</h2></div>
+  </body>
+</html>
