@@ -1,50 +1,28 @@
 {
   "private": true,
-  "devDependencies": {
-    "browser-sync": "^2.7.7",
-    "connect-history-api-fallback": "^1.1.0",
-    "del": "^2.0.2",
-    "glob-all": "^3.0.1",
-    "gulp": "^3.8.5",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-cache": "^0.4.0",
-    "gulp-changed": "^1.0.0",
-    "gulp-gh-pages": "^0.5.4",
-    "gulp-html-extract": "^0.1.0",
-    "gulp-if": "^2.0.0",
-    "gulp-imagemin": "^2.2.1",
-    "gulp-load-plugins": "^1.1.0",
-    "gulp-minify-css": "^1.2.1",
-    "gulp-minify-html": "^1.0.2",
-    "gulp-rename": "^1.2.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-size": "^2.0.0",
-    "gulp-uglify": "^1.2.0",
-    "gulp-useref": "^2.1.0",
-    "gulp-vulcanize": "^6.0.0",
-    "merge-stream": "^1.0.0",
-    "require-dir": "^0.3.0",
-    "run-sequence": "^1.0.2",
-    "vulcanize": ">= 1.4.2",
-    "web-component-tester": "^4.0.0"
-  },
-  "scripts": {
-    "test": "gulp test:local",
-    "start": "gulp serve"
-  },
   "engines": {
     "node": ">=0.10.0"
   },
   "name": "@ryanwhite04/tabscii",
-  "description": "![](https://cloud.githubusercontent.com/assets/110953/7877439/6a69d03e-0590-11e5-9fac-c614246606de.png) ## Polymer Starter Kit",
   "version": "1.1.0",
-  "main": "tabscii.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "main": "index.js",
   "dependencies": {
+    "@polymer/lit-element": "^0.5.2",
+    "@polymer/paper-progress": "^3.0.0-pre.21",
+    "@polymer/paper-toast": "^3.0.0-pre.21",
+    "ace-builds": "github:ajaxorg/ace-builds",
     "debug": "^2.2.0",
-    "midi": "github:mudcube/MIDI.js"
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "midi": "github:mudcube/MIDI.js",
+    "tone": "^0.12.80"
+  },
+  "scripts": {
+    "webpack": "webpack --config webpack.config.js",
+    "deploy": "gh-pages -d dist",
+    "build": "cp -R src/. dist/",
+    "start": "live-server src",
+    "postinstall": "empathy install -a src/assets && cp -r node_modules/soundfonts src/assets/soundfonts"
   },
   "repository": {
     "type": "git",
@@ -52,5 +30,12 @@
   },
   "author": "Ryan White",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/ryanwhite04/tabscii#readme"
+  "homepage": "https://bitbucket.org/ryanwhite04/tabscii#readme",
+  "devDependencies": {
+    "@0xcda7a/empathy": "^0.0.9",
+    "gh-pages": "^1.2.0",
+    "live-server": "^1.2.0",
+    "webpack": "^4.16.5",
+    "webpack-command": "^0.4.1"
+  }
 }
