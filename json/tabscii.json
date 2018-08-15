@@ -1,25 +1,9 @@
 {
   "label": "Tabscii",
-  "optgroups": [
-    {
-      "label": "Main",
-      "options": [
-        { "value": "home.txt", "label": "Home" },
-        { "value": "formatting.txt", "label": "Formatting" },
-        { "value": "instructions.txt", "label": "Instructions" }
-      ]
-    },
-    {
-      "label":  "Songs",
-      "options": [
-        { "value": "songs.txt", "label": "Songs" },
-        { "value": "breeze-on-a-hill.txt", "label": "Breeze On A Hill" },
-        { "value": "heartbeats Jose Gonzalez.txt", "label": "Heartbeats" },
-        { "value": "heartbeats.txt", "label": "Heartbeats 2" },
-        { "value": "ryansong.txt", "label": "Other" },
-        { "value": "song1.txt", "label": "Number 1" },
-        { "value": "something.txt", "label": "Something" }
-      ]
-    }
+  "options": [
+    { "value": "4.txt", "label": "4" },
+    { "value": "Always with me.txt", "label": "Always with me" },
+    { "value": "Heartbeats.txt", "label": "Heartbeats" },
+    { "value": "Donkey Kong.txt", "label": "" }
   ]
 }

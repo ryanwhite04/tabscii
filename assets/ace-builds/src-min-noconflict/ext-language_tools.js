@@ -339,10 +339,7 @@ ace.define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/
                 a = 0,
                 f = 0;for (var l = 0; l <= u.length; l++) if (l != f && (t.matchMask & 1 << l || l == u.length)) {
                 var c = u.slice(f, l);f = l;var h = o.indexOf(c);if (h == -1) continue;s(i.slice(a, h), ""), a = h + c.length, s(i.slice(h, a), "completion-highlight");
-            }s(i.slice(a, i.length), "");if (t.meta) {
-                var p = n.renderer.$size.scrollerWidth / n.renderer.layerConfig.characterWidth,
-                    d = t.meta;d.length + t.caption.length > p - 2 && (d = d.substr(0, p - t.caption.length - 3) + "\u2026"), r.push({ type: "completion-meta", value: d });
-            }return r;
+            }return s(i.slice(a, i.length), ""), t.meta && r.push({ type: "completion-meta", value: t.meta }), r;
         }, d.$updateOnChange = r, d.start = r, n.session.$computeWidth = function () {
             return this.screenWidth = 0;
         }, n.isOpen = !1, n.isTopdown = !1, n.autoSelect = !0, n.filterText = "", n.data = [], n.setData = function (e, t) {

@@ -3,6 +3,7 @@ import './assets/@polymer/paper-toast/paper-toast.js'
 import './assets/@polymer/paper-progress/paper-progress.js'
 import './load-select.js'
 
+const log = debug('component:instrument-string')
 const notes = { first: 21, last: 109 }
 const formats = ['mp3', 'ogg']
 
@@ -25,7 +26,7 @@ let {
   PluckSynth,
 } = Tone
 
-console.log({ Tone })
+log({ Tone })
 
 class InstrumentString extends LitElement {
 
@@ -37,9 +38,8 @@ class InstrumentString extends LitElement {
     }
   }
 
-  
   async _firstRendered() {
-    console.log('_firstRendered', this)
+    log('_firstRendered', this)
     this._root.getElementById('instrument').addEventListener('change', ({ detail: instrument }) => {
       this.setAttribute('instrument', instrument)
     })
@@ -53,13 +53,13 @@ class InstrumentString extends LitElement {
   }
 
 //   async _shouldRender(props, { instrument, note, progress }, prevProps) {
-//     console.log('_shouldRender', { props, changedProps: {
+//     log('_shouldRender', { props, changedProps: {
 //       instrument,
 //       note,
 //       progress,
 //     }, prevProps })
 
-//     Number.isInteger(instrument) && setPlayer(instrument).catch((a, b, c) => console.log('error', { a, b, c }))
+//     Number.isInteger(instrument) && setPlayer(instrument).catch((a, b, c) => log('error', { a, b, c }))
 //     this.play(note)
 //     return true;
 //   }
@@ -69,27 +69,22 @@ class InstrumentString extends LitElement {
     let { instrument, note } = changedProps;
 
     this.player = instrument ? await player(instrument).catch((console.error)) : this.player;
-    console.log('_propertiesChanged', { props, changedProps, prevProps }, this.player)
-    note && this.play(getNote(note))
+    log('_propertiesChanged', { props, changedProps, prevProps }, this.player)
   }
 
-  async play(note) {
-//     console.log('play', { note, instrument: this.instrument, player: this.player })
-//       if (Number.isInteger(note) && note >= 0 && note < 88) {
-//         console.log('playing', { note }, this.player)
-        this.player.has(note) && this.player.get(note).start();
-//       }
+  play() {
+     this.player.has(this.note) && this.player.get(this.note).start();
   }
 
   _render({ note, instrument }) {
 
-    console.log('_render', { note, instrument })
+    log('_render', { note, instrument })
     console.dir(this)
     return html`
       <style>
         :host {
-          display: flex;
-          flex-direction: row;
+          // display: flex;
+          // flex-direction: row;
         }
         :host([hidden]) {
           display: none;
@@ -150,6 +145,6 @@ function read(text, position) {
   text = text.slice(0, position);
   let note = parseInt(text.slice(-1), 36);
   let string = getNote(mappings[text.split('|')[0]]);
-  console.log('read', { text, note, string })
+  log('read', { text, note, string })
   return isNaN(note) ? null : note + string - 38;
 }

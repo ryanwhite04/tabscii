@@ -116,11 +116,11 @@ function getControls(editor, playing=false, rate=360) {
   }
   
   function centerCursor(editor) {
-    let cursorLeft = editor.renderer.$cursorLayer.getPixelPosition().left;
-    let cursorTop = editor.renderer.$cursorLayer.getPixelPosition().top;
-    editor.renderer.scrollBy(cursorLeft - cursorLeftOld, cursorTop - cursorTopOld);
-    cursorLeftOld = cursorLeft;
-    cursorTopOld = cursorTop;
+    // let cursorLeft = editor.renderer.$cursorLayer.getPixelPosition().left;
+    // let cursorTop = editor.renderer.$cursorLayer.getPixelPosition().top;
+    // editor.renderer.scrollBy(cursorLeft - cursorLeftOld, cursorTop - cursorTopOld);
+    // cursorLeftOld = cursorLeft;
+    // cursorTopOld = cursorTop;
   }
   
   function play() {
@@ -213,8 +213,8 @@ function setInstrument(channel, number) {
 }
 
 function setFile(editor) {
-  files['home.txt'] = new File('tabscii.com/', 'home.txt', editor);
-  files['home.txt'].open();
+  files['Heartbeats.txt'] = new File('tabscii/', 'Heartbeats.txt', editor);
+  files['Heartbeats.txt'].open();
 }
 
 function loadFile(path, editor) {
@@ -550,8 +550,8 @@ window.onload = () => {
     ['instrument', 'change', changeInstrument],
     ['theme', 'change', setTheme(editor)],
     ['mode', 'change', setMode(editor)],
-    ['tabscii', 'change', loadFile('tabscii.com/', editor)],
-    ['gametabs', 'change', loadFile('gametabs.net/', editor)],
+    ['tabscii', 'change', loadFile('tabscii/', editor)],
+    ['gametabs', 'change', loadFile('gametabs/', editor)],
     ['classtab', 'change', loadFile('classtab/', editor)],
 //     ['upload', 'change', upload],
     ['download', 'click', download(editor)],

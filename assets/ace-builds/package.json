@@ -1,6 +1,6 @@
 {
   "_from": "github:ajaxorg/ace-builds",
-  "_id": "ace-builds@1.4.0",
+  "_id": "ace-builds@1.4.1",
   "_inBundle": false,
   "_integrity": "",
   "_location": "/ace-builds",
@@ -18,9 +18,9 @@
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "github:ajaxorg/ace-builds#e7db44f94162f88532e44aa02d42e9f83114fb8d",
+  "_resolved": "github:ajaxorg/ace-builds#f3918341e40f4b8aaf0474fb791b81fbc3d2ad48",
   "_spec": "ace-builds@github:ajaxorg/ace-builds",
-  "_where": "/tmp/asset_stagedp85l9",
+  "_where": "/tmp/asset_stageVar3GR",
   "author": "",
   "bugs": {
     "url": "https://github.com/ajaxorg/ace-builds/issues"
@@ -40,5 +40,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "typings": "ace.d.ts",
-  "version": "1.4.0"
+  "version": "1.4.1"
 }

@@ -1,5 +1,5 @@
 {
-  "_from": "@polymer/polymer@^3.0.0",
+  "_from": "@polymer/polymer@^3.0.2",
   "_id": "@polymer/polymer@3.0.5",
   "_inBundle": false,
   "_integrity": "sha512-Zbmhtr5vZ3NoHWwFYLKI4ff7yfE6DZopI8vaS7HvmUIuNqsv/EpEDXfNEYjqePQmkMX5LU9OIKV1eX/+9aveow==",
@@ -8,24 +8,31 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@polymer/polymer@^3.0.0",
+    "raw": "@polymer/polymer@^3.0.2",
     "name": "@polymer/polymer",
     "escapedName": "@polymer%2fpolymer",
     "scope": "@polymer",
-    "rawSpec": "^3.0.0",
+    "rawSpec": "^3.0.2",
     "saveSpec": null,
-    "fetchSpec": "^3.0.0"
+    "fetchSpec": "^3.0.2"
   },
   "_requiredBy": [
+    "/@polymer/iron-a11y-announcer",
+    "/@polymer/iron-a11y-keys-behavior",
+    "/@polymer/iron-fit-behavior",
     "/@polymer/iron-flex-layout",
+    "/@polymer/iron-overlay-behavior",
     "/@polymer/iron-range-behavior",
+    "/@polymer/iron-resizable-behavior",
+    "/@polymer/lit-element",
     "/@polymer/paper-progress",
-    "/@polymer/paper-styles"
+    "/@polymer/paper-styles",
+    "/@polymer/paper-toast"
   ],
   "_resolved": "https://registry.npmjs.org/@polymer/polymer/-/polymer-3.0.5.tgz",
   "_shasum": "eaa42e70df7de818b5e1839452c82a5f83e39929",
-  "_spec": "@polymer/polymer@^3.0.0",
-  "_where": "/tmp/asset_stagemCMcrF/node_modules/@polymer/paper-progress",
+  "_spec": "@polymer/polymer@^3.0.2",
+  "_where": "/tmp/asset_stageVar3GR/node_modules/@polymer/lit-element",
   "author": {
     "name": "The Polymer Project Authors"
   },

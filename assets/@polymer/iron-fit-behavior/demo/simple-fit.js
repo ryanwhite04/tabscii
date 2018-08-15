@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 import '../../polymer/polymer-legacy.js';
 
 import { IronFitBehavior } from '../iron-fit-behavior.js';
-import '@polymer/paper-styles/color.js';
+import '../../paper-styles/color.js';
 import { Polymer } from '../../polymer/lib/legacy/polymer-fn.js';
 import { html } from '../../polymer/lib/utils/html-tag.js';
 Polymer({

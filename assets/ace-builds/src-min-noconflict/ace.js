@@ -305,7 +305,7 @@
         var n = 0,
             r;t = t || document;if (r = t.querySelectorAll("style")) while (n < r.length) if (r[n++].id === e) return !0;
     }, t.importCssString = function (n, r, i) {
-        var s = i && i.getRootNode ? i.getRootNode() : i || document,
+        var s = i && i.getRootNode ? i.getRootNode() : document,
             o = s.ownerDocument || s;if (r && t.hasCssString(r, s)) return null;r && (n += "\n/*# sourceURL=ace/css/" + r + " */");var u = t.createElement("style");u.appendChild(o.createTextNode(n)), r && (u.id = r), s == o && (s = t.getDocumentHead(o)), s.insertBefore(u, s.firstChild);
     }, t.importCssStylsheet = function (e, n) {
         t.buildDom(["link", { rel: "stylesheet", href: e }], t.getDocumentHead(n));
@@ -782,9 +782,9 @@
                 s = r.start.column,
                 o = r.end.column,
                 u = t.session.getLine(i);if (r.start.row != i) {
-                var a = t.session.getLine(i - 1);u = a + "\n" + u, s = r.start.row < i - 1 ? 0 : s, o += a.length + 1;
+                var a = t.session.getLine(i - 1);s = r.start.row < i - 1 ? 0 : s, o += a.length + 1, u = a + "\n" + u;
             } else if (r.end.row != i) {
-                var f = t.session.getLine(i + 1);u = u + "\n" + f, o = r.end.row > i + 1 ? f.length : o, o += u.length + 1;
+                var f = t.session.getLine(i + 1);o = r.end.row > i + 1 ? f.length : o, o += u.length + 1, u = u + "\n" + f;
             }u.length > l && (s < l && o < l ? u = u.slice(0, l) : (u = "\n", s = 0, o = 1));var c = u + "\n\n";c != E && (n.value = E = c, S = x = c.length), O && (S = n.selectionStart, x = n.selectionEnd);if (x != o || S != s) try {
                 n.setSelectionRange(s, o), S = s, x = o;
             } catch (h) {}d = !1;
@@ -828,7 +828,7 @@
         }, t.on("beforeEndOperation", function () {
             if (t.curOp && t.curOp.command.name == "insertstring") return;d && (E = n.value = "", q()), C();
         }), T && t.onFocus();var k = function (e) {
-            return e.selectionStart === 0 && e.selectionEnd >= E.length && e.value == E && E;
+            return e.selectionStart === 0 && e.selectionEnd >= E.length && e.value === E && E && e.selectionEnd !== x;
         },
             L = function (e) {
             if (d) return;h ? h = !1 : k(n) && (t.selectAll(), C());
@@ -939,7 +939,7 @@
                 }
             }return this.captureMouse(e), this.startSelect(n, e.domEvent._clicks > 1), e.preventDefault();
         }, this.startSelect = function (e, t) {
-            e = e || this.editor.renderer.screenToTextCoordinates(this.x, this.y);var n = this.editor;this.mousedownEvent.getShiftKey() ? n.selection.selectToPosition(e) : t || n.selection.moveToPosition(e), t || this.select(), n.renderer.scroller.setCapture && n.renderer.scroller.setCapture(), n.setStyle("ace_selecting"), this.setState("select");
+            e = e || this.editor.renderer.screenToTextCoordinates(this.x, this.y);var n = this.editor;if (!this.mousedownEvent) return;this.mousedownEvent.getShiftKey() ? n.selection.selectToPosition(e) : t || n.selection.moveToPosition(e), t || this.select(), n.renderer.scroller.setCapture && n.renderer.scroller.setCapture(), n.setStyle("ace_selecting"), this.setState("select");
         }, this.select = function () {
             var e,
                 t = this.editor,
@@ -5622,7 +5622,7 @@
             } }, maxLines: { set: function (e) {
                 this.updateFull();
             } }, minLines: { set: function (e) {
-                this.updateFull();
+                this.$minLines < 562949953421311 || (this.$minLines = 0), this.updateFull();
             } }, maxPixelHeight: { set: function (e) {
                 this.updateFull();
             }, initialValue: 0 }, scrollPastEnd: { set: function (e) {
@@ -6228,7 +6228,7 @@
         }), c.container.env = c.env = h, c;
     }, t.createEditSession = function (e, t) {
         var n = new u(e, t);return n.setUndoManager(new a()), n;
-    }, t.Range = s, t.EditSession = u, t.UndoManager = a, t.VirtualRenderer = f, t.version = "1.4.0";
+    }, t.Range = s, t.EditSession = u, t.UndoManager = a, t.VirtualRenderer = f, t.version = "1.4.1";
 });
 (function () {
     ace.require(["ace/ace"], function (a) {
