@@ -13,6 +13,7 @@
     "ace-builds": "github:ajaxorg/ace-builds",
     "debug": "^2.2.0",
     "font-awesome": "^4.7.0",
+    "fs-extra": "^7.0.0",
     "jquery": "^3.3.1",
     "midi": "github:mudcube/MIDI.js",
     "tone": "^0.12.80"

@@ -5,6 +5,7 @@ dependencies:
   ace-builds: github.com/ajaxorg/ace-builds/f3918341e40f4b8aaf0474fb791b81fbc3d2ad48
   debug: 2.6.9
   font-awesome: 4.7.0
+  fs-extra: 7.0.0
   jquery: 3.3.1
   midi: github.com/mudcube/MIDI.js/a8a84257afa70721ae462448048a87301fc1554a
   tone: 0.12.80
@@ -2051,6 +2052,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-66Pm4RYbjzdyeuqudYqhFiNBbCIuI9kgRqLPSHIlXHidW8NIQtVdkM1yeZ4lXwuhbTETv3EUGMNHAAw6hiundQ==
+  /fs-extra/7.0.0:
+    dependencies:
+      graceful-fs: 4.1.11
+      jsonfile: 4.0.0
+      universalify: 0.1.2
+    dev: false
+    engines:
+      node: '>=6 <7 || >=8'
+    resolution:
+      integrity: sha512-EglNDLRpmaTWiD/qraZn6HREAEAHJcJOmxNEYwq6xeMKnVMAy3GUcFB+wXt2C6k4CNvB/mP1y/U3dzvKKj5OtQ==
   /fs-mkdirp-stream/1.0.0:
     dependencies:
       graceful-fs: 4.1.11
@@ -2211,7 +2222,6 @@ packages:
     resolution:
       integrity: sha1-JAzQV4WpoY5WHcG0S0HHY+8ejbA=
   /graceful-fs/4.1.11:
-    dev: true
     engines:
       node: '>=0.4.0'
     resolution:
@@ -2834,7 +2844,6 @@ packages:
     resolution:
       integrity: sha1-Hq3nrMASA0rYTiOWdn6tn6VJWCE=
   /jsonfile/4.0.0:
-    dev: true
     optionalDependencies:
       graceful-fs: 4.1.11
     resolution:
@@ -4774,7 +4783,6 @@ packages:
     resolution:
       integrity: sha1-nhBXzKhRq7kzmPizOuGHuZyuwRo=
   /universalify/0.1.2:
-    dev: true
     engines:
       node: '>= 4.0.0'
     resolution:
@@ -5193,6 +5201,7 @@ specifiers:
   ace-builds: 'github:ajaxorg/ace-builds'
   debug: ^2.2.0
   font-awesome: ^4.7.0
+  fs-extra: ^7.0.0
   gh-pages: ^1.2.0
   jquery: ^3.3.1
   live-server: ^1.2.0
