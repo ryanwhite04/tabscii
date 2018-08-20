@@ -17,12 +17,12 @@
     "fetchSpec": "^3.0.0-pre.21"
   },
   "_requiredBy": [
-    "/@polymer/paper-styles"
+    "/@polymer/iron-demo-helpers"
   ],
   "_resolved": "https://registry.npmjs.org/@polymer/font-roboto/-/font-roboto-3.0.0-pre.21.tgz",
   "_shasum": "65674464138a51f57cfdfd043e394d8fe75990b3",
   "_spec": "@polymer/font-roboto@^3.0.0-pre.21",
-  "_where": "/tmp/asset_stageVar3GR/node_modules/@polymer/paper-styles",
+  "_where": "/tmp/asset_stagerxi0Pn/node_modules/@polymer/iron-demo-helpers",
   "author": {
     "name": "The Polymer Authors"
   },

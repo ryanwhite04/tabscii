@@ -1,14 +1,20 @@
 dependencies:
+  '@granite-elements/ace-widget': 2.2.6
+  '@polymer/iron-demo-helpers': 3.0.0-pre.21
+  '@polymer/iron-icons': 3.0.0-pre.21
   '@polymer/lit-element': 0.5.2
   '@polymer/paper-progress': 3.0.0-pre.21
   '@polymer/paper-toast': 3.0.0-pre.21
   ace-builds: github.com/ajaxorg/ace-builds/f3918341e40f4b8aaf0474fb791b81fbc3d2ad48
+  brace: 0.11.1
   debug: 2.6.9
+  dedent: github.com/dmnd/dedent/77673fef42c0374e744df868ba1b2829a5aa4781
   font-awesome: 4.7.0
   fs-extra: 7.0.0
   jquery: 3.3.1
   midi: github.com/mudcube/MIDI.js/a8a84257afa70721ae462448048a87301fc1554a
   tone: 0.12.80
+  upup: 1.0.0
 devDependencies:
   '@0xcda7a/empathy': 0.0.9
   gh-pages: 1.2.0
@@ -53,6 +59,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-ir+gg22ZfMuUz5XGCafK8bklE5SXmWEGkmChsjxjZ3sefBvCZVCajD+qGOnC37JViBNBx+B88ZF1i6nK4yc8jg==
+  /@granite-elements/ace-widget/2.2.6:
+    dependencies:
+      '@polymer/polymer': 3.0.5
+      ace-builds: 1.4.1
+    dev: false
+    resolution:
+      integrity: sha512-/zEExhedBaGGEjBRqZyKr9CdTyxRuHYkxM0rgGY6jOMPE5ZXXMskJgF2+3S1FLyaHte63EyOG6VhV2C6BTwFKA==
   /@polymer/font-roboto/3.0.0-pre.21:
     dev: false
     resolution:
@@ -69,6 +82,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-fdADeKVQsZ7Izg5H6pOM9VVFWMTVUGgMfGr6jzEW0ehZT6N7bTzBIjft2r8sh3qSx2zCUxQEgUUDoeXE9/yROA==
+  /@polymer/iron-demo-helpers/3.0.0-pre.21:
+    dependencies:
+      '@polymer/font-roboto': 3.0.0-pre.21
+      '@polymer/iron-flex-layout': 3.0.0-pre.21
+      '@polymer/iron-location': 3.0.0-pre.21
+      '@polymer/marked-element': 3.0.0-pre.21
+      '@polymer/polymer': 3.0.5
+      '@polymer/prism-element': 3.0.0-pre.21
+    dev: false
+    resolution:
+      integrity: sha512-hkc6vNAMBbScLuntRpff1IkeMKIPa1SKNRhhBxaO/T16u+KTuMs7e/i9XJodXPBUQEyzlaZa7qc5GXU3oeTrxw==
   /@polymer/iron-fit-behavior/3.0.0-pre.21:
     dependencies:
       '@polymer/polymer': 3.0.5
@@ -81,6 +105,41 @@ packages:
     dev: false
     resolution:
       integrity: sha512-/GFBWLBhpzycXmdyS+rzQxCa/ssCX5ZGEa0M/oMRsUK/hUKrj/XBNNYZ3BlyHf2NHELNqnwZLcIZB5EPjA0uwg==
+  /@polymer/iron-icon/3.0.0-pre.21:
+    dependencies:
+      '@polymer/iron-flex-layout': 3.0.0-pre.21
+      '@polymer/iron-meta': 3.0.0-pre.21
+      '@polymer/polymer': 3.0.5
+    dev: false
+    resolution:
+      integrity: sha512-B/6ncM/JiKYOCkYtIsgztZuMzmMWAR5POGQ0r7TU0RaBzKstqTvn6NfRHeNzYjsOwBMse/wA6/qvgvCRgx6kWw==
+  /@polymer/iron-icons/3.0.0-pre.21:
+    dependencies:
+      '@polymer/iron-icon': 3.0.0-pre.21
+      '@polymer/iron-iconset-svg': 3.0.0-pre.21
+      '@polymer/polymer': 3.0.5
+    dev: false
+    resolution:
+      integrity: sha512-ExwaHlToVXl3BN3y2sYiutVqf9+vrnVx8/PdaNkwvDaBt1RTyeGN5EP3YGvKsaF17yq9TlJsnLOANvf1koO/XA==
+  /@polymer/iron-iconset-svg/3.0.0-pre.21:
+    dependencies:
+      '@polymer/iron-meta': 3.0.0-pre.21
+      '@polymer/polymer': 3.0.5
+    dev: false
+    resolution:
+      integrity: sha512-YWdX3QROFHKsGds9wUDbD2u1hN6uG6oG4fEu/F16aHFQg9tu2oiSyRspGsOQlXJ28177Qc2rxQ1Kp8GdlzpMbw==
+  /@polymer/iron-location/3.0.0-pre.21:
+    dependencies:
+      '@polymer/polymer': 3.0.5
+    dev: false
+    resolution:
+      integrity: sha512-NIAAGKkvUkfkVg3lge4r66WdcTXTZfhNwADWwh5REcM5rubqMWb6PKb+K/6bumDEODYtI5waL3ewOeFMdONUHA==
+  /@polymer/iron-meta/3.0.0-pre.21:
+    dependencies:
+      '@polymer/polymer': 3.0.5
+    dev: false
+    resolution:
+      integrity: sha512-RR24zD2t4rSJyjisMo5Cfy200FFYrsmRDZSX8wk1JdaDHVWLgq9DM1aa7/B7WI7sEWkckzVZPBthRFVB+PmVwA==
   /@polymer/iron-overlay-behavior/3.0.0-pre.21:
     dependencies:
       '@polymer/iron-a11y-keys-behavior': 3.0.0-pre.21
@@ -109,6 +168,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-7v/UlqVO05YuFCxxtC7jpuMQuDiPxArO7gACHqZ3uFd9/BM9YTdktX3bKRTnKTFUaPuNWWoPGvpAe2WOQCH2Pw==
+  /@polymer/marked-element/3.0.0-pre.21:
+    dependencies:
+      '@polymer/polymer': 3.0.5
+      marked: 0.3.19
+    dev: false
+    resolution:
+      integrity: sha512-7DlbJb/l/M87heHvj8lmK6P02fUpoMZLIe6GxbqQscH0uvDtHTyM7topu1hBt0pg0V7wkgC5KInZteftMQSPeQ==
   /@polymer/paper-progress/3.0.0-pre.21:
     dependencies:
       '@polymer/iron-flex-layout': 3.0.0-pre.21
@@ -137,10 +203,17 @@ packages:
       integrity: sha512-7jaAfpYxz86CUcgUhE/CCrCSh5kMNIC6c0+rerUozraVOmbbQGO2C4CLu/8aaJjxzqPdnTxyZwME82zHCu2qhw==
   /@polymer/polymer/3.0.5:
     dependencies:
-      '@webcomponents/shadycss': 1.4.0
+      '@webcomponents/shadycss': 1.5.0
     dev: false
     resolution:
       integrity: sha512-Zbmhtr5vZ3NoHWwFYLKI4ff7yfE6DZopI8vaS7HvmUIuNqsv/EpEDXfNEYjqePQmkMX5LU9OIKV1eX/+9aveow==
+  /@polymer/prism-element/3.0.0-pre.21:
+    dependencies:
+      '@polymer/polymer': 3.0.5
+      prismjs: 1.15.0
+    dev: false
+    resolution:
+      integrity: sha512-8ZvgyrVncOOy9EoGIBAdgBTaPVfu4Vg0fHsBOQ9qCpGXYOU+033G9hgrHgNyWKNR1VGmdVEhztTvNIGqH9KzQA==
   /@types/babel-core/6.25.5:
     dependencies:
       '@types/babel-generator': 6.25.2
@@ -394,10 +467,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-QcwogrdqcBh8Z+eUF8SG+ag5iwQSXxQJELBEHmLkk790wgQgnIMmntT2sMAMw53GiFNckArf5X0bsCA44j3lWQ==
-  /@webcomponents/shadycss/1.4.0:
+  /@webcomponents/shadycss/1.5.0:
     dev: false
     resolution:
-      integrity: sha512-/OK+M06S9YbnTXAHm1QtHhONo0msBej/V84x3ZpSV+sJa1jp/FfOv0mW0IWdluU94QlVrPnJxK2t+Czggfivig==
+      integrity: sha512-jNuC7alo3EfiqZPosCruJuMAaUI9qgiuGxFcFyPWjOpo4BP+vgC7hxpTzQYxbIWUgrqkn9lnfPup2hE9c/h/PQ==
   /@webpack-contrib/config-loader/1.2.1:
     dependencies:
       '@webpack-contrib/schema-utils': 1.0.0-beta.0
@@ -440,6 +513,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-63d99gEXI6OxTopywIBcjoZ0a9I=
+  /ace-builds/1.4.1:
+    dev: false
+    resolution:
+      integrity: sha512-ulsfTOi/oAXBIt9hYlK4asyFZYsFOOUAbwBZidbjWWJycRX4LtwIithMyndcnoQ4PavkZ0iGJ+c9nqHNiYbubA==
   /acorn-dynamic-import/3.0.0:
     dependencies:
       acorn: 5.7.1
@@ -883,6 +960,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==
+  /brace/0.11.1:
+    dev: false
+    resolution:
+      integrity: sha1-SJb8ydVE7vRfS7dmDbMg07N5/lg=
   /braces/1.8.5:
     dependencies:
       expand-range: 1.8.2
@@ -1171,6 +1252,15 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-1QL4544moEsDVH9T/l6Cemov/37iv1RtoKf7NJ04A60+4MREXNfx/QvavbH6QoGdsD4N4Mwy49cmaINR/o2mdg==
+  /clipboard/2.0.1:
+    dependencies:
+      good-listener: 1.2.2
+      select: 1.1.2
+      tiny-emitter: 2.0.2
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-7yhQBmtN+uYZmfRjjVjKa0dZdWuabzpSKGtyQZN+9C8xlC788SSJjOHWh7tzurfwTqTD5UDYAhIv5fRJg3sHjQ==
   /clone-buffer/1.0.0:
     dev: true
     engines:
@@ -1542,6 +1632,11 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-jwK2UV4cnPpbcG7+VRARKTZPUWowwXA8bzH5NP6ud0oeAxyYPuGZUAC7hMugpCdz4BeSZl2Dl9k66CHJ/46ZYQ==
+  /delegate/3.2.0:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==
   /depd/1.1.2:
     dev: true
     engines:
@@ -2203,6 +2298,13 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-9abXDoOV4hyFj7BInWTfAkJNUGw=
+  /good-listener/1.2.2:
+    dependencies:
+      delegate: 3.2.0
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha1-1TswzfkxPf+33JoNR3CWqm0UXFA=
   /got/6.7.1:
     dependencies:
       create-error-class: 3.0.2
@@ -3083,6 +3185,13 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
+  /marked/0.3.19:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg==
   /math-random/1.0.1:
     dev: true
     resolution:
@@ -3770,6 +3879,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-wa5+qGVg9Yt7PB6rYm3kXlKzgzgivYTLRandezh43jjRqgyDyP+9YxfJpJiLs9yKD1WeU8/OvtToWpW7255FtA==
+  /prismjs/1.15.0:
+    dev: false
+    optionalDependencies:
+      clipboard: 2.0.1
+    resolution:
+      integrity: sha512-Lf2JrFYx8FanHrjoV5oL8YHCclLQgbJcVZR+gikGGMqz6ub5QVWDTM6YIwm3BuPxM/LOV+rKns3LssXNLIf+DA==
   /private/0.1.8:
     dev: true
     engines:
@@ -4141,6 +4256,11 @@ packages:
       node: '>= 4'
     resolution:
       integrity: sha512-v/iwU6wvwGK8HbU9yi3/nhGzP0yGSuhQMzL6ySiec1FSrZZDkhm4noOSWzrNFo/jEc+SJY6jRTwuwbSXJPDUnQ==
+  /select/1.1.2:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
   /semver-diff/2.1.0:
     dependencies:
       semver: 5.5.0
@@ -4604,6 +4724,11 @@ packages:
       node: '>=0.6.0'
     resolution:
       integrity: sha512-YvC1SV1XdOUaL6gx5CoGroT3Gu49pK9+TZ38ErPldOWW4j49GI1HKs9DV+KGq/w6y+LZ72W1c8cKz2vzY+qpzg==
+  /tiny-emitter/2.0.2:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-2NM0auVBGft5tee/OxP4PI3d8WItkDM+fPnaRAVo6xTDI2knbz9eC5ArWGqtGlYqiH3RU5yMpdyTTO7MguC4ow==
   /titleize/1.0.1:
     dev: true
     engines:
@@ -4835,6 +4960,10 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-gwMdhgJHGuj/+wHJJs9e6PcCszpxR1b236igrOkUofGhqJuG+amlIKwApH1IW1WWl7ovZxsX49lMBWLxSdm5Dw==
+  /upup/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-BjFZ+WvFLYiFgtpRs4CUr5kocyooP3JTO1cxkyWAtLreiwVxsVC+tztyrk7D/pcaIpMNaIYDe8IS5ojO/phMmg==
   /uri-js/4.2.2:
     dependencies:
       punycode: 2.1.1
@@ -5184,6 +5313,12 @@ packages:
     resolution:
       tarball: 'https://codeload.github.com/ajaxorg/ace-builds/tar.gz/f3918341e40f4b8aaf0474fb791b81fbc3d2ad48'
     version: 1.4.1
+  github.com/dmnd/dedent/77673fef42c0374e744df868ba1b2829a5aa4781:
+    dev: false
+    name: dedent
+    resolution:
+      tarball: 'https://codeload.github.com/dmnd/dedent/tar.gz/77673fef42c0374e744df868ba1b2829a5aa4781'
+    version: 0.7.0
   github.com/mudcube/MIDI.js/a8a84257afa70721ae462448048a87301fc1554a:
     dev: false
     name: midi
@@ -5195,11 +5330,16 @@ shrinkwrapMinorVersion: 8
 shrinkwrapVersion: 3
 specifiers:
   '@0xcda7a/empathy': ^0.0.9
+  '@granite-elements/ace-widget': ^2.2.6
+  '@polymer/iron-demo-helpers': ^3.0.0-pre.21
+  '@polymer/iron-icons': ^3.0.0-pre.21
   '@polymer/lit-element': ^0.5.2
   '@polymer/paper-progress': ^3.0.0-pre.21
   '@polymer/paper-toast': ^3.0.0-pre.21
   ace-builds: 'github:ajaxorg/ace-builds'
+  brace: ^0.11.1
   debug: ^2.2.0
+  dedent: 'github:dmnd/dedent'
   font-awesome: ^4.7.0
   fs-extra: ^7.0.0
   gh-pages: ^1.2.0
@@ -5207,5 +5347,6 @@ specifiers:
   live-server: ^1.2.0
   midi: 'github:mudcube/MIDI.js'
   tone: ^0.12.80
+  upup: ^1.0.0
   webpack: ^4.16.5
   webpack-command: ^0.4.1

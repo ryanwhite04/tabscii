@@ -17,13 +17,12 @@
     "fetchSpec": "^3.0.0-pre.21"
   },
   "_requiredBy": [
-    "/@polymer/paper-progress",
-    "/@polymer/paper-styles"
+    "/@polymer/iron-icon"
   ],
   "_resolved": "https://registry.npmjs.org/@polymer/iron-flex-layout/-/iron-flex-layout-3.0.0-pre.21.tgz",
   "_shasum": "064bccb85ec2091b66366970e8867d3de7bb273d",
   "_spec": "@polymer/iron-flex-layout@^3.0.0-pre.21",
-  "_where": "/tmp/asset_stageVar3GR/node_modules/@polymer/paper-progress",
+  "_where": "/tmp/asset_stageWvKJeP/node_modules/@polymer/iron-icon",
   "author": {
     "name": "The Polymer Authors"
   },

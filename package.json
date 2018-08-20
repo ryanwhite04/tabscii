@@ -7,16 +7,22 @@
   "version": "1.1.0",
   "main": "index.js",
   "dependencies": {
+    "@granite-elements/ace-widget": "^2.2.6",
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.21",
+    "@polymer/iron-icons": "^3.0.0-pre.21",
     "@polymer/lit-element": "^0.5.2",
     "@polymer/paper-progress": "^3.0.0-pre.21",
     "@polymer/paper-toast": "^3.0.0-pre.21",
     "ace-builds": "github:ajaxorg/ace-builds",
+    "brace": "^0.11.1",
     "debug": "^2.2.0",
+    "dedent": "github:dmnd/dedent",
     "font-awesome": "^4.7.0",
     "fs-extra": "^7.0.0",
     "jquery": "^3.3.1",
     "midi": "github:mudcube/MIDI.js",
-    "tone": "^0.12.80"
+    "tone": "^0.12.80",
+    "upup": "^1.0.0"
   },
   "scripts": {
     "webpack": "webpack --config webpack.config.js",

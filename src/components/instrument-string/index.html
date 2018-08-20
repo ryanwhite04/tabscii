@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="../../assets/tone/build/Tone.js"></script>
+    <script src="../../debug.js"></script>
+  </head>
+  <body>
+    <script src="index.js" type="module"></script>
+    <script src="../load-select/index.js" type="module"></script>
+    <instrument-string id="string" position="5">A|---4---5---4---5</instrument-string>
+    <load-select id="instrument" src="../../json/instruments.json"></load-select>
+    <load-select id="note" src="../../json/notes.json"></load-select>
+    <script>
+    let string = document.getElementById('string')
+    document.getElementById('instrument').addEventListener('change', ({ target: { value }}) => {
+      string.setAttribute('instrstringument', value)
+    })
+    document.getElementById('note').addEventListener('change', ({ target: { value }}) => {
+      string.setAttribute('note', value)
+    })
+    </script>
+  </body>
+</html>

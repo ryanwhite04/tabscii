@@ -1,0 +1,175 @@
+# Piano
+
+A|I00|---0-2-3-5-7-8-A-C---| Acoustic Grand Piano
+A|I01|---0-2-3-5-7-8-A-C---| Bright Acoustic Piano
+A|I02|---0-2-3-5-7-8-A-C---| Electric Grand Piano
+A|I03|---0-2-3-5-7-8-A-C---| Honky-tonk Piano
+A|I04|---0-2-3-5-7-8-A-C---| Electric Piano 1
+A|I05|---0-2-3-5-7-8-A-C---| Electric Piano 2
+A|I06|---0-2-3-5-7-8-A-C---| Harpsichord
+A|I07|---0-2-3-5-7-8-A-C---| Clarinet
+
+# Chromatic Percussion
+
+A|I10|---0-2-3-5-7-8-A-C---| Celesta
+A|I11|---0-2-3-5-7-8-A-C---| Glockenspiel
+A|I12|---0-2-3-5-7-8-A-C---| Music Box
+A|I13|---0-2-3-5-7-8-A-C---| Vibraphone
+A|I14|---0-2-3-5-7-8-A-C---| Marimba
+A|I15|---0-2-3-5-7-8-A-C---| Xylophone
+A|I16|---0-2-3-5-7-8-A-C---| Tubular Bells
+A|I17|---0-2-3-5-7-8-A-C---| Dulcimer
+
+# Organ
+
+A|I20|---0-2-3-5-7-8-A-C---| Drawbar Organ
+A|I21|---0-2-3-5-7-8-A-C---| Percussive Organ
+A|I22|---0-2-3-5-7-8-A-C---| Rock Organ
+A|I23|---0-2-3-5-7-8-A-C---| Church Organ
+A|I24|---0-2-3-5-7-8-A-C---| Reed Organ
+A|I25|---0-2-3-5-7-8-A-C---| Accordion
+A|I26|---0-2-3-5-7-8-A-C---| Harmonica
+A|I27|---0-2-3-5-7-8-A-C---| Tango Accordion
+
+# Guitar
+
+A|I30|---0-2-3-5-7-8-A-C---| Acoustic Guitar (nylon)
+A|I31|---0-2-3-5-7-8-A-C---| Acoustic Guitar (steel)
+A|I32|---0-2-3-5-7-8-A-C---| Electric Guitar (jazz)
+A|I33|---0-2-3-5-7-8-A-C---| Electric Guitar (clean)
+A|I34|---0-2-3-5-7-8-A-C---| Electric Guitar (muted)
+A|I35|---0-2-3-5-7-8-A-C---| Overdriven Guitar
+A|I36|---0-2-3-5-7-8-A-C---| Distortion Guitar
+A|I37|---0-2-3-5-7-8-A-C---| Guitar Harmonics
+
+# Bass
+
+A|I40|---0-2-3-5-7-8-A-C---| Acoustic Bass
+A|I41|---0-2-3-5-7-8-A-C---| Electric Bass (finger)
+A|I42|---0-2-3-5-7-8-A-C---| Electric Bass (pick)
+A|I43|---0-2-3-5-7-8-A-C---| Fretless Bass
+A|I44|---0-2-3-5-7-8-A-C---| Slap Bass 1
+A|I45|---0-2-3-5-7-8-A-C---| Slap Bass 2
+A|I46|---0-2-3-5-7-8-A-C---| Synth Bass 1
+A|I47|---0-2-3-5-7-8-A-C---| Synth Bass 2
+
+# Strings
+
+A|I50|---0-2-3-5-7-8-A-C---| Violin
+A|I51|---0-2-3-5-7-8-A-C---| Viola
+A|I52|---0-2-3-5-7-8-A-C---| Cello
+A|I53|---0-2-3-5-7-8-A-C---| Contrabass
+A|I54|---0-2-3-5-7-8-A-C---| Tremolo Strings
+A|I55|---0-2-3-5-7-8-A-C---| Pizzicato Strings
+A|I56|---0-2-3-5-7-8-A-C---| Orchestral Harp
+A|I57|---0-2-3-5-7-8-A-C---| Timpani
+
+# Ensemble
+
+A|I60|---0-2-3-5-7-8-A-C---| String Ensemble 1
+A|I61|---0-2-3-5-7-8-A-C---| String Ensemble 2
+A|I62|---0-2-3-5-7-8-A-C---| Synth Strings 1
+A|I63|---0-2-3-5-7-8-A-C---| Synth Strings 2
+A|I64|---0-2-3-5-7-8-A-C---| Choir Aahs
+A|I65|---0-2-3-5-7-8-A-C---| Voice Oohs
+A|I66|---0-2-3-5-7-8-A-C---| Synth Choir
+A|I67|---0-2-3-5-7-8-A-C---| Orchestra Hit
+
+# Brass
+
+A|I70|---0-2-3-5-7-8-A-C---| Trumpet
+A|I71|---0-2-3-5-7-8-A-C---| Trombone
+A|I72|---0-2-3-5-7-8-A-C---| Tuba
+A|I73|---0-2-3-5-7-8-A-C---| Muted Trumpet
+A|I74|---0-2-3-5-7-8-A-C---| French Horn
+A|I75|---0-2-3-5-7-8-A-C---| Brass Section
+A|I76|---0-2-3-5-7-8-A-C---| Synth Brass 1
+A|I77|---0-2-3-5-7-8-A-C---| Synth Brass 2
+
+# Reed
+
+A|I80|---0-2-3-5-7-8-A-C---| Soprano Sax
+A|I81|---0-2-3-5-7-8-A-C---| Alto Sax
+A|I82|---0-2-3-5-7-8-A-C---| Tenor Sax
+A|I83|---0-2-3-5-7-8-A-C---| Baritone Sax
+A|I84|---0-2-3-5-7-8-A-C---| Oboe
+A|I85|---0-2-3-5-7-8-A-C---| English Horn
+A|I86|---0-2-3-5-7-8-A-C---| Bassoon
+A|I87|---0-2-3-5-7-8-A-C---| Clarinet
+
+# Pipe
+
+A|I90|---0-2-3-5-7-8-A-C---| Piccolo
+A|I91|---0-2-3-5-7-8-A-C---| Flute
+A|I92|---0-2-3-5-7-8-A-C---| Recorder
+A|I93|---0-2-3-5-7-8-A-C---| Pan Flute
+A|I94|---0-2-3-5-7-8-A-C---| Blown Bottle
+A|I95|---0-2-3-5-7-8-A-C---| Shakuhachi
+A|I96|---0-2-3-5-7-8-A-C---| Whistle
+A|I97|---0-2-3-5-7-8-A-C---| Ocarina
+
+# Synth Lead
+
+A|IA0|---0-2-3-5-7-8-A-C---| Lead 1 (square)
+A|IA1|---0-2-3-5-7-8-A-C---| Lead 2 (sawtooth)
+A|IA2|---0-2-3-5-7-8-A-C---| Lead 3 (calliope)
+A|IA3|---0-2-3-5-7-8-A-C---| Lead 4 (chiff)
+A|IA4|---0-2-3-5-7-8-A-C---| Lead 5 (charang)
+A|IA5|---0-2-3-5-7-8-A-C---| Lead 6 (voice)
+A|IA6|---0-2-3-5-7-8-A-C---| Lead 7 (fifths)
+A|IA7|---0-2-3-5-7-8-A-C---| Lead 8 (bass + lead)
+
+# Synth Pad
+
+A|IB0|---0-2-3-5-7-8-A-C---| Pad 1 (new age)
+A|IB1|---0-2-3-5-7-8-A-C---| Pad 2 (warm)
+A|IB2|---0-2-3-5-7-8-A-C---| Pad 3 (polysynth)
+A|IB3|---0-2-3-5-7-8-A-C---| Pad 4 (choir)
+A|IB4|---0-2-3-5-7-8-A-C---| Pad 5 (bowed)
+A|IB5|---0-2-3-5-7-8-A-C---| Pad 6 (metallic)
+A|IB6|---0-2-3-5-7-8-A-C---| Pad 7 (halo)
+A|IB7|---0-2-3-5-7-8-A-C---| Pad 8 (sweep)
+
+# Synth Effects
+
+A|IC0|---0-2-3-5-7-8-A-C---| FX 1 (rain)
+A|IC1|---0-2-3-5-7-8-A-C---| FX 2 (soundtrack)
+A|IC2|---0-2-3-5-7-8-A-C---| FX 3 (crystal)
+A|IC3|---0-2-3-5-7-8-A-C---| FX 4 (atmosphere)
+A|IC4|---0-2-3-5-7-8-A-C---| FX 5 (brightness)
+A|IC5|---0-2-3-5-7-8-A-C---| FX 6 (goblins)
+A|IC6|---0-2-3-5-7-8-A-C---| FX 7 (echoes)
+A|IC7|---0-2-3-5-7-8-A-C---| FX 8 (sci-fi)
+
+# Ethnic
+
+A|ID0|---0-2-3-5-7-8-A-C---| Sitar
+A|ID1|---0-2-3-5-7-8-A-C---| Banjo
+A|ID2|---0-2-3-5-7-8-A-C---| Shamisen
+A|ID3|---0-2-3-5-7-8-A-C---| Koto
+A|ID4|---0-2-3-5-7-8-A-C---| Kalimba
+A|ID5|---0-2-3-5-7-8-A-C---| Bagpipe
+A|ID6|---0-2-3-5-7-8-A-C---| Fiddle
+A|ID7|---0-2-3-5-7-8-A-C---| Shanai
+
+# Percussive
+
+A|IE0|---0-2-3-5-7-8-A-C---| Tinkle Bell
+A|IE1|---0-2-3-5-7-8-A-C---| Agogo
+A|IE2|---0-2-3-5-7-8-A-C---| Steel Drums
+A|IE3|---0-2-3-5-7-8-A-C---| Woodblock
+A|IE4|---0-2-3-5-7-8-A-C---| Taiko Drum
+A|IE5|---0-2-3-5-7-8-A-C---| Melodic Tom
+A|IE6|---0-2-3-5-7-8-A-C---| Synth Drum
+A|IE7|---0-2-3-5-7-8-A-C---| Reverse Cymbal
+
+# Sound Effects
+
+A|IF0|---0-2-3-5-7-8-A-C---| Guitar Fret Noise
+A|IF1|---0-2-3-5-7-8-A-C---| Breath Noise
+A|IF2|---0-2-3-5-7-8-A-C---| Seashore
+A|IF3|---0-2-3-5-7-8-A-C---| Bird Tweet
+A|IF4|---0-2-3-5-7-8-A-C---| Telephone Ring
+A|IF5|---0-2-3-5-7-8-A-C---| Helicopter
+A|IF6|---0-2-3-5-7-8-A-C---| Applause
+A|IF7|---0-2-3-5-7-8-A-C---| Gunshot

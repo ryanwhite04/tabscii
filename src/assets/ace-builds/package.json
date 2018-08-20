@@ -1,26 +1,27 @@
 {
-  "_from": "github:ajaxorg/ace-builds",
+  "_from": "ace-builds@^1.4.0",
   "_id": "ace-builds@1.4.1",
   "_inBundle": false,
-  "_integrity": "",
+  "_integrity": "sha512-ulsfTOi/oAXBIt9hYlK4asyFZYsFOOUAbwBZidbjWWJycRX4LtwIithMyndcnoQ4PavkZ0iGJ+c9nqHNiYbubA==",
   "_location": "/ace-builds",
   "_phantomChildren": {},
   "_requested": {
-    "type": "git",
-    "raw": "ace-builds@github:ajaxorg/ace-builds",
+    "type": "range",
+    "registry": true,
+    "raw": "ace-builds@^1.4.0",
     "name": "ace-builds",
     "escapedName": "ace-builds",
-    "rawSpec": "github:ajaxorg/ace-builds",
-    "saveSpec": "github:ajaxorg/ace-builds",
-    "fetchSpec": null,
-    "gitCommittish": null
+    "rawSpec": "^1.4.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.4.0"
   },
   "_requiredBy": [
-    "/"
+    "/@granite-elements/ace-widget"
   ],
-  "_resolved": "github:ajaxorg/ace-builds#f3918341e40f4b8aaf0474fb791b81fbc3d2ad48",
-  "_spec": "ace-builds@github:ajaxorg/ace-builds",
-  "_where": "/tmp/asset_stageVar3GR",
+  "_resolved": "https://registry.npmjs.org/ace-builds/-/ace-builds-1.4.1.tgz",
+  "_shasum": "a66e33bcd519918ee99bc54cac5d7399a83c8ff2",
+  "_spec": "ace-builds@^1.4.0",
+  "_where": "/tmp/asset_stageil3z3r/node_modules/@granite-elements/ace-widget",
   "author": "",
   "bugs": {
     "url": "https://github.com/ajaxorg/ace-builds/issues"
